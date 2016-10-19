@@ -4,9 +4,15 @@
 **Autorzy:** Patryk Duda, Michał Zagórski
 
 ### Cel projektu:
-celem projektu jest zaprogramowanie dostępnego ukladu FPGA jako modułu umożliwiającego przetwarzanie na potrzeby sieci VPN w standardzie OpenVPN.
+Celem projektu jest zaprogramowanie dostępnego ukladu FPGA jako modułu umożliwiającego przetwarzanie na potrzeby sieci VPN w standardzie OpenVPN.
 Moduł ma stanowić element połączenia między komputem -- stacją roboczą, a dedykowanym serwerem VPN.
 W wersji podstawowej planujemy wykorzystać szyfrowanie oparte o klucz statyczny (pre-shared).
+
+### Streszczenie o OpenVPN:
+OpenVPN definiuje standard oprogramowania implementujęcego połączenia szyfrowane bezpiecznych sieci prywatnych typu punkt-punkt (VPN - Virtual Private Network)
+Samo szyfrowanie będzie oparte o standard bibliotek SSL.
+openVPN jest rozwiązaniem implenetowanym na warstwach sieci od 3. (2.) wzywż.
+
 
 Potrzebne źródło:
 
@@ -15,6 +21,7 @@ Potrzebne źródło:
 [Dokumenty OpenVPN - HowTo](https://openvpn.net/index.php/open-source/documentation/howto.html)
 
 [OpenVPN - Wiki](https://community.openvpn.net/openvpn)
+
 Strona dokumentacji man dla openvpn
 
 ### Etapy tworzenia projektu
