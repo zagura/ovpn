@@ -29,19 +29,6 @@ begin
 					
 	BitInOutWrapper <=	'1' when BitInOut /= '0' else
 								'0' when BitInOut = '0';
-	
-	set_direction : with stopped select
-		dir <=
-			Direction when '1',
-			dir when others;
-
-	set_data : with stopped select
-		sreg <=
-			DataIn when '1',
-			sreg when others;
-			
-	stopped <= '0' when Start = '1' and stopped = '1' else
-					stopped;
 			
 	DataOut <= sreg;
 	
@@ -54,7 +41,16 @@ begin
 		
 			if Rst = '1' then
 				sreg <= (others => '0');
+				stopped <= '1';
 				i := 0;
+				
+			elsif stopped = '1' then
+				sreg <= DataIn;
+				dir <= Direction;
+				if Start = '1' then
+					stopped <= '0';
+				end if;
+				
 			elsif stopped = '0' then
 				if (dir = '1') then
 					BitInOutWrapper <= sreg(15);
