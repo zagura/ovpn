@@ -1,0 +1,73 @@
+	--Pomys³ jest taki, ¿e stan mówi, czego oczekujemy
+	--Bo przypisanie do current_state jest opóŸnione o jeden takt
+	--Tutaj niejawnie jest warunek przejœcia do stanu w danym stanie, bo
+	--signal zachowuj¹ wartoœæ
+	fsm : process(	current_state, 
+						Rst,
+						RxValidDataIn,
+						IFGCntEq12,
+						RxDataIn,
+						RxEndTransmission,
+						DstMacValid,
+						SrcMacValid,
+						CrcValid,
+						FrameSizeOK) is
+		begin
+			if Rst = '1' then
+				next_state <= preamble;
+			else 
+				case current_state is
+					
+					
+					when idle =>
+						if RxValidDataIn = '1' and IFGCntEq12 = '1' then
+							next_state <= preamble;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AA" and IFGCntEq12 = '1' then
+							next_state <= sfd;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AB" and IFGCntEq12 = '1' then
+							next_state <= data;
+						else
+							next_state <= idle;
+						end if;
+					
+						
+					when preamble =>
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AA" then
+							next_state <= sfd;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AB" then
+							next_state <= data;
+						end if;
+						
+					when sfd =>
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AA" then
+							next_state <= sfd;
+						elsif RxValidDataIn = '1' and RxDataIn = X"AB" then
+							next_state <= data;
+						else
+							next_state <= drop;
+					end if;	
+						
+					when data =>
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxEndTransmission = '1' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
+							next_state <= OK;
+						elsif RxEndTransmission = '1' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
+							next_state <= drop;
+						--Tutaj jeszcze iœæ do drop, gdy nam siê ramka skoñczy³a
+						--a coœ jest nie tak
+						end if;
+						
+					when drop =>
+						next_state <= idle;
+						
+					when OK =>
+						next_state  <= idle;
+						
+				end case;
+			end if;
+	end process fsm;

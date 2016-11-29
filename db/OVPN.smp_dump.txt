@@ -1,0 +1,9 @@
+
+State Machine - |OVPN|rx:rx_instance|current_state
+Name current_state.OK current_state.data current_state.sfd current_state.drop current_state.idle current_state.preamble 
+current_state.preamble 0 0 0 0 0 0 
+current_state.idle 0 0 0 0 1 1 
+current_state.drop 0 0 0 1 0 1 
+current_state.sfd 0 0 1 0 0 1 
+current_state.data 0 1 0 0 0 1 
+current_state.OK 1 0 0 0 0 1 

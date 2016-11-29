@@ -1,0 +1,177 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.common.rxstate_type;
+
+--DEBUG
+use work.common.frame_cnt_signals;
+
+entity mac_top is
+	port (
+		iCLK_50 : in std_logic;
+		
+		oLEDG :	out std_logic_vector(8 downto 0);
+		oLEDR : out	std_logic_vector(17 downto 0);
+		
+		oHEX0_D : out std_logic_vector(6 downto 0);
+		oHEX0_DP : out std_logic;
+		oHEX1_D : out std_logic_vector(6 downto 0);
+		oHEX1_DP : out std_logic;
+		oHEX2_D : out std_logic_vector(6 downto 0);
+		oHEX2_DP : out std_logic;
+		oHEX3_D : out std_logic_vector(6 downto 0);
+		oHEX3_DP : out std_logic;
+		oHEX4_D : out std_logic_vector(6 downto 0);
+		oHEX4_DP : out std_logic;
+		oHEX5_D : out std_logic_vector(6 downto 0);
+		oHEX5_DP : out std_logic;
+		oHEX6_D : out std_logic_vector(6 downto 0);
+		oHEX6_DP : out std_logic;
+		oHEX7_D : out std_logic_vector(6 downto 0);
+		oHEX7_DP : out std_logic;
+		
+		iKEY : in std_logic_vector(3 downto 0)
+		
+	);
+end entity mac_top;
+
+architecture RTL of mac_top is
+	component rx
+		generic(LocalMac : std_logic_vector(47 downto 0));
+		port(
+			RxClk            : in  std_logic;
+			Rst              : in  std_logic;
+			RxDataIn         : in  std_logic_vector(7 downto 0);
+			RxValidDataIn    : in  std_logic;
+			RxCurrentState   : out rxstate_type;
+			
+			--DEBUG
+			FrameOutputDEBUG : out frame_cnt_signals;
+			FrameCntDDEBUG   : out std_logic_vector(10 downto 0);
+			IFGCntDDEBUG     : out std_logic_vector(3 downto 0);
+			DstMacDEBUG      : out std_logic_vector(47 downto 0);
+			FrameTypeDEBUG   : out std_logic_vector(15 downto 0)
+		);
+	end component rx;
+	
+	component debounce
+		generic(counter_size : INTEGER := 19);
+		port(
+			clk    : IN  STD_LOGIC;
+			button : IN  STD_LOGIC;
+			result : OUT STD_LOGIC
+		);
+	end component debounce;
+	
+	component byteto7seg
+		port(
+			NibbleIn : in std_logic_vector(3 downto 0);
+			SegOut   : in std_logic_vector(6 downto 0)
+		);
+	end component byteto7seg;
+	
+	type hex_display_array is array (0 to 7) of std_logic_vector(6 downto 0);
+	type nibble_array is array (0 to 7) of std_logic_vector(3 downto 0);
+	
+	signal RxCurrentState : rxstate_type;
+	signal RxDataIn : std_logic_vector(7 downto 0);
+	signal RxValidDataIn : std_logic;
+	--For debug purposes
+	signal HEX : hex_display_array;
+	signal Button : std_logic_vector(1 downto 0);
+	signal Nibbles : nibble_array;
+	signal FrameOutput : frame_cnt_signals;
+	
+	signal FrameCntNIB : nibble_array := (others => '0');
+	signal DstMacNIB : nibble_array := (others => '0');
+	
+	signal FrameCntDDEBUG   : std_logic_vector(10 downto 0);
+	signal IFGCntDDEBUG     : std_logic_vector(3 downto 0);
+	signal DstMacDEBUG      : std_logic_vector(47 downto 0);
+	signal FrameTypeDEBUG   : std_logic_vector(15 downto 0);
+	
+begin
+	--HEX
+	HEX(0) <= oHEX0_D;
+	HEX(1) <= oHEX1_D;
+	HEX(2) <= oHEX2_D;
+	HEX(3) <= oHEX3_D;
+	HEX(4) <= oHEX4_D;
+	HEX(5) <= oHEX5_D;
+	HEX(6) <= oHEX6_D;
+	HEX(7) <= oHEX7_D;
+	
+	generate_decoders : for i in 0 to 7 generate
+		dec : byteto7seg
+			port map(
+				NibbleIn => Nibbles(i),
+				SegOut   => HEX(i)
+			);
+	end generate generate_decoders;
+	
+	--NIBBLE ASSIGNMENTS
+	--Od lewej 3 - FrameCnt, 1 - IFGCnt, 4 - FrameType 
+	FrameCntNIB(0) <= FrameCntDDEBUG(10 downto 8);
+	FrameCntNIB(1) <= FrameCntDDEBUG(7 downto 4);
+	FrameCntNIB(2) <= FrameCntDDEBUG(3 downto 0);
+	FrameCntNIB(3) <= IFGCntDDEBUG(3 downto 0);
+	FrameCntNIB(4) <= FrameTypeDEBUG(15 downto 12);
+	FrameCntNIB(5) <= FrameTypeDEBUG(11 downto 8);
+	FrameCntNIB(6) <= FrameTypeDEBUG(7 downto 4);
+	FrameCntNIB(7) <= FrameTypeDEBUG(3 downto 0);
+	
+	Nibbles <= FrameCntNIB;
+	
+	--BUTTONS
+	generate_debouncers : for i in 0 to 1 generate
+		deb1 : debounce
+			generic map(
+				counter_size => 19
+			)
+			port map(
+				clk    => iCLK_50,
+				button => iKEY(i+2),
+				result => Button(i)
+			);
+	end generate generate_debouncers;
+	
+	rx_instance : rx
+		generic map(
+			LocalMac => X"CAFECODEBABE"
+		)
+		port map(
+			RxClk          => Button(1),
+			Rst            => Button(0),
+			RxDataIn       => RxDataIn,
+			RxValidDataIn  => RxValidDataIn,
+			RxCurrentState => RxCurrentState,
+			
+			--DEBUG
+			FrameOutputDEBUG => FrameOutput,
+			FrameCntDDEBUG   => FrameCntDDEBUG,
+			IFGCntDDEBUG     => IFGCntDDEBUG,
+			DstMacDEBUG      => DstMacDEBUG,
+			FrameTypeDEBUG   => FrameTypeDEBUG
+			
+		);
+		
+		
+	--LEDS
+	
+	oLEDR(17) <= (RxCurrentState = idle);
+	oLEDR(16) <= (RxCurrentState = preamble);
+	oLEDR(15) <= (RxCurrentState = sfd);
+	oLEDR(14) <= (RxCurrentState = dst_mac);
+	oLEDR(13) <= (RxCurrentState = src_mac);
+	oLEDR(12) <= (RxCurrentState = frame_type);
+	oLEDR(11) <= (RxCurrentState = data);
+	oLEDR(10) <= (RxCurrentState = OK);
+	oLEDR(9) <= (RxCurrentState = drop);
+	
+	oLEDG(8) <= (FrameOutput.CurrentField = dst_mac);
+	oLEDG(7) <= (FrameOutput.CurrentField = src_mac);
+	oLEDG(6) <= (FrameOutput.CurrentField = frame_type);
+	oLEDG(5) <= (FrameOutput.CurrentField = data);
+	oLEDG(4) <= (FrameOutput.CurrentField = error);
+		 
+end architecture RTL;

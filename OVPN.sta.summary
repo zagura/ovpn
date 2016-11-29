@@ -1,0 +1,69 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -3.507
+TNS   : -240.068
+
+Type  : Slow Model Setup 'iCLK_50_2'
+Slack : -2.164
+TNS   : -54.441
+
+Type  : Slow Model Hold 'iCLK_50_2'
+Slack : -2.705
+TNS   : -2.705
+
+Type  : Slow Model Hold 'debounce:\generate_debouncers:1:deb1|result'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Recovery 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -2.917
+TNS   : -200.627
+
+Type  : Slow Model Removal 'debounce:\generate_debouncers:1:deb1|result'
+Slack : 1.445
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'iCLK_50_2'
+Slack : -1.423
+TNS   : -74.916
+
+Type  : Slow Model Minimum Pulse Width 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -0.500
+TNS   : -96.000
+
+Type  : Fast Model Setup 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -1.458
+TNS   : -70.870
+
+Type  : Fast Model Setup 'iCLK_50_2'
+Slack : -0.979
+TNS   : -10.732
+
+Type  : Fast Model Hold 'iCLK_50_2'
+Slack : -1.687
+TNS   : -1.687
+
+Type  : Fast Model Hold 'debounce:\generate_debouncers:1:deb1|result'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Recovery 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -1.238
+TNS   : -83.212
+
+Type  : Fast Model Removal 'debounce:\generate_debouncers:1:deb1|result'
+Slack : 0.756
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'iCLK_50_2'
+Slack : -1.423
+TNS   : -74.916
+
+Type  : Fast Model Minimum Pulse Width 'debounce:\generate_debouncers:1:deb1|result'
+Slack : -0.500
+TNS   : -96.000
+
+------------------------------------------------------------
