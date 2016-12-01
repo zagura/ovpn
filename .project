@@ -22,6 +22,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>crc-full.vhd</name>
+			<type>1</type>
+			<location>/home/patryk/workspace/FPGA/crc-full.vhd</location>
+		</link>
+		<link>
 			<name>Common Libraries/DRAG_REUSABLE_LIBRARIES_HERE.txt</name>
 			<type>1</type>
 			<locationURI>sigasiresource:/vhdl/readme2.txt</locationURI>

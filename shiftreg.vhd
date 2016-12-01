@@ -10,6 +10,7 @@ entity shiftreg is
 	port (
 		--input
 		RMIIClk : in std_logic;
+		RMII_DV : in  std_logic;
 		Rst : in std_logic;
 		DataIn : in std_logic;
 		
@@ -26,7 +27,7 @@ begin
 	begin
 		if Rst='1' then
 			reg <= (others=>'0');
-		elsif rising_edge(RMIIClk) then
+		elsif rising_edge(RMIIClk) and RMII_DV = '1' then
 			reg <= reg(depth-2 downto 0) & DataIn;	
 		end if;
 	end process sreg;
