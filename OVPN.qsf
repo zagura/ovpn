@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE EP2C70F896C6
 set_global_assignment -name TOP_LEVEL_ENTITY OVPN
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "12.0 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:46:19  NOVEMBER 16, 2016"
-set_global_assignment -name LAST_QUARTUS_VERSION "12.0 SP2"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 896
@@ -247,16 +247,7 @@ set_location_assignment PIN_D29 -to GPIO_0[3]
 set_location_assignment PIN_N21 -to GPIO_0[30]
 set_location_assignment PIN_N24 -to GPIO_0[31]
 set_location_assignment PIN_G27 -to GPIO_1[0]
-set_location_assignment PIN_G28 -to GPIO_1[1]
-set_location_assignment PIN_H27 -to GPIO_1[2]
-set_location_assignment PIN_L24 -to GPIO_1[3]
-set_location_assignment PIN_H28 -to GPIO_1[4]
-set_location_assignment PIN_L25 -to GPIO_1[5]
-set_location_assignment PIN_K27 -to GPIO_1[6]
-set_location_assignment PIN_L28 -to GPIO_1[7]
 set_location_assignment PIN_E27 -to GPIO_0[4]
-set_location_assignment PIN_K28 -to GPIO_1[8]
-set_location_assignment PIN_L27 -to GPIO_1[9]
 set_location_assignment PIN_K29 -to GPIO_1[10]
 set_location_assignment PIN_M25 -to GPIO_1[11]
 set_location_assignment PIN_K30 -to GPIO_1[12]
@@ -270,17 +261,8 @@ set_location_assignment PIN_P25 -to GPIO_1[18]
 set_location_assignment PIN_P27 -to GPIO_1[19]
 set_location_assignment PIN_M29 -to GPIO_1[20]
 set_location_assignment PIN_R26 -to GPIO_1[21]
-set_location_assignment PIN_M30 -to GPIO_1[22]
-set_location_assignment PIN_R27 -to GPIO_1[23]
-set_location_assignment PIN_P24 -to GPIO_1[24]
-set_location_assignment PIN_N28 -to GPIO_1[25]
 set_location_assignment PIN_P23 -to GPIO_1[26]
-set_location_assignment PIN_N29 -to GPIO_1[27]
 set_location_assignment PIN_E29 -to GPIO_0[6]
-set_location_assignment PIN_R23 -to GPIO_1[28]
-set_location_assignment PIN_P29 -to GPIO_1[29]
-set_location_assignment PIN_R22 -to GPIO_1[30]
-set_location_assignment PIN_P30 -to GPIO_1[31]
 set_location_assignment PIN_G25 -to GPIO_0[7]
 set_location_assignment PIN_E30 -to GPIO_0[8]
 set_location_assignment PIN_G26 -to GPIO_0[9]
@@ -586,6 +568,25 @@ set_location_assignment PIN_B15 -to oVGA_SYNC_N
 set_location_assignment PIN_H19 -to oVGA_VS
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_location_assignment PIN_G28 -to ETH2_MDC
+set_location_assignment PIN_H27 -to ETH2_MDIO
+set_location_assignment PIN_L24 -to ETH2_CRS
+set_location_assignment PIN_H28 -to ETH2_CLK
+set_location_assignment PIN_L25 -to ETH2_RX1
+set_location_assignment PIN_K27 -to ETH2_RX0
+set_location_assignment PIN_K28 -to ETH2_TX1
+set_location_assignment PIN_L27 -to ETH2_TX0
+set_location_assignment PIN_P30 -to ETH1_TX1
+set_location_assignment PIN_R22 -to ETH1_TX0
+set_location_assignment PIN_R23 -to ETH1_RX1
+set_location_assignment PIN_N29 -to ETH1_RX0
+set_location_assignment PIN_N28 -to ETH1_CRS
+set_location_assignment PIN_P24 -to ETH1_CLK
+set_location_assignment PIN_R27 -to ETH1_MDC
+set_location_assignment PIN_M30 -to ETH1_MDIO
+set_global_assignment -name SOURCE_FILE eth_frame.cmp
+set_global_assignment -name VHDL_FILE "crc-full.vhd"
+set_global_assignment -name VHDL_FILE "crc-1.vhd"
 set_global_assignment -name VHDL_FILE mdioshiftreg.vhd
 set_global_assignment -name VHDL_FILE OVPN.vhd
 set_global_assignment -name VHDL_FILE shiftreg.vhd
@@ -595,4 +596,6 @@ set_global_assignment -name VHDL_FILE debouncer.vhd
 set_global_assignment -name VHDL_FILE common.vhd
 set_global_assignment -name VHDL_FILE byteto7seg.vhd
 set_global_assignment -name QIP_FILE eth_frame.qip
+set_location_assignment PIN_P29 -to ETH1_TX_EN
+set_location_assignment PIN_L28 -to ETH2_TX_EN
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

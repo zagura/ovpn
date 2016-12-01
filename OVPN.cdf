@@ -1,10 +1,10 @@
-/* Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition */
+/* Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition */
 JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C70F896) Path("C:/Documents and Settings/student/Moje dokumenty/OVPN/") File("OVPN.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C70F896) Path("C:/Users/Student/Documents/FPGA/") File("OVPN.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

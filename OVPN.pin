@@ -1,4 +1,4 @@
- -- Copyright (C) 1991-2012 Altera Corporation
+ -- Copyright (C) 1991-2013 Altera Corporation
  -- Your use of Altera Corporation's design tools, logic functions 
  -- and other software and tools, and its AMPP partner logic 
  -- functions, and any output files from any of the foregoing 
@@ -63,7 +63,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 CHIP  "OVPN"  ASSIGNED TO AN: EP2C70F896C6
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -571,7 +571,7 @@ GND*                         : G24       :        :                   :         
 GND*                         : G25       :        :                   :         : 5         :                
 GND*                         : G26       :        :                   :         : 5         :                
 GND*                         : G27       :        :                   :         : 5         :                
-GND*                         : G28       :        :                   :         : 5         :                
+ETH2_MDC                     : G28       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : G29       :        :                   :         : 5         :                
 GND*                         : G30       :        :                   :         : 5         :                
 oHEX7_D[3]                   : H1        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -600,8 +600,8 @@ GND*                         : H23       :        :                   :         
 GND*                         : H24       :        :                   :         : 5         :                
 GND*                         : H25       :        :                   :         : 5         :                
 GND*                         : H26       :        :                   :         : 5         :                
-GND*                         : H27       :        :                   :         : 5         :                
-GND*                         : H28       :        :                   :         : 5         :                
+ETH2_MDIO                    : H27       : input  : 3.3-V LVTTL       :         : 5         : Y              
+ETH2_CLK                     : H28       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : H29       :        :                   :         : 5         :                
 GND*                         : H30       :        :                   :         : 5         :                
 oHEX7_D[1]                   : J1        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -660,8 +660,8 @@ GND*                         : K23       :        :                   :         
 GND*                         : K24       :        :                   :         : 5         :                
 GND*                         : K25       :        :                   :         : 5         :                
 GND*                         : K26       :        :                   :         : 5         :                
-GND*                         : K27       :        :                   :         : 5         :                
-GND*                         : K28       :        :                   :         : 5         :                
+ETH2_RX0                     : K27       : input  : 3.3-V LVTTL       :         : 5         : Y              
+ETH2_TX1                     : K28       : output : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : K29       :        :                   :         : 5         :                
 GND*                         : K30       :        :                   :         : 5         :                
 oHEX5_D[1]                   : L1        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -687,11 +687,11 @@ VCCIO5                       : L20       : power  :                   : 3.3V    
 GND*                         : L21       :        :                   :         : 5         :                
 GND*                         : L22       :        :                   :         : 5         :                
 GND                          : L23       : gnd    :                   :         :           :                
-GND*                         : L24       :        :                   :         : 5         :                
-GND*                         : L25       :        :                   :         : 5         :                
+ETH2_CRS                     : L24       : input  : 3.3-V LVTTL       :         : 5         : Y              
+ETH2_RX1                     : L25       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : L26       :        :                   :         : 5         :                
-GND*                         : L27       :        :                   :         : 5         :                
-GND*                         : L28       :        :                   :         : 5         :                
+ETH2_TX0                     : L27       : output : 3.3-V LVTTL       :         : 5         : Y              
+ETH2_TX_EN                   : L28       : output : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : L29       :        :                   :         : 5         :                
 GND*                         : L30       :        :                   :         : 5         :                
 oHEX4_D[5]                   : M1        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -723,7 +723,7 @@ GND*                         : M26       :        :                   :         
 GND*                         : M27       :        :                   :         : 5         :                
 GND*                         : M28       :        :                   :         : 5         :                
 GND*                         : M29       :        :                   :         : 5         :                
-GND*                         : M30       :        :                   :         : 5         :                
+ETH1_MDIO                    : M30       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND                          : N1        : gnd    :                   :         :           :                
 oHEX4_D[3]                   : N2        : output : 3.3-V LVTTL       :         : 2         : Y              
 oHEX4_D[4]                   : N3        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -751,8 +751,8 @@ GND*                         : N24       :        :                   :         
 GND*                         : N25       :        :                   :         : 5         :                
 GND                          : N26       : gnd    :                   :         :           :                
 VCCIO5                       : N27       : power  :                   : 3.3V    : 5         :                
-GND*                         : N28       :        :                   :         : 5         :                
-GND*                         : N29       :        :                   :         : 5         :                
+ETH1_CRS                     : N28       : input  : 3.3-V LVTTL       :         : 5         : Y              
+ETH1_RX0                     : N29       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND                          : N30       : gnd    :                   :         :           :                
 oHEX4_D[0]                   : P1        : output : 3.3-V LVTTL       :         : 2         : Y              
 oHEX4_D[1]                   : P2        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -777,13 +777,13 @@ VCCINT                       : P20       : power  :                   : 1.2V    
 GND                          : P21       : gnd    :                   :         :           :                
 GND*                         : P22       :        :                   :         : 5         :                
 GND*                         : P23       :        :                   :         : 5         :                
-GND*                         : P24       :        :                   :         : 5         :                
+ETH1_CLK                     : P24       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : P25       :        :                   :         : 5         :                
 GND*                         : P26       :        :                   :         : 5         :                
 GND*                         : P27       :        :                   :         : 5         :                
 GND*                         : P28       :        :                   :         : 5         :                
-GND*                         : P29       :        :                   :         : 5         :                
-GND*                         : P30       :        :                   :         : 5         :                
+ETH1_TX_EN                   : P29       : output : 3.3-V LVTTL       :         : 5         : Y              
+ETH1_TX1                     : P30       : output : 3.3-V LVTTL       :         : 5         : Y              
 VCCIO2                       : R1        : power  :                   : 3.3V    : 2         :                
 GND+                         : R2        :        :                   :         : 2         :                
 GND+                         : R3        :        :                   :         : 2         :                
@@ -805,12 +805,12 @@ GND                          : R18       : gnd    :                   :         
 VCCINT                       : R19       : power  :                   : 1.2V    :           :                
 GND                          : R20       : gnd    :                   :         :           :                
 VCCIO5                       : R21       : power  :                   : 3.3V    : 5         :                
-GND*                         : R22       :        :                   :         : 5         :                
-GND*                         : R23       :        :                   :         : 5         :                
+ETH1_TX0                     : R22       : output : 3.3-V LVTTL       :         : 5         : Y              
+ETH1_RX1                     : R23       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND*                         : R24       :        :                   :         : 5         :                
 GND*                         : R25       :        :                   :         : 5         :                
 GND*                         : R26       :        :                   :         : 5         :                
-GND*                         : R27       :        :                   :         : 5         :                
+ETH1_MDC                     : R27       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND+                         : R28       :        :                   :         : 5         :                
 GND+                         : R29       :        :                   :         : 5         :                
 VCCIO5                       : R30       : power  :                   : 3.3V    : 5         :                

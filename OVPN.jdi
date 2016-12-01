@@ -1,8 +1,8 @@
 <sld_project_info>
+  <project>
+    <hash md5_digest_80b="cd36072d1b8235e6f037"/>
+  </project>
   <file_info>
-    <file checksum="0x0063F4E6" device="EP2C70F896C6" path="OVPN.sof" usercode="0x0063F4E6"/>
-    <file checksum="0x187A2CD1" device="EPCS16" path="OVPN.pof" usercode="0x00000000"/>
+    <file device="EP2C70F896C6" path="OVPN.sof" usercode="0xFFFFFFFF"/>
   </file_info>
-  <hub_info ir_width="0" node_count="0"/>
-  <node_info/>
 </sld_project_info>

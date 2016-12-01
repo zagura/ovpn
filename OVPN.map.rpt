@@ -1,6 +1,6 @@
 Analysis & Synthesis report for OVPN
-Wed Nov 23 13:48:07 2016
-Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+Wed Nov 30 16:12:44 2016
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -10,15 +10,36 @@ Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Editio
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis IP Cores Summary
-  6. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |OVPN|rx:rx_instance|current_state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for eth_frame:rom|altsyncram:altsyncram_component|altsyncram_8v61:auto_generated
+ 16. Parameter Settings for User Entity Instance: eth_frame:rom|altsyncram:altsyncram_component
+ 17. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:0:deb1
+ 18. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:1:deb1
+ 19. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:2:deb1
+ 20. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:3:deb1
+ 21. Parameter Settings for User Entity Instance: rx:rx_instance
+ 22. altsyncram Parameter Settings by Entity Instance
+ 23. Port Connectivity Checks: "rx:rx_instance"
+ 24. Port Connectivity Checks: "mdioshiftreg:sreg"
+ 25. Port Connectivity Checks: "byteto7seg:\generate_decoders:7:dec"
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2012 Altera Corporation
+Copyright (C) 1991-2013 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -34,24 +55,24 @@ applicable agreement for further details.
 
 
 
-+------------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                       ;
-+------------------------------------+-----------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Nov 23 13:48:07 2016             ;
-; Quartus II 32-bit Version          ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
-; Revision Name                      ; OVPN                                          ;
-; Top-level Entity Name              ; OVPN                                          ;
-; Family                             ; Cyclone II                                    ;
-; Total logic elements               ; N/A until Partition Merge                     ;
-;     Total combinational functions  ; N/A until Partition Merge                     ;
-;     Dedicated logic registers      ; N/A until Partition Merge                     ;
-; Total registers                    ; N/A until Partition Merge                     ;
-; Total pins                         ; N/A until Partition Merge                     ;
-; Total virtual pins                 ; N/A until Partition Merge                     ;
-; Total memory bits                  ; N/A until Partition Merge                     ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                     ;
-; Total PLLs                         ; N/A until Partition Merge                     ;
-+------------------------------------+-----------------------------------------------+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Nov 30 16:12:44 2016           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; OVPN                                            ;
+; Top-level Entity Name              ; OVPN                                            ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 390                                             ;
+;     Total combinational functions  ; 334                                             ;
+;     Dedicated logic registers      ; 183                                             ;
+; Total registers                    ; 183                                             ;
+; Total pins                         ; 114                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 2,048                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -131,6 +152,7 @@ applicable agreement for further details.
 ; SDC constraint protection                                                  ; Off                ; Off                ;
 ; Synthesis Effort                                                           ; Auto               ; Auto               ;
 ; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
 ; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
 ; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
 ; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
@@ -144,29 +166,378 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 2      ;
+; Number detected on machine ; 4      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                                     ;
-+--------+--------------+---------+--------------+--------------+---------------------+---------------------------------------------------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance     ; IP Include File                                                     ;
-+--------+--------------+---------+--------------+--------------+---------------------+---------------------------------------------------------------------+
-; Altera ; ROM: 1-PORT  ; 12.0    ; N/A          ; N/A          ; |OVPN|eth_frame:rom ; C:/Documents and Settings/student/Moje dokumenty/OVPN/eth_frame.vhd ;
-+--------+--------------+---------+--------------+--------------+---------------------+---------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                          ;
++----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
+; mdioshiftreg.vhd                 ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/mdioshiftreg.vhd                        ;         ;
+; OVPN.vhd                         ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/OVPN.vhd                                ;         ;
+; rxcounters.vhd                   ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/rxcounters.vhd                          ;         ;
+; rx.vhd                           ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/rx.vhd                                  ;         ;
+; debouncer.vhd                    ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/debouncer.vhd                           ;         ;
+; common.vhd                       ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/common.vhd                              ;         ;
+; byteto7seg.vhd                   ; yes             ; User VHDL File                         ; C:/Users/Student/Documents/FPGA/byteto7seg.vhd                          ;         ;
+; eth_frame.vhd                    ; yes             ; User Wizard-Generated File             ; C:/Users/Student/Documents/FPGA/eth_frame.vhd                           ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_8v61.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Student/Documents/FPGA/db/altsyncram_8v61.tdf                  ;         ;
+; dump3.hex                        ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Student/Documents/FPGA/dump3.hex                               ;         ;
++----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                               ;
++---------------------------------------------+---------------------------------------------+
+; Resource                                    ; Usage                                       ;
++---------------------------------------------+---------------------------------------------+
+; Estimated Total logic elements              ; 390                                         ;
+;                                             ;                                             ;
+; Total combinational functions               ; 334                                         ;
+; Logic element usage by number of LUT inputs ;                                             ;
+;     -- 4 input functions                    ; 155                                         ;
+;     -- 3 input functions                    ; 30                                          ;
+;     -- <=2 input functions                  ; 149                                         ;
+;                                             ;                                             ;
+; Logic elements by mode                      ;                                             ;
+;     -- normal mode                          ; 247                                         ;
+;     -- arithmetic mode                      ; 87                                          ;
+;                                             ;                                             ;
+; Total registers                             ; 183                                         ;
+;     -- Dedicated logic registers            ; 183                                         ;
+;     -- I/O registers                        ; 0                                           ;
+;                                             ;                                             ;
+; I/O pins                                    ; 114                                         ;
+; Total memory bits                           ; 2048                                        ;
+; Embedded Multiplier 9-bit elements          ; 0                                           ;
+; Maximum fan-out node                        ; debounce:\generate_debouncers:3:deb1|result ;
+; Maximum fan-out                             ; 129                                         ;
+; Total fan-out                               ; 1652                                        ;
+; Average fan-out                             ; 2.59                                        ;
++---------------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                       ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+; |OVPN                                     ; 334 (8)           ; 183 (8)      ; 2048        ; 0            ; 0       ; 0         ; 114  ; 0            ; |OVPN                                                                              ; work         ;
+;    |byteto7seg:\generate_decoders:0:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:0:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:1:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:1:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:2:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:2:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:3:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:3:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:4:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:4:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:5:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:5:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:6:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:6:dec                                          ; work         ;
+;    |byteto7seg:\generate_decoders:7:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:7:dec                                          ; work         ;
+;    |debounce:\generate_debouncers:0:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:0:deb1                                         ; work         ;
+;    |debounce:\generate_debouncers:1:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:1:deb1                                         ; work         ;
+;    |debounce:\generate_debouncers:2:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:2:deb1                                         ; work         ;
+;    |debounce:\generate_debouncers:3:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:3:deb1                                         ; work         ;
+;    |eth_frame:rom|                        ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|eth_frame:rom                                                                ; work         ;
+;       |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|eth_frame:rom|altsyncram:altsyncram_component                                ; work         ;
+;          |altsyncram_8v61:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|eth_frame:rom|altsyncram:altsyncram_component|altsyncram_8v61:auto_generated ; work         ;
+;    |mdioshiftreg:sreg|                    ; 94 (94)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|mdioshiftreg:sreg                                                            ; work         ;
+;    |rx:rx_instance|                       ; 76 (50)           ; 71 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance                                                               ; work         ;
+;       |rxcounters:counters|               ; 26 (26)           ; 15 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance|rxcounters:counters                                           ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                     ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+; Name                                                                                    ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF       ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+; eth_frame:rom|altsyncram:altsyncram_component|altsyncram_8v61:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 256          ; 8            ; --           ; --           ; 2048 ; dump3.hex ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                               ;
++--------+--------------+---------+--------------+--------------+---------------------+-----------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance     ; IP Include File                               ;
++--------+--------------+---------+--------------+--------------+---------------------+-----------------------------------------------+
+; Altera ; ROM: 1-PORT  ; 12.0    ; N/A          ; N/A          ; |OVPN|eth_frame:rom ; C:/Users/Student/Documents/FPGA/eth_frame.vhd ;
++--------+--------------+---------+--------------+--------------+---------------------+-----------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |OVPN|rx:rx_instance|current_state                                                                                                    ;
++------------------------+------------------+--------------------+-------------------+--------------------+--------------------+------------------------+
+; Name                   ; current_state.OK ; current_state.data ; current_state.sfd ; current_state.drop ; current_state.idle ; current_state.preamble ;
++------------------------+------------------+--------------------+-------------------+--------------------+--------------------+------------------------+
+; current_state.preamble ; 0                ; 0                  ; 0                 ; 0                  ; 0                  ; 0                      ;
+; current_state.idle     ; 0                ; 0                  ; 0                 ; 0                  ; 1                  ; 1                      ;
+; current_state.drop     ; 0                ; 0                  ; 0                 ; 1                  ; 0                  ; 1                      ;
+; current_state.sfd      ; 0                ; 0                  ; 1                 ; 0                  ; 0                  ; 1                      ;
+; current_state.data     ; 0                ; 1                  ; 0                 ; 0                  ; 0                  ; 1                      ;
+; current_state.OK       ; 1                ; 0                  ; 0                 ; 0                  ; 0                  ; 1                      ;
++------------------------+------------------+--------------------+-------------------+--------------------+--------------------+------------------------+
+
+
++-------------------------------------------------------------+
+; Registers Removed During Synthesis                          ;
++----------------------------------------+--------------------+
+; Register name                          ; Reason for Removal ;
++----------------------------------------+--------------------+
+; rx:rx_instance|current_state.OK        ; Lost fanout        ;
+; rx:rx_instance|\filldstmac:i[3..30]    ; Lost fanout        ;
+; Total Number of Removed Registers = 29 ;                    ;
++----------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 183   ;
+; Number of registers using Synchronous Clear  ; 11    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 64    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 68    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; mdioshiftreg:sreg|stopped              ; 3       ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |OVPN|mdioshiftreg:sreg|sreg[13]                                 ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:2:deb1|counter_out[7]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:3:deb1|counter_out[4]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:1:deb1|counter_out[3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:0:deb1|counter_out[8]        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |OVPN|rx:rx_instance|rxcounters:counters|IFGCnt[0]               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |OVPN|rx:rx_instance|rxcounters:counters|CurrentField.frame_type ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for eth_frame:rom|altsyncram:altsyncram_component|altsyncram_8v61:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: eth_frame:rom|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------+
+; Parameter Name                     ; Value                ; Type                           ;
++------------------------------------+----------------------+--------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                 ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                        ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                        ;
+; WIDTH_A                            ; 8                    ; Signed Integer                 ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer                 ;
+; NUMWORDS_A                         ; 256                  ; Signed Integer                 ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WIDTH_B                            ; 1                    ; Untyped                        ;
+; WIDTHAD_B                          ; 1                    ; Untyped                        ;
+; NUMWORDS_B                         ; 1                    ; Untyped                        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                        ;
+; BYTE_SIZE                          ; 8                    ; Untyped                        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; INIT_FILE                          ; dump3.hex            ; Untyped                        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                        ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                        ;
+; CBXI_PARAMETER                     ; altsyncram_8v61      ; Untyped                        ;
++------------------------------------+----------------------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\generate_debouncers:0:deb1 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; counter_size   ; 10    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\generate_debouncers:1:deb1 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; counter_size   ; 10    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\generate_debouncers:2:deb1 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; counter_size   ; 10    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\generate_debouncers:3:deb1 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; counter_size   ; 10    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: rx:rx_instance                         ;
++----------------+--------------------------------------------------+-----------------+
+; Parameter Name ; Value                                            ; Type            ;
++----------------+--------------------------------------------------+-----------------+
+; localmac       ; 110010101111111011000000110111101011101010111110 ; Unsigned Binary ;
++----------------+--------------------------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                          ;
++-------------------------------------------+-----------------------------------------------+
+; Name                                      ; Value                                         ;
++-------------------------------------------+-----------------------------------------------+
+; Number of entity instances                ; 1                                             ;
+; Entity Instance                           ; eth_frame:rom|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; ROM                                           ;
+;     -- WIDTH_A                            ; 8                                             ;
+;     -- NUMWORDS_A                         ; 256                                           ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                        ;
+;     -- WIDTH_B                            ; 1                                             ;
+;     -- NUMWORDS_B                         ; 1                                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                        ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                  ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                          ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                     ;
++-------------------------------------------+-----------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "rx:rx_instance"                                                                                  ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; rxvaliddatain     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; rxendtransmission ; Input  ; Info     ; Stuck at GND                                                                        ;
+; dstmacdebug       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; frametypedebug    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mdioshiftreg:sreg"                                                                      ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                             ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; direction ; Input ; Info     ; Stuck at GND                                                                        ;
+; start     ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; bitinout  ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; datain    ; Input ; Info     ; Stuck at GND                                                                        ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------+
+; Port Connectivity Checks: "byteto7seg:\generate_decoders:7:dec" ;
++-------------+-------+----------+--------------------------------+
+; Port        ; Type  ; Severity ; Details                        ;
++-------------+-------+----------+--------------------------------+
+; nibblein[3] ; Input ; Info     ; Stuck at GND                   ;
++-------------+-------+----------+--------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
 
 
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit Analysis & Synthesis
-    Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Nov 23 13:48:02 2016
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Nov 30 16:12:42 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off OVPN -c OVPN
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file crc-full.vhd
+    Info (12022): Found design unit 1: CRC-crc_verification
+    Info (12023): Found entity 1: CRC
+Info (12021): Found 2 design units, including 0 entities, in source file crc-1.vhd
+    Info (12022): Found design unit 1: PCK_CRC32_D8
+    Info (12022): Found design unit 2: PCK_CRC32_D8-body
 Info (12021): Found 2 design units, including 1 entities, in source file mdioshiftreg.vhd
     Info (12022): Found design unit 1: mdioshiftreg-RTL
     Info (12023): Found entity 1: mdioshiftreg
@@ -202,14 +573,18 @@ Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(25): used implicit 
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(27): used implicit default value for signal "oHEX5_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(29): used implicit default value for signal "oHEX6_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(31): used implicit default value for signal "oHEX7_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(121): object "DstMacNIB" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(126): object "FrameTypeDEBUG" assigned a value but never read
-Warning (10540): VHDL Signal Declaration warning at OVPN.vhd(131): used explicit default value for signal "sreg_in" because signal was never assigned a value
-Warning (10812): VHDL warning at OVPN.vhd(146): sensitivity list already contains Button
-Warning (10873): Using initial value X (don't care) for net "oLEDG[7]" at OVPN.vhd(13)
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(37): used implicit default value for signal "ETH1_TX0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(38): used implicit default value for signal "ETH1_TX1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(39): used implicit default value for signal "ETH1_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(48): used implicit default value for signal "ETH2_TX0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(49): used implicit default value for signal "ETH2_TX1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(50): used implicit default value for signal "ETH2_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(142): object "DstMacNIB" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(147): object "FrameTypeDEBUG" assigned a value but never read
+Warning (10540): VHDL Signal Declaration warning at OVPN.vhd(152): used explicit default value for signal "sreg_in" because signal was never assigned a value
+Warning (10812): VHDL warning at OVPN.vhd(176): sensitivity list already contains Button
 Warning (10873): Using initial value X (don't care) for net "oLEDR[13..12]" at OVPN.vhd(14)
 Warning (10873): Using initial value X (don't care) for net "oLEDR[10..6]" at OVPN.vhd(14)
-Warning (10873): Using initial value X (don't care) for net "ButtonN[3..2]" at OVPN.vhd(115)
 Info (12128): Elaborating entity "eth_frame" for hierarchy "eth_frame:rom"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "eth_frame:rom|altsyncram:altsyncram_component"
 Info (12130): Elaborated megafunction instantiation "eth_frame:rom|altsyncram:altsyncram_component"
@@ -232,48 +607,71 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
 Info (12128): Elaborating entity "altsyncram_8v61" for hierarchy "eth_frame:rom|altsyncram:altsyncram_component|altsyncram_8v61:auto_generated"
 Info (12128): Elaborating entity "byteto7seg" for hierarchy "byteto7seg:\generate_decoders:0:dec"
 Info (12128): Elaborating entity "mdioshiftreg" for hierarchy "mdioshiftreg:sreg"
-Info (10041): Inferred latch for "stopped" at mdioshiftreg.vhd(43)
-Info (10041): Inferred latch for "sreg[0]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[1]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[2]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[3]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[4]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[5]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[6]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[7]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[8]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[9]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[10]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[11]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[12]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[13]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[14]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "sreg[15]" at mdioshiftreg.vhd(39)
-Info (10041): Inferred latch for "dir" at mdioshiftreg.vhd(34)
-Error (10028): Can't resolve multiple constant drivers for net "sreg[15]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10029): Constant driver at mdioshiftreg.vhd(39) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 39
-Error (10028): Can't resolve multiple constant drivers for net "sreg[14]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[13]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[12]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[11]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[10]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[9]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[8]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[7]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[6]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[5]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[4]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[3]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[2]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[1]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "sreg[0]" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10028): Can't resolve multiple constant drivers for net "stopped" at mdioshiftreg.vhd(53) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 53
-Error (10029): Constant driver at mdioshiftreg.vhd(43) File: C:/Documents and Settings/student/Moje dokumenty/OVPN/mdioshiftreg.vhd Line: 43
-Error (12152): Can't elaborate user hierarchy "mdioshiftreg:sreg" File: C:/Documents and Settings/student/Moje dokumenty/OVPN/OVPN.vhd Line: 201
-Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 20 errors, 17 warnings
-    Error: Peak virtual memory: 304 megabytes
-    Error: Processing ended: Wed Nov 23 13:48:07 2016
-    Error: Elapsed time: 00:00:05
-    Error: Total CPU time (on all processors): 00:00:04
+Warning (10541): VHDL Signal Declaration warning at mdioshiftreg.vhd(25): used implicit default value for signal "BitInOutWrapper_w" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:\generate_debouncers:0:deb1"
+Info (12128): Elaborating entity "rx" for hierarchy "rx:rx_instance"
+Warning (10036): Verilog HDL or VHDL warning at rx.vhd(58): object "ByteEq0xAA" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at rx.vhd(62): object "FrameTypeValid" assigned a value but never read
+Warning (10492): VHDL Process Statement warning at rx.vhd(223): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(226): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(226): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(236): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(239): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(239): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "rxcounters" for hierarchy "rx:rx_instance|rxcounters:counters"
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "mdioshiftreg:sreg|sreg" and its non-tri-state driver.
+Warning (13027): Removed fan-outs from the following always-disabled I/O buffers
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "mdioshiftreg:sreg|BitInOut" to the node "mdioshiftreg:sreg|sreg"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "oLEDG[1]" is stuck at GND
+    Warning (13410): Pin "oLEDR[1]" is stuck at GND
+    Warning (13410): Pin "oLEDR[6]" is stuck at GND
+    Warning (13410): Pin "oLEDR[7]" is stuck at GND
+    Warning (13410): Pin "oLEDR[8]" is stuck at GND
+    Warning (13410): Pin "oLEDR[9]" is stuck at GND
+    Warning (13410): Pin "oLEDR[10]" is stuck at GND
+    Warning (13410): Pin "oLEDR[12]" is stuck at GND
+    Warning (13410): Pin "oLEDR[13]" is stuck at GND
+    Warning (13410): Pin "oHEX0_DP" is stuck at GND
+    Warning (13410): Pin "oHEX1_DP" is stuck at GND
+    Warning (13410): Pin "oHEX2_DP" is stuck at GND
+    Warning (13410): Pin "oHEX3_DP" is stuck at GND
+    Warning (13410): Pin "oHEX4_DP" is stuck at GND
+    Warning (13410): Pin "oHEX5_DP" is stuck at GND
+    Warning (13410): Pin "oHEX6_DP" is stuck at GND
+    Warning (13410): Pin "oHEX7_DP" is stuck at GND
+    Warning (13410): Pin "ETH1_TX0" is stuck at GND
+    Warning (13410): Pin "ETH1_TX1" is stuck at GND
+    Warning (13410): Pin "ETH1_TX_EN" is stuck at GND
+    Warning (13410): Pin "ETH2_TX0" is stuck at GND
+    Warning (13410): Pin "ETH2_TX1" is stuck at GND
+    Warning (13410): Pin "ETH2_TX_EN" is stuck at GND
+Info (17049): 29 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ETH1_RX1"
+    Warning (15610): No output dependent on input pin "ETH1_RX0"
+    Warning (15610): No output dependent on input pin "ETH1_MDIO"
+    Warning (15610): No output dependent on input pin "ETH1_MDC"
+    Warning (15610): No output dependent on input pin "ETH1_CLK"
+    Warning (15610): No output dependent on input pin "ETH2_CRS"
+    Warning (15610): No output dependent on input pin "ETH2_RX1"
+    Warning (15610): No output dependent on input pin "ETH2_RX0"
+    Warning (15610): No output dependent on input pin "ETH2_MDIO"
+    Warning (15610): No output dependent on input pin "ETH2_MDC"
+    Warning (15610): No output dependent on input pin "ETH2_CLK"
+Info (21057): Implemented 515 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21061): Implemented 393 logic cells
+    Info (21064): Implemented 8 RAM segments
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 71 warnings
+    Info: Peak virtual memory: 538 megabytes
+    Info: Processing ended: Wed Nov 30 16:12:44 2016
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 

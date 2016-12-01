@@ -30,8 +30,29 @@ entity OVPN is
 		oHEX7_D : out std_logic_vector(0 to 6);
 		oHEX7_DP : out std_logic;
 		--iSW : in std_logic_vector(17 downto 0);
-		iKEY : in std_logic_vector(3 downto 0)
+		iKEY : in std_logic_vector(3 downto 0);
 		
+		-- Mapowanie portów ethernet -- ETH1 (Poludnie)
+		ETH1_CRS : in std_logic;
+		ETH1_TX0 : out std_logic;
+		ETH1_TX1 : out std_logic;
+		ETH1_TX_EN : out std_logic;
+		ETH1_RX1 : in std_logic; 
+		ETH1_RX0 : in std_logic;
+		ETH1_MDIO : in std_logic;
+		ETH1_MDC : in std_logic;
+		ETH1_CLK : in std_logic;
+		
+		-- Mapowanie portów ethernet -- ETH2 (Polnoc)
+		ETH2_CRS : in std_logic;
+		ETH2_TX0 : out std_logic;
+		ETH2_TX1 : out std_logic;
+		ETH2_TX_EN : out std_logic;
+		ETH2_RX1 : in std_logic; 
+		ETH2_RX0 : in std_logic;
+		ETH2_MDIO : in std_logic;
+		ETH2_MDC : in std_logic;
+		ETH2_CLK : in std_logic
 	);
 end entity OVPN;
 
@@ -132,7 +153,16 @@ architecture RTL of OVPN is
 	
 	signal RomCnt : std_logic_vector(7 downto 0) register := (others=>'0');
 	
+	-- crc-32 signals
+	signal crc_value : std_logic_vector(31 downto 0):= (others => '0');
+	signal crc_error : std_logic;
+	
+	
 begin
+	oLEDG(7) <= ETH1_CRS;
+	
+
+
 	Button <= not ButtonN;
 
 	--ROM
@@ -213,7 +243,7 @@ begin
 	
 	
 	--BUTTONS
-	generate_debouncers : for i in 0 to 1 generate
+	generate_debouncers : for i in 0 to 3 generate
 		deb1 : debounce
 			generic map(
 				counter_size => 10
@@ -259,7 +289,7 @@ begin
 	oLEDR(2) <= '1' when (RxCurrentState = data) else '0';
 	oLEDR(1) <= '1' when (RxCurrentState = OK) else '0';
 	oLEDR(0) <= '1' when (RxCurrentState = drop) else '0';
-	oLEDR(11) <= Button(1);
+	oLEDR(11) <= Button(3);
 	
 	oLEDG(5) <= '1' when (RxNextState = idle) else '0';
 	oLEDG(4) <= '1' when (RxNextState = preamble) else '0';
