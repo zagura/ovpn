@@ -584,6 +584,9 @@ set_location_assignment PIN_N28 -to ETH1_CRS
 set_location_assignment PIN_P24 -to ETH1_CLK
 set_location_assignment PIN_R27 -to ETH1_MDC
 set_location_assignment PIN_M30 -to ETH1_MDIO
+set_location_assignment PIN_P29 -to ETH1_TX_EN
+set_location_assignment PIN_L28 -to ETH2_TX_EN
+set_global_assignment -name VHDL_FILE rmiidataconv.vhd
 set_global_assignment -name SOURCE_FILE eth_frame.cmp
 set_global_assignment -name VHDL_FILE "crc-full.vhd"
 set_global_assignment -name VHDL_FILE "crc-1.vhd"
@@ -596,6 +599,4 @@ set_global_assignment -name VHDL_FILE debouncer.vhd
 set_global_assignment -name VHDL_FILE common.vhd
 set_global_assignment -name VHDL_FILE byteto7seg.vhd
 set_global_assignment -name QIP_FILE eth_frame.qip
-set_location_assignment PIN_P29 -to ETH1_TX_EN
-set_location_assignment PIN_L28 -to ETH2_TX_EN
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

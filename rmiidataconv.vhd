@@ -59,15 +59,15 @@ begin
 			DataOut => second_nibble
 		);
 
-	ByteOut(7) <= first_nibble(3);
-	ByteOut(5) <= first_nibble(2);
-	ByteOut(3) <= first_nibble(1);
-	ByteOut(1) <= first_nibble(0);
+	ByteOut(6) <= first_nibble(3);
+	ByteOut(4) <= first_nibble(2);
+	ByteOut(2) <= first_nibble(1);
+	ByteOut(0) <= first_nibble(0);
 	
-	ByteOut(6) <= second_nibble(3);
-	ByteOut(4) <= second_nibble(2);
-	ByteOut(2) <= second_nibble(1);
-	ByteOut(0) <= second_nibble(0);
+	ByteOut(7) <= second_nibble(3);
+	ByteOut(5) <= second_nibble(2);
+	ByteOut(3) <= second_nibble(1);
+	ByteOut(1) <= second_nibble(0);
 	
 	ByteReadyCntr : process (RMIIClk, Rst) is
 		variable cnt : integer := 0;

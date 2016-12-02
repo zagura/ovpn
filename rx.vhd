@@ -13,7 +13,6 @@ entity rx is
 		RxClk : in std_logic;
 		Rst : in std_logic;
 		RxDataIn : in std_logic_vector(7 downto 0);
-		RxValidDataIn : in std_logic;
 		RxEndTransmission : in std_logic;
 		RxCurrentState : out rxstate_type;
 		
@@ -137,7 +136,6 @@ begin
 
 	fsm : process(	current_state, 
 						Rst,
-						RxValidDataIn,
 						IFGCntEq12,
 						RxDataIn,
 						RxEndTransmission,
@@ -153,11 +151,11 @@ begin
 					
 					
 					when idle =>
-						if RxValidDataIn = '1' and IFGCntEq12 = '1' then
+						if IFGCntEq12 = '1' then
 							next_state <= preamble;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AA" and IFGCntEq12 = '1' then
+						elsif RxDataIn = X"AA" and IFGCntEq12 = '1' then
 							next_state <= sfd;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AB" and IFGCntEq12 = '1' then
+						elsif RxDataIn = X"AB" and IFGCntEq12 = '1' then
 							next_state <= data;
 						else
 							next_state <= idle;
@@ -165,31 +163,25 @@ begin
 					
 						
 					when preamble =>
-						if RxValidDataIn = '0' then
-							next_state <= idle;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AA" then
+						if RxDataIn = X"AA" then
 							next_state <= sfd;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AB" then
+						elsif RxDataIn = X"AB" then
 							next_state <= data;
 						else
 							next_state <= preamble;
 						end if;
 						
 					when sfd =>
-						if RxValidDataIn = '0' then
-							next_state <= idle;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AA" then
+						if RxDataIn = X"AA" then
 							next_state <= sfd;
-						elsif RxValidDataIn = '1' and RxDataIn = X"AB" then
+						elsif RxDataIn = X"AB" then
 							next_state <= data;
 						else
 							next_state <= drop;
 					end if;	
 						
 					when data =>
-						if RxValidDataIn = '0' then
-							next_state <= idle;
-						elsif RxEndTransmission = '1' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
+						if RxEndTransmission = '1' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
 							next_state <= OK;
 						elsif RxEndTransmission = '1' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
 							next_state <= drop;
@@ -221,9 +213,11 @@ begin
 		variable i : natural := 0;
 	begin
 	 	if Rst = '1' or current_state = idle then
+--		if Rst = '1' then
 	 		DstMac <= (others => '0');
 	 		i := 0;
 	 	elsif rising_edge(RxClk) and CurrentField = dst_mac and current_state = data then
+--		elsif rising_edge(RxClk) and i < 6 and current_state = sfd then
 	 		DstMac(47-(8*i) downto 40-(8*i)) <= RxDataIn;
 	 		i := i + 1;
 	 		
