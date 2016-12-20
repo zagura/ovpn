@@ -94,6 +94,7 @@ architecture RTL of rx is
 	signal CrcOut : std_logic_vector(31 downto 0);
 	signal CrcError : std_logic;
 	signal CrcTemp : std_logic_vector(3 downto 0);
+	signal CrcInRev : std_logic_vector(3 downto 0);
 	signal ala : std_logic;
 	
 begin
@@ -158,13 +159,16 @@ begin
 			IFGCntDEBUG   => IFGCntDEBUG
 		);
 		
-		
+	crcInRev(0) <= crcIn(3);
+	crcInRev(1) <= crcIn(2);
+	crcInRev(2) <= crcIn(1);
+	crcInRev(3) <= crcIn(0);
 	crc_inst : CRC
 	port map(
 		-- input
 	clk      => RxClk,
 	rst      => CrcRst,
-	data_in  => CrcIn,
+	data_in  => CrcInRev,
 	
 		-- output
 		
@@ -266,20 +270,43 @@ begin
 			end if;
 	end process fsm;
 
-	Crc_p : process (RxClk, Rst) is
+/*	Crc_p : process (RxClk, Rst) is
 	begin
 		if rising_edge(RxClk) and current_state = data1 then
 			CrcTemp <= RxDataIn;
 		end if;
 	end process Crc_p;
 	
-	CrcIn <= RxDataIn when current_state = data0 else
-				CrcTemp when current_state = data1 else
-				"0000";
-				
+	CrcIn <= RxDataIn; --when current_state = data0 else
+				--CrcTemp when current_state = data1 else
+				--"0000";
+	
 	CrcRst <= 	'0' when (current_state = data0 and last_state = data1) or (current_state = data1 and last_state = data0) else
 					'1';
-	
+*/
+	Crc_p : process (RxClk, Rst) is
+		variable first : boolean := true;
+	begin
+		if Rst = '1' or current_state = idle then
+			CrcRst <= '1';
+			CrcTemp <= "0000";
+			first := true;
+		elsif rising_edge(RxClk) and (current_state = data0 or current_state = data1) then
+			CrcRst <= '0';
+
+			if current_state = data0 then
+				CrcIn <= RxDataIn;
+			elsif first = true then
+				CrcRst <= '1';
+				first := false;
+				CrcTemp <= RxDataIn;
+			else
+				CrcIn <= CrcTemp;
+				CrcTemp <= RxDataIn;
+			end if;
+		end if;
+	end process Crc_p;
+
 	--To cudo pod spodem odpala nam IFGCounter
 	IFGStart_p : process (RxClk, Rst) is
 	begin
