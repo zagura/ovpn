@@ -14,7 +14,6 @@ entity rx is
 		Rst : in std_logic;
 		RxDataIn : in std_logic_vector(7 downto 0);
 		RxValidDataIn : in std_logic;
-		RxEndTransmission : in std_logic;
 		RxCurrentState : out rxstate_type;
 		
 		
