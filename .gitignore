@@ -16,6 +16,6 @@ OVPN.done
 OVPN.cdf
 OVPN.asm.rpt
 OVPN_assignment_defaults.qdf
-incremental_db/
-greybox_tmp/
-db/
+incremental_db/*
+greybox_tmp/*
+db/*
