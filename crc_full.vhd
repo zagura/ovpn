@@ -26,7 +26,6 @@ end entity;
 
 architecture crc_verification of CRC is
 	signal verify: std_logic;
-	signal crc: std_logic_vector(31 downto 0);
 	--buffer crc_buff: std_logic_vector(31 downto 0);
 	-- variable polynomial: std_logic_vector(32 downto 0) := '100000100110000010001110110110111';
 	-- IEEE 802.3 : x^32 + x^26 + x^23 + x^22 + x^16 + x^12 + x^11 + x^10 + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1
@@ -43,7 +42,7 @@ begin
 			verify <= '0';
 			--crc <= X"FEEDFACE";
 		elsif (clk'event and clk = '1') then
-			crc2 := nextCRC32_D4(data_in, crc); 
+			crc2 := nextCRC32_D4(data_in, crc2); 
 			
 			--if (crc_out = '11000111000001001101110101111011') then
 			-- Wypisuje f6 e7 f6 28
@@ -52,10 +51,9 @@ begin
 			else
 				verify <= '0';
 			end if;
-			crc <= crc2;
+			crc_out <= crc2;
 		end if;
 		
 	end process;
-	crc_out <= crc;
 	error <= not verify;
 end architecture crc_verification;

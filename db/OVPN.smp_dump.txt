@@ -8,6 +8,16 @@ current_state.data0 0 0 1 0 0 1
 current_state.fcs 0 1 0 0 0 1 
 current_state.ifg 1 0 0 0 0 1 
 
+State Machine - |OVPN|rx:rx_instance|last_state
+Name last_state.OK last_state.data0 last_state.data1 last_state.sfd last_state.preamble last_state.idle last_state.drop 
+last_state.drop 0 0 0 0 0 0 0 
+last_state.idle 0 0 0 0 0 1 1 
+last_state.preamble 0 0 0 0 1 0 1 
+last_state.sfd 0 0 0 1 0 0 1 
+last_state.data1 0 0 1 0 0 0 1 
+last_state.data0 0 1 0 0 0 0 1 
+last_state.OK 1 0 0 0 0 0 1 
+
 State Machine - |OVPN|rx:rx_instance|current_state
 Name current_state.OK current_state.data0 current_state.data1 current_state.sfd current_state.drop current_state.idle current_state.preamble 
 current_state.preamble 0 0 0 0 0 0 0 

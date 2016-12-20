@@ -1,5 +1,5 @@
 Fitter report for OVPN
-Wed Dec 14 16:21:44 2016
+Fri Dec 16 11:07:36 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -65,17 +65,17 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Wed Dec 14 16:21:44 2016           ;
+; Fitter Status                      ; Successful - Fri Dec 16 11:07:36 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; OVPN                                            ;
 ; Top-level Entity Name              ; OVPN                                            ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C70F896C6                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 534 / 68,416 ( < 1 % )                          ;
-;     Total combinational functions  ; 468 / 68,416 ( < 1 % )                          ;
-;     Dedicated logic registers      ; 317 / 68,416 ( < 1 % )                          ;
-; Total registers                    ; 317                                             ;
+; Total logic elements               ; 490 / 68,416 ( < 1 % )                          ;
+;     Total combinational functions  ; 434 / 68,416 ( < 1 % )                          ;
+;     Dedicated logic registers      ; 281 / 68,416 ( < 1 % )                          ;
+; Total registers                    ; 281                                             ;
 ; Total pins                         ; 114 / 622 ( 18 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 1,152,000 ( 0 % )                           ;
@@ -577,8 +577,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Value                  ;
 +---------------------+------------------------+
 ; Placement (by node) ;                        ;
-;     -- Requested    ; 0 / 907 ( 0.00 % )     ;
-;     -- Achieved     ; 0 / 907 ( 0.00 % )     ;
+;     -- Requested    ; 0 / 839 ( 0.00 % )     ;
+;     -- Achieved     ; 0 / 839 ( 0.00 % )     ;
 ;                     ;                        ;
 ; Routing (by net)    ;                        ;
 ;     -- Requested    ; 0 / 0 ( 0.00 % )       ;
@@ -601,7 +601,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 ; Partition Name                 ; # Nodes ; # Preserved Nodes ; Preservation Level Used ; Netlist Type Used ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
-; Top                            ; 904     ; 0                 ; N/A                     ; Source File       ;
+; Top                            ; 836     ; 0                 ; N/A                     ; Source File       ;
 ; hard_block:auto_generated_inst ; 3       ; 0                 ; N/A                     ; Source File       ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 
@@ -617,46 +617,46 @@ The pin-out file can be found in C:/Users/Student/Documents/FPGA/OVPN.pin.
 +---------------------------------------------+------------------------+
 ; Resource                                    ; Usage                  ;
 +---------------------------------------------+------------------------+
-; Total logic elements                        ; 534 / 68,416 ( < 1 % ) ;
-;     -- Combinational with no register       ; 217                    ;
-;     -- Register only                        ; 66                     ;
-;     -- Combinational with a register        ; 251                    ;
+; Total logic elements                        ; 490 / 68,416 ( < 1 % ) ;
+;     -- Combinational with no register       ; 209                    ;
+;     -- Register only                        ; 56                     ;
+;     -- Combinational with a register        ; 225                    ;
 ;                                             ;                        ;
 ; Logic element usage by number of LUT inputs ;                        ;
-;     -- 4 input functions                    ; 231                    ;
-;     -- 3 input functions                    ; 46                     ;
-;     -- <=2 input functions                  ; 191                    ;
-;     -- Register only                        ; 66                     ;
+;     -- 4 input functions                    ; 215                    ;
+;     -- 3 input functions                    ; 38                     ;
+;     -- <=2 input functions                  ; 181                    ;
+;     -- Register only                        ; 56                     ;
 ;                                             ;                        ;
 ; Logic elements by mode                      ;                        ;
-;     -- normal mode                          ; 328                    ;
-;     -- arithmetic mode                      ; 140                    ;
+;     -- normal mode                          ; 295                    ;
+;     -- arithmetic mode                      ; 139                    ;
 ;                                             ;                        ;
-; Total registers*                            ; 317 / 70,234 ( < 1 % ) ;
-;     -- Dedicated logic registers            ; 317 / 68,416 ( < 1 % ) ;
+; Total registers*                            ; 281 / 70,234 ( < 1 % ) ;
+;     -- Dedicated logic registers            ; 281 / 68,416 ( < 1 % ) ;
 ;     -- I/O registers                        ; 0 / 1,818 ( 0 % )      ;
 ;                                             ;                        ;
-; Total LABs:  partially or completely used   ; 46 / 4,276 ( 1 % )     ;
+; Total LABs:  partially or completely used   ; 38 / 4,276 ( < 1 % )   ;
 ; Virtual pins                                ; 0                      ;
 ; I/O pins                                    ; 114 / 622 ( 18 % )     ;
 ;     -- Clock pins                           ; 1 / 8 ( 13 % )         ;
 ;                                             ;                        ;
-; Global signals                              ; 5                      ;
+; Global signals                              ; 6                      ;
 ; M4Ks                                        ; 0 / 250 ( 0 % )        ;
 ; Total block memory bits                     ; 0 / 1,152,000 ( 0 % )  ;
 ; Total block memory implementation bits      ; 0 / 1,152,000 ( 0 % )  ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 300 ( 0 % )        ;
 ; PLLs                                        ; 0 / 4 ( 0 % )          ;
-; Global clocks                               ; 5 / 16 ( 31 % )        ;
+; Global clocks                               ; 6 / 16 ( 38 % )        ;
 ; JTAGs                                       ; 0 / 1 ( 0 % )          ;
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )          ;
 ; CRC blocks                                  ; 0 / 1 ( 0 % )          ;
 ; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%           ;
-; Peak interconnect usage (total/H/V)         ; 3% / 3% / 2%           ;
-; Maximum fan-out                             ; 212                    ;
-; Highest non-global fan-out                  ; 117                    ;
-; Total fan-out                               ; 2634                   ;
-; Average fan-out                             ; 2.77                   ;
+; Peak interconnect usage (total/H/V)         ; 2% / 3% / 2%           ;
+; Maximum fan-out                             ; 176                    ;
+; Highest non-global fan-out                  ; 37                     ;
+; Total fan-out                               ; 2387                   ;
+; Average fan-out                             ; 2.72                   ;
 +---------------------------------------------+------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -669,32 +669,32 @@ The pin-out file can be found in C:/Users/Student/Documents/FPGA/OVPN.pin.
 +---------------------------------------------+-----------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                   ; Low                            ;
 ;                                             ;                       ;                                ;
-; Total logic elements                        ; 534 / 68416 ( < 1 % ) ; 0 / 68416 ( 0 % )              ;
-;     -- Combinational with no register       ; 217                   ; 0                              ;
-;     -- Register only                        ; 66                    ; 0                              ;
-;     -- Combinational with a register        ; 251                   ; 0                              ;
+; Total logic elements                        ; 490 / 68416 ( < 1 % ) ; 0 / 68416 ( 0 % )              ;
+;     -- Combinational with no register       ; 209                   ; 0                              ;
+;     -- Register only                        ; 56                    ; 0                              ;
+;     -- Combinational with a register        ; 225                   ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic element usage by number of LUT inputs ;                       ;                                ;
-;     -- 4 input functions                    ; 231                   ; 0                              ;
-;     -- 3 input functions                    ; 46                    ; 0                              ;
-;     -- <=2 input functions                  ; 191                   ; 0                              ;
-;     -- Register only                        ; 66                    ; 0                              ;
+;     -- 4 input functions                    ; 215                   ; 0                              ;
+;     -- 3 input functions                    ; 38                    ; 0                              ;
+;     -- <=2 input functions                  ; 181                   ; 0                              ;
+;     -- Register only                        ; 56                    ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic elements by mode                      ;                       ;                                ;
-;     -- normal mode                          ; 328                   ; 0                              ;
-;     -- arithmetic mode                      ; 140                   ; 0                              ;
+;     -- normal mode                          ; 295                   ; 0                              ;
+;     -- arithmetic mode                      ; 139                   ; 0                              ;
 ;                                             ;                       ;                                ;
-; Total registers                             ; 317                   ; 0                              ;
-;     -- Dedicated logic registers            ; 317 / 68416 ( < 1 % ) ; 0 / 68416 ( 0 % )              ;
+; Total registers                             ; 281                   ; 0                              ;
+;     -- Dedicated logic registers            ; 281 / 68416 ( < 1 % ) ; 0 / 68416 ( 0 % )              ;
 ;                                             ;                       ;                                ;
-; Total LABs:  partially or completely used   ; 46 / 4276 ( 1 % )     ; 0 / 4276 ( 0 % )               ;
+; Total LABs:  partially or completely used   ; 38 / 4276 ( < 1 % )   ; 0 / 4276 ( 0 % )               ;
 ;                                             ;                       ;                                ;
 ; Virtual pins                                ; 0                     ; 0                              ;
 ; I/O pins                                    ; 114                   ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 300 ( 0 % )       ; 0 / 300 ( 0 % )                ;
 ; Total memory bits                           ; 0                     ; 0                              ;
 ; Total RAM block bits                        ; 0                     ; 0                              ;
-; Clock control block                         ; 5 / 20 ( 25 % )       ; 0 / 20 ( 0 % )                 ;
+; Clock control block                         ; 6 / 20 ( 30 % )       ; 0 / 20 ( 0 % )                 ;
 ;                                             ;                       ;                                ;
 ; Connections                                 ;                       ;                                ;
 ;     -- Input Connections                    ; 0                     ; 0                              ;
@@ -703,8 +703,8 @@ The pin-out file can be found in C:/Users/Student/Documents/FPGA/OVPN.pin.
 ;     -- Registered Output Connections        ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Internal Connections                        ;                       ;                                ;
-;     -- Total Connections                    ; 2634                  ; 0                              ;
-;     -- Registered Connections               ; 1234                  ; 0                              ;
+;     -- Total Connections                    ; 2387                  ; 0                              ;
+;     -- Registered Connections               ; 993                   ; 0                              ;
 ;                                             ;                       ;                                ;
 ; External Connections                        ;                       ;                                ;
 ;     -- Top                                  ; 0                     ; 0                              ;
@@ -1824,22 +1824,22 @@ Note: User assignments will override these defaults. The user specified values a
 +-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M4Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                        ; Library Name ;
 +-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------+--------------+
-; |OVPN                                     ; 534 (1)     ; 317 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 114  ; 0            ; 217 (0)      ; 66 (0)            ; 251 (1)          ; |OVPN                                      ; work         ;
-;    |RMII2MII:conv1|                       ; 22 (22)     ; 21 (21)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 7 (7)             ; 14 (14)          ; |OVPN|RMII2MII:conv1                       ; work         ;
-;    |byteto7seg:\generate_decoders:0:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 2 (2)            ; |OVPN|byteto7seg:\generate_decoders:0:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:1:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 3 (3)            ; |OVPN|byteto7seg:\generate_decoders:1:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:2:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 2 (2)            ; |OVPN|byteto7seg:\generate_decoders:2:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:3:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 3 (3)            ; |OVPN|byteto7seg:\generate_decoders:3:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:4:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 2 (2)            ; |OVPN|byteto7seg:\generate_decoders:4:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:5:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |OVPN|byteto7seg:\generate_decoders:5:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:6:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 3 (3)            ; |OVPN|byteto7seg:\generate_decoders:6:dec  ; work         ;
-;    |byteto7seg:\generate_decoders:7:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |OVPN|byteto7seg:\generate_decoders:7:dec  ; work         ;
+; |OVPN                                     ; 490 (1)     ; 281 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 114  ; 0            ; 209 (0)      ; 56 (0)            ; 225 (1)          ; |OVPN                                      ; work         ;
+;    |RMII2MII:conv1|                       ; 24 (24)     ; 21 (21)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 3 (3)        ; 10 (10)           ; 11 (11)          ; |OVPN|RMII2MII:conv1                       ; work         ;
+;    |byteto7seg:\generate_decoders:0:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |OVPN|byteto7seg:\generate_decoders:0:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:1:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 2 (2)            ; |OVPN|byteto7seg:\generate_decoders:1:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:2:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 3 (3)            ; |OVPN|byteto7seg:\generate_decoders:2:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:3:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |OVPN|byteto7seg:\generate_decoders:3:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:4:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 4 (4)            ; |OVPN|byteto7seg:\generate_decoders:4:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:5:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 4 (4)            ; |OVPN|byteto7seg:\generate_decoders:5:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:6:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |OVPN|byteto7seg:\generate_decoders:6:dec  ; work         ;
+;    |byteto7seg:\generate_decoders:7:dec|  ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 1 (1)            ; |OVPN|byteto7seg:\generate_decoders:7:dec  ; work         ;
 ;    |debounce:\generate_debouncers:2:deb1| ; 27 (27)     ; 14 (14)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 2 (2)             ; 12 (12)          ; |OVPN|debounce:\generate_debouncers:2:deb1 ; work         ;
 ;    |debounce:\generate_debouncers:3:deb1| ; 27 (27)     ; 14 (14)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 2 (2)             ; 12 (12)          ; |OVPN|debounce:\generate_debouncers:3:deb1 ; work         ;
-;    |rx:rx_instance|                       ; 328 (254)   ; 212 (162)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 115 (91)     ; 51 (44)           ; 162 (115)        ; |OVPN|rx:rx_instance                       ; work         ;
-;       |CRC:crc_inst|                      ; 48 (48)     ; 33 (33)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 11 (11)      ; 5 (5)             ; 32 (32)          ; |OVPN|rx:rx_instance|CRC:crc_inst          ; work         ;
-;       |rxcounters:counters|               ; 30 (30)     ; 17 (17)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 2 (2)             ; 15 (15)          ; |OVPN|rx:rx_instance|rxcounters:counters   ; work         ;
-;    |tx:tx_instance|                       ; 90 (40)     ; 56 (8)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 34 (32)      ; 4 (4)             ; 52 (4)           ; |OVPN|tx:tx_instance                       ; work         ;
+;    |rx:rx_instance|                       ; 283 (199)   ; 176 (126)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 107 (73)     ; 41 (32)           ; 135 (94)         ; |OVPN|rx:rx_instance                       ; work         ;
+;       |CRC:crc_inst|                      ; 56 (56)     ; 33 (33)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 23 (23)      ; 9 (9)             ; 24 (24)          ; |OVPN|rx:rx_instance|CRC:crc_inst          ; work         ;
+;       |rxcounters:counters|               ; 28 (28)     ; 17 (17)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 11 (11)      ; 0 (0)             ; 17 (17)          ; |OVPN|rx:rx_instance|rxcounters:counters   ; work         ;
+;    |tx:tx_instance|                       ; 87 (37)     ; 56 (8)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 31 (29)      ; 1 (1)             ; 55 (7)           ; |OVPN|tx:tx_instance                       ; work         ;
 ;       |txcounters:counters|               ; 50 (50)     ; 48 (48)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 48 (48)          ; |OVPN|tx:tx_instance|txcounters:counters   ; work         ;
 +-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -1984,8 +1984,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ETH2_CLK                                                        ;                   ;         ;
 ; iCLK_50_2                                                       ;                   ;         ;
 ; ETH1_CLK                                                        ;                   ;         ;
-;      - RMII2MII:conv1|txen                                      ; 0                 ; 0       ;
-;      - RMII2MII:conv1|txd_intern[0]                             ; 0                 ; 0       ;
+;      - RMII2MII:conv1|txen                                      ; 1                 ; 0       ;
+;      - RMII2MII:conv1|txd_intern[0]                             ; 1                 ; 0       ;
 ;      - RMII2MII:conv1|txd_intern[1]                             ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|out_rxd_intern[0]                         ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|out_rxd_intern[1]                         ; 0                 ; 0       ;
@@ -1994,27 +1994,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - RMII2MII:conv1|rx_clk                                    ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|run2                                      ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|run                                       ; 0                 ; 0       ;
-;      - RMII2MII:conv1|sreset                                    ; 0                 ; 0       ;
-;      - RMII2MII:conv1|rxd_intern2[0]                            ; 0                 ; 0       ;
+;      - RMII2MII:conv1|sreset                                    ; 1                 ; 0       ;
+;      - RMII2MII:conv1|rxd_intern2[0]                            ; 1                 ; 0       ;
 ;      - RMII2MII:conv1|low_rxd_intern[0]                         ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|low_rxd_intern[1]                         ; 0                 ; 0       ;
-;      - RMII2MII:conv1|rxd_intern2[1]                            ; 0                 ; 0       ;
+;      - RMII2MII:conv1|rxd_intern2[1]                            ; 1                 ; 0       ;
 ;      - RMII2MII:conv1|crs_intern                                ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|rxd_intern[0]                             ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|rxd_intern[1]                             ; 0                 ; 0       ;
 ;      - RMII2MII:conv1|txstat                                    ; 0                 ; 0       ;
-;      - RMII2MII:conv1|crs_intern2                               ; 0                 ; 0       ;
-;      - RMII2MII:conv1|tx_clk                                    ; 0                 ; 0       ;
+;      - RMII2MII:conv1|crs_intern2                               ; 1                 ; 0       ;
+;      - RMII2MII:conv1|tx_clk                                    ; 1                 ; 0       ;
 ; iKEY[2]                                                         ;                   ;         ;
 ;      - debounce:\generate_debouncers:2:deb1|flipflops[0]~feeder ; 1                 ; 6       ;
 ; iKEY[3]                                                         ;                   ;         ;
-;      - debounce:\generate_debouncers:3:deb1|flipflops[0]~feeder ; 1                 ; 6       ;
+;      - debounce:\generate_debouncers:3:deb1|flipflops[0]~feeder ; 0                 ; 6       ;
 ; ETH1_CRS                                                        ;                   ;         ;
 ;      - RMII2MII:conv1|crs_intern~feeder                         ; 1                 ; 6       ;
 ; ETH1_RX[0]                                                      ;                   ;         ;
-;      - RMII2MII:conv1|rxd_intern[0]                             ; 0                 ; 6       ;
+;      - RMII2MII:conv1|rxd_intern[0]~feeder                      ; 0                 ; 6       ;
 ; ETH1_RX[1]                                                      ;                   ;         ;
-;      - RMII2MII:conv1|rxd_intern[1]~feeder                      ; 1                 ; 6       ;
+;      - RMII2MII:conv1|rxd_intern[1]                             ; 1                 ; 6       ;
 +-----------------------------------------------------------------+-------------------+---------+
 
 
@@ -2024,56 +2024,55 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                         ; Location           ; Fan-Out ; Usage                      ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------------------------+--------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 ; ETH1_CLK                                     ; PIN_P24            ; 21      ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; RMII2MII:conv1|out_rxd_intern[3]~1           ; LCCOMB_X34_Y28_N10 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; RMII2MII:conv1|rx_clk                        ; LCFF_X34_Y28_N25   ; 8       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; RMII2MII:conv1|rx_clk                        ; LCFF_X34_Y28_N25   ; 212     ; Clock                      ; yes    ; Global Clock         ; GCLK1            ; --                        ;
-; RMII2MII:conv1|sreset                        ; LCFF_X34_Y28_N29   ; 20      ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; RMII2MII:conv1|tx_clk                        ; LCFF_X39_Y28_N17   ; 12      ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; RMII2MII:conv1|tx_clk                        ; LCFF_X39_Y28_N17   ; 46      ; Clock                      ; yes    ; Global Clock         ; GCLK0            ; --                        ;
-; debounce:\generate_debouncers:2:deb1|result  ; LCFF_X39_Y27_N31   ; 68      ; Async. clear, Latch enable ; no     ; --                   ; --               ; --                        ;
+; RMII2MII:conv1|out_rxd_intern[3]~1           ; LCCOMB_X43_Y22_N30 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; RMII2MII:conv1|rx_clk                        ; LCFF_X43_Y22_N17   ; 8       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; RMII2MII:conv1|rx_clk                        ; LCFF_X43_Y22_N17   ; 176     ; Clock                      ; yes    ; Global Clock         ; GCLK12           ; --                        ;
+; RMII2MII:conv1|sreset                        ; LCFF_X47_Y23_N17   ; 20      ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; RMII2MII:conv1|tx_clk                        ; LCFF_X47_Y23_N15   ; 46      ; Clock                      ; yes    ; Global Clock         ; GCLK9            ; --                        ;
+; RMII2MII:conv1|tx_clk                        ; LCFF_X47_Y23_N15   ; 12      ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; debounce:\generate_debouncers:2:deb1|result  ; LCFF_X48_Y3_N13    ; 19      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; debounce:\generate_debouncers:2:deb1|result  ; LCFF_X48_Y3_N13    ; 129     ; Async. clear, Latch enable ; yes    ; Global Clock         ; GCLK13           ; --                        ;
 ; iCLK_50_2                                    ; PIN_D16            ; 28      ; Clock                      ; yes    ; Global Clock         ; GCLK10           ; --                        ;
-; rx:rx_instance|CRC:crc_inst|verify           ; LCFF_X26_Y27_N11   ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|CrcIn[1]~1                    ; LCCOMB_X29_Y27_N2  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|CrcRst                        ; LCFF_X29_Y27_N11   ; 34      ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[11]~29                 ; LCCOMB_X30_Y26_N18 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[15]~26                 ; LCCOMB_X30_Y26_N10 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[19]~22                 ; LCCOMB_X31_Y26_N4  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[23]~19                 ; LCCOMB_X30_Y27_N14 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[27]~16                 ; LCCOMB_X31_Y27_N22 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[31]~13                 ; LCCOMB_X31_Y27_N24 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[35]~10                 ; LCCOMB_X32_Y27_N12 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[39]~39                 ; LCCOMB_X33_Y28_N4  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[3]~36                  ; LCCOMB_X32_Y28_N8  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[43]~6                  ; LCCOMB_X31_Y26_N10 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[47]~3                  ; LCCOMB_X29_Y26_N12 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[47]~40                 ; LCCOMB_X32_Y26_N18 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|DstMac[7]~33                  ; LCCOMB_X31_Y28_N26 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|FrameStart                    ; LCFF_X32_Y28_N13   ; 12      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|IFGStart                      ; LCFF_X30_Y28_N21   ; 6       ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|\filldstmac:delay[0]~1        ; LCCOMB_X32_Y26_N0  ; 30      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|current_state.data1           ; LCFF_X32_Y28_N1    ; 28      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|fill_frame_type~0             ; LCCOMB_X30_Y28_N26 ; 117     ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; rx:rx_instance|rxcounters:counters|IFGCnt~13 ; LCCOMB_X29_Y28_N20 ; 5       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; tx:tx_instance|FCSStart                      ; LCFF_X40_Y28_N23   ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; tx:tx_instance|FrameStart                    ; LCFF_X40_Y27_N29   ; 12      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; tx:tx_instance|IFGStart                      ; LCFF_X40_Y28_N31   ; 8       ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; tx:tx_instance|Selector0~2                   ; LCCOMB_X41_Y27_N28 ; 6       ; Latch enable               ; yes    ; Global Clock         ; GCLK2            ; --                        ;
-; tx:tx_instance|TxDataOut[3]~1                ; LCCOMB_X40_Y27_N16 ; 2       ; Latch enable               ; yes    ; Global Clock         ; GCLK3            ; --                        ;
-; tx:tx_instance|txcounters:counters|IFGCnt~13 ; LCCOMB_X40_Y28_N6  ; 5       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|CrcRst~2                      ; LCCOMB_X39_Y22_N8  ; 37      ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~1                    ; LCCOMB_X34_Y22_N12 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~10                   ; LCCOMB_X35_Y22_N22 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~11                   ; LCCOMB_X34_Y22_N0  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~12                   ; LCCOMB_X35_Y21_N28 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~13                   ; LCCOMB_X35_Y22_N24 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~14                   ; LCCOMB_X33_Y22_N14 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~15                   ; LCCOMB_X33_Y20_N30 ; 30      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~4                    ; LCCOMB_X35_Y20_N8  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~5                    ; LCCOMB_X35_Y20_N24 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~6                    ; LCCOMB_X36_Y20_N10 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~7                    ; LCCOMB_X35_Y20_N30 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~8                    ; LCCOMB_X35_Y22_N4  ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|Decoder0~9                    ; LCCOMB_X35_Y21_N22 ; 4       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|FrameStart                    ; LCFF_X42_Y22_N3    ; 12      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|IFGStart                      ; LCFF_X36_Y22_N19   ; 6       ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|\filldstmac:delay[0]~1        ; LCCOMB_X34_Y38_N6  ; 30      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|current_state.data1           ; LCFF_X38_Y22_N31   ; 15      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; rx:rx_instance|rxcounters:counters|IFGCnt~13 ; LCCOMB_X39_Y23_N20 ; 5       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; tx:tx_instance|FCSStart                      ; LCFF_X48_Y23_N11   ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; tx:tx_instance|FrameStart                    ; LCFF_X44_Y23_N25   ; 12      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; tx:tx_instance|IFGStart                      ; LCFF_X48_Y23_N7    ; 8       ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; tx:tx_instance|Selector0~2                   ; LCCOMB_X45_Y23_N28 ; 6       ; Latch enable               ; yes    ; Global Clock         ; GCLK15           ; --                        ;
+; tx:tx_instance|TxDataOut[3]~1                ; LCCOMB_X44_Y23_N4  ; 2       ; Latch enable               ; yes    ; Global Clock         ; GCLK14           ; --                        ;
+; tx:tx_instance|txcounters:counters|IFGCnt~13 ; LCCOMB_X48_Y23_N24 ; 5       ; Clock enable               ; no     ; --                   ; --               ; --                        ;
 +----------------------------------------------+--------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Global & Other Fast Signals                                                                                                        ;
-+-------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
-; Name                          ; Location           ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+-------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
-; RMII2MII:conv1|rx_clk         ; LCFF_X34_Y28_N25   ; 212     ; Global Clock         ; GCLK1            ; --                        ;
-; RMII2MII:conv1|tx_clk         ; LCFF_X39_Y28_N17   ; 46      ; Global Clock         ; GCLK0            ; --                        ;
-; iCLK_50_2                     ; PIN_D16            ; 28      ; Global Clock         ; GCLK10           ; --                        ;
-; tx:tx_instance|Selector0~2    ; LCCOMB_X41_Y27_N28 ; 6       ; Global Clock         ; GCLK2            ; --                        ;
-; tx:tx_instance|TxDataOut[3]~1 ; LCCOMB_X40_Y27_N16 ; 2       ; Global Clock         ; GCLK3            ; --                        ;
-+-------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Global & Other Fast Signals                                                                                                                      ;
++---------------------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
+; Name                                        ; Location           ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++---------------------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
+; RMII2MII:conv1|rx_clk                       ; LCFF_X43_Y22_N17   ; 176     ; Global Clock         ; GCLK12           ; --                        ;
+; RMII2MII:conv1|tx_clk                       ; LCFF_X47_Y23_N15   ; 46      ; Global Clock         ; GCLK9            ; --                        ;
+; debounce:\generate_debouncers:2:deb1|result ; LCFF_X48_Y3_N13    ; 129     ; Global Clock         ; GCLK13           ; --                        ;
+; iCLK_50_2                                   ; PIN_D16            ; 28      ; Global Clock         ; GCLK10           ; --                        ;
+; tx:tx_instance|Selector0~2                  ; LCCOMB_X45_Y23_N28 ; 6       ; Global Clock         ; GCLK15           ; --                        ;
+; tx:tx_instance|TxDataOut[3]~1               ; LCCOMB_X44_Y23_N4  ; 2       ; Global Clock         ; GCLK14           ; --                        ;
++---------------------------------------------+--------------------+---------+----------------------+------------------+---------------------------+
 
 
 +------------------------------------------------------------------------+
@@ -2081,125 +2080,117 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------+---------+
 ; Name                                                         ; Fan-Out ;
 +--------------------------------------------------------------+---------+
-; rx:rx_instance|fill_frame_type~0                             ; 117     ;
-; debounce:\generate_debouncers:2:deb1|result                  ; 68      ;
-; rx:rx_instance|CrcRst                                        ; 34      ;
-; rx:rx_instance|CRC:crc_inst|verify                           ; 32      ;
+; rx:rx_instance|CrcRst~2                                      ; 37      ;
 ; tx:tx_instance|FCSStart                                      ; 31      ;
-; rx:rx_instance|DstMac[47]~40                                 ; 31      ;
 ; rx:rx_instance|\filldstmac:delay[0]~1                        ; 30      ;
-; rx:rx_instance|current_state.data1                           ; 28      ;
+; rx:rx_instance|Decoder0~15                                   ; 30      ;
 ; ETH1_CLK                                                     ; 21      ;
+; rx:rx_instance|CrcIn[2]~3                                    ; 21      ;
+; rx:rx_instance|CrcIn[3]~2                                    ; 20      ;
+; rx:rx_instance|CrcIn[1]~1                                    ; 20      ;
+; rx:rx_instance|CrcIn[0]~0                                    ; 20      ;
 ; RMII2MII:conv1|sreset                                        ; 20      ;
-; RMII2MII:conv1|out_rxd_intern[3]                             ; 17      ;
-; RMII2MII:conv1|out_rxd_intern[1]                             ; 17      ;
-; RMII2MII:conv1|out_rxd_intern[0]                             ; 17      ;
-; RMII2MII:conv1|out_rxd_intern[2]                             ; 17      ;
-; rx:rx_instance|filldstmac~10                                 ; 15      ;
-; rx:rx_instance|Equal5~9                                      ; 15      ;
-; rx:rx_instance|\filldstmac:i[3]                              ; 14      ;
-; rx:rx_instance|\filldstmac:i[2]                              ; 14      ;
+; debounce:\generate_debouncers:2:deb1|result                  ; 18      ;
+; rx:rx_instance|current_state.data1                           ; 15      ;
+; rx:rx_instance|\filldstmac:i[0]                              ; 14      ;
 ; rx:rx_instance|\filldstmac:i[1]                              ; 13      ;
-; rx:rx_instance|\filldstmac:i[0]                              ; 13      ;
-; rx:rx_instance|Add0~4                                        ; 13      ;
-; rx:rx_instance|Add0~0                                        ; 13      ;
 ; tx:tx_instance|FrameStart                                    ; 12      ;
 ; rx:rx_instance|FrameStart                                    ; 12      ;
 ; RMII2MII:conv1|tx_clk                                        ; 11      ;
+; rx:rx_instance|\filldstmac:i[3]                              ; 11      ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[0]~1        ; 10      ;
 ; debounce:\generate_debouncers:3:deb1|result~1                ; 10      ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[0]~1        ; 10      ;
 ; debounce:\generate_debouncers:2:deb1|result~1                ; 10      ;
-; rx:rx_instance|CRC:crc_inst|newcrc~17                        ; 10      ;
-; rx:rx_instance|CRC:crc_inst|crc[28]                          ; 10      ;
 ; rx:rx_instance|current_state.data0                           ; 10      ;
-; rx:rx_instance|CrcIn[0]                                      ; 9       ;
-; rx:rx_instance|CRC:crc_inst|crc[30]                          ; 9       ;
+; rx:rx_instance|CRC:crc_inst|crc2[30]                         ; 9       ;
+; rx:rx_instance|DstMac[42]                                    ; 9       ;
+; rx:rx_instance|DstMac[40]                                    ; 9       ;
+; rx:rx_instance|DstMac[16]                                    ; 9       ;
+; rx:rx_instance|DstMac[21]                                    ; 9       ;
+; rx:rx_instance|DstMac[24]                                    ; 9       ;
+; rx:rx_instance|DstMac[25]                                    ; 9       ;
+; rx:rx_instance|DstMac[26]                                    ; 9       ;
+; rx:rx_instance|DstMac[27]                                    ; 9       ;
+; rx:rx_instance|DstMac[28]                                    ; 9       ;
+; rx:rx_instance|DstMac[29]                                    ; 9       ;
+; rx:rx_instance|DstMac[32]                                    ; 9       ;
 ; RMII2MII:conv1|run2                                          ; 9       ;
 ; tx:tx_instance|IFGStart                                      ; 8       ;
-; rx:rx_instance|CrcIn[2]                                      ; 8       ;
+; rx:rx_instance|CRC:crc_inst|crc2[29]                         ; 8       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~11                        ; 8       ;
+; rx:rx_instance|CRC:crc_inst|crc2[28]                         ; 8       ;
+; rx:rx_instance|CRC:crc_inst|crc2[31]                         ; 8       ;
+; rx:rx_instance|Decoder0~0                                    ; 8       ;
 ; RMII2MII:conv1|run                                           ; 8       ;
-; rx:rx_instance|CRC:crc_inst|crc[31]                          ; 7       ;
-; rx:rx_instance|DstMacDEBUG[47]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[46]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[45]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[44]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[43]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[42]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[41]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[40]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[39]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[38]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[37]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[36]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[35]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[34]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[33]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[32]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[31]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[30]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[29]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[28]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[27]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[26]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[25]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[24]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[23]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[22]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[21]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[20]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[19]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[18]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[17]                               ; 7       ;
-; rx:rx_instance|DstMacDEBUG[16]                               ; 7       ;
+; rx:rx_instance|DstMac[47]                                    ; 8       ;
+; rx:rx_instance|DstMac[46]                                    ; 8       ;
+; rx:rx_instance|DstMac[43]                                    ; 8       ;
+; rx:rx_instance|DstMac[41]                                    ; 8       ;
+; rx:rx_instance|DstMac[39]                                    ; 8       ;
+; rx:rx_instance|DstMac[17]                                    ; 8       ;
+; rx:rx_instance|DstMac[18]                                    ; 8       ;
+; rx:rx_instance|DstMac[19]                                    ; 8       ;
+; rx:rx_instance|DstMac[20]                                    ; 8       ;
+; rx:rx_instance|DstMac[22]                                    ; 8       ;
+; rx:rx_instance|DstMac[23]                                    ; 8       ;
+; rx:rx_instance|DstMac[30]                                    ; 8       ;
+; rx:rx_instance|DstMac[31]                                    ; 8       ;
+; rx:rx_instance|DstMac[33]                                    ; 8       ;
+; rx:rx_instance|DstMac[34]                                    ; 8       ;
+; rx:rx_instance|DstMac[35]                                    ; 8       ;
+; rx:rx_instance|DstMac[36]                                    ; 8       ;
+; rx:rx_instance|DstMac[37]                                    ; 8       ;
+; rx:rx_instance|DstMac[38]                                    ; 8       ;
+; rx:rx_instance|DstMac[45]                                    ; 8       ;
+; rx:rx_instance|DstMac[44]                                    ; 8       ;
 ; RMII2MII:conv1|rx_clk                                        ; 7       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[4]               ; 7       ;
-; rx:rx_instance|CrcIn[3]                                      ; 6       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~14                        ; 6       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~13                        ; 6       ;
 ; rx:rx_instance|IFGStart                                      ; 6       ;
+; rx:rx_instance|Equal4~9                                      ; 6       ;
+; rx:rx_instance|filldstmac~9                                  ; 6       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[3]               ; 6       ;
 ; tx:tx_instance|TxValidDataOut                                ; 5       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt~13                 ; 5       ;
 ; tx:tx_instance|Selector16~1                                  ; 5       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~16                        ; 5       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~15                        ; 5       ;
-; rx:rx_instance|CRC:crc_inst|crc[29]                          ; 5       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~10                        ; 5       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[10]         ; 5       ;
 ; debounce:\generate_debouncers:3:deb1|flipflops[0]            ; 5       ;
 ; rx:rx_instance|rxcounters:counters|IFGCnt~13                 ; 5       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[10]         ; 5       ;
 ; debounce:\generate_debouncers:2:deb1|flipflops[0]            ; 5       ;
-; rx:rx_instance|current_state.idle                            ; 5       ;
-; rx:rx_instance|Add0~6                                        ; 5       ;
-; rx:rx_instance|Add0~2                                        ; 5       ;
+; RMII2MII:conv1|out_rxd_intern[1]                             ; 5       ;
+; RMII2MII:conv1|out_rxd_intern[0]                             ; 5       ;
+; RMII2MII:conv1|out_rxd_intern[2]                             ; 5       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[2]               ; 5       ;
-; rx:rx_instance|CrcIn[1]~1                                    ; 4       ;
 ; tx:tx_instance|current_state.preamble                        ; 4       ;
-; rx:rx_instance|CrcIn[1]                                      ; 4       ;
 ; RMII2MII:conv1|crs_intern                                    ; 4       ;
 ; debounce:\generate_debouncers:3:deb1|flipflops[1]            ; 4       ;
-; rx:rx_instance|DstMac[39]~39                                 ; 4       ;
-; rx:rx_instance|DstMac[3]~36                                  ; 4       ;
-; rx:rx_instance|DstMac[7]~33                                  ; 4       ;
-; rx:rx_instance|DstMac[11]~29                                 ; 4       ;
-; rx:rx_instance|DstMac[15]~26                                 ; 4       ;
-; rx:rx_instance|DstMac[19]~22                                 ; 4       ;
-; rx:rx_instance|DstMac[23]~19                                 ; 4       ;
-; rx:rx_instance|DstMac[27]~16                                 ; 4       ;
-; rx:rx_instance|DstMac[31]~13                                 ; 4       ;
-; rx:rx_instance|DstMac[35]~10                                 ; 4       ;
-; rx:rx_instance|DstMac[35]~9                                  ; 4       ;
-; rx:rx_instance|DstMac[43]~6                                  ; 4       ;
-; rx:rx_instance|DstMac[47]~3                                  ; 4       ;
-; rx:rx_instance|DstMac[47]~2                                  ; 4       ;
+; rx:rx_instance|Decoder0~14                                   ; 4       ;
+; rx:rx_instance|Decoder0~13                                   ; 4       ;
+; rx:rx_instance|Decoder0~12                                   ; 4       ;
+; rx:rx_instance|Decoder0~11                                   ; 4       ;
+; rx:rx_instance|Decoder0~10                                   ; 4       ;
+; rx:rx_instance|Decoder0~9                                    ; 4       ;
+; rx:rx_instance|Decoder0~8                                    ; 4       ;
+; rx:rx_instance|Decoder0~7                                    ; 4       ;
+; rx:rx_instance|Decoder0~6                                    ; 4       ;
+; rx:rx_instance|Decoder0~5                                    ; 4       ;
+; rx:rx_instance|Decoder0~4                                    ; 4       ;
+; rx:rx_instance|Decoder0~3                                    ; 4       ;
+; rx:rx_instance|Decoder0~1                                    ; 4       ;
 ; RMII2MII:conv1|out_rxd_intern[3]~1                           ; 4       ;
 ; debounce:\generate_debouncers:2:deb1|flipflops[1]            ; 4       ;
+; rx:rx_instance|current_state.idle                            ; 4       ;
 ; rx:rx_instance|current_state.preamble                        ; 4       ;
+; RMII2MII:conv1|out_rxd_intern[3]                             ; 4       ;
 ; rx:rx_instance|current_state.sfd                             ; 4       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt[4]                 ; 4       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt[3]                 ; 4       ;
 ; tx:tx_instance|txcounters:counters|FrameCnt[11]              ; 4       ;
 ; tx:tx_instance|txcounters:counters|FrameCnt[10]              ; 4       ;
+; rx:rx_instance|\filldstmac:i[2]                              ; 4       ;
 ; rx:rx_instance|rxcounters:counters|IFGCnt[4]                 ; 4       ;
 ; rx:rx_instance|rxcounters:counters|IFGCnt[3]                 ; 4       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[6]               ; 4       ;
@@ -2214,23 +2205,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; tx:tx_instance|TxNextState.preamble                          ; 3       ;
 ; tx:tx_instance|current_state.fcs                             ; 3       ;
 ; tx:tx_instance|Selector3~0                                   ; 3       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~27                        ; 3       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~22                        ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[27]                          ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[26]                          ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[25]                          ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[17]                          ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[16]                          ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[9]                           ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[8]                           ; 3       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~28                        ; 3       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~17                        ; 3       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~12                        ; 3       ;
 ; RMII2MII:conv1|rxd_intern[1]                                 ; 3       ;
 ; RMII2MII:conv1|rxd_intern[0]                                 ; 3       ;
 ; rx:rx_instance|\filldstmac:delay[0]                          ; 3       ;
 ; rx:rx_instance|rxcounters:counters|CurrentField.data~2       ; 3       ;
 ; rx:rx_instance|next_state.idle~2                             ; 3       ;
-; rx:rx_instance|current_state.OK                              ; 3       ;
-; rx:rx_instance|next_state~2                                  ; 3       ;
-; rx:rx_instance|next_state.OK~0                               ; 3       ;
+; rx:rx_instance|next_state.OK~1                               ; 3       ;
+; rx:rx_instance|next_state~1                                  ; 3       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[10]              ; 3       ;
 ; tx:tx_instance|TxNextState.ifg                               ; 2       ;
 ; tx:tx_instance|TxNextState.idle                              ; 2       ;
@@ -2239,9 +2223,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|CRC:crc_inst|newcrc~44                        ; 2       ;
 ; rx:rx_instance|CRC:crc_inst|newcrc~43                        ; 2       ;
 ; rx:rx_instance|CRC:crc_inst|newcrc~42                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~41                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~40                        ; 2       ;
-; rx:rx_instance|next_state.drop~6                             ; 2       ;
 ; tx:tx_instance|Selector5~0                                   ; 2       ;
 ; tx:tx_instance|txcounters:counters|LessThan4~0               ; 2       ;
 ; tx:tx_instance|Selector16~2                                  ; 2       ;
@@ -2251,22 +2232,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; tx:tx_instance|current_state.data0                           ; 2       ;
 ; tx:tx_instance|current_state.data1                           ; 2       ;
 ; tx:tx_instance|current_state.idle                            ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~35                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~34                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~33                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~32                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~31                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~30                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~29                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~28                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~26                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~25                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~24                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~23                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~21                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~20                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~19                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~18                        ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[0]          ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[1]          ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[2]          ; 2       ;
@@ -2277,6 +2242,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; debounce:\generate_debouncers:3:deb1|counter_out[7]          ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[8]          ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[9]          ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~37                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~36                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~35                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~34                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~33                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~32                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~31                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~30                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~29                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[16]                         ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[17]                         ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[26]                         ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[27]                         ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[9]                          ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~26                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~25                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~23                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~21                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~19                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~16                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[8]                          ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[10]                         ; 2       ;
+; rx:rx_instance|CRC:crc_inst|crc2[6]                          ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~15                        ; 2       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~14                        ; 2       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[0]          ; 2       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[1]          ; 2       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[2]          ; 2       ;
@@ -2288,92 +2278,33 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; debounce:\generate_debouncers:2:deb1|counter_out[8]          ; 2       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[9]          ; 2       ;
 ; RMII2MII:conv1|txstat                                        ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[24]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[23]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[22]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[21]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[20]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[19]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[18]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[15]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[14]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[13]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[12]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[11]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[10]                          ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[7]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[6]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[5]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[4]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[3]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[2]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[1]                           ; 2       ;
-; rx:rx_instance|CRC:crc_inst|crc[0]                           ; 2       ;
 ; RMII2MII:conv1|rxd_intern2[1]                                ; 2       ;
-; rx:rx_instance|DstMac[7]~32                                  ; 2       ;
-; rx:rx_instance|DstMac[15]~25                                 ; 2       ;
-; rx:rx_instance|\filldstmac:i[30]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[29]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[28]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[27]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[26]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[25]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[24]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[23]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[22]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[21]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[20]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[19]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[18]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[17]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[16]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[15]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[14]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[13]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[12]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[11]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[10]                             ; 2       ;
-; rx:rx_instance|\filldstmac:i[9]                              ; 2       ;
-; rx:rx_instance|\filldstmac:i[8]                              ; 2       ;
-; rx:rx_instance|\filldstmac:i[7]                              ; 2       ;
-; rx:rx_instance|\filldstmac:i[6]                              ; 2       ;
-; rx:rx_instance|\filldstmac:i[5]                              ; 2       ;
-; rx:rx_instance|\filldstmac:i[4]                              ; 2       ;
 ; RMII2MII:conv1|rxd_intern2[0]                                ; 2       ;
-; rx:rx_instance|rxcounters:counters|LessThan4~4               ; 2       ;
 ; rx:rx_instance|rxcounters:counters|LessThan4~3               ; 2       ;
+; rx:rx_instance|rxcounters:counters|LessThan4~2               ; 2       ;
 ; debounce:\generate_debouncers:3:deb1|result                  ; 2       ;
 ; rx:rx_instance|ala                                           ; 2       ;
 ; rx:rx_instance|current_state.drop                            ; 2       ;
+; rx:rx_instance|current_state.OK                              ; 2       ;
 ; rx:rx_instance|next_state.preamble~0                         ; 2       ;
-; rx:rx_instance|next_state.sfd~0                              ; 2       ;
+; rx:rx_instance|next_state.sfd~2                              ; 2       ;
 ; oLEDG~0                                                      ; 2       ;
-; rx:rx_instance|Selector4~2                                   ; 2       ;
-; rx:rx_instance|Selector4~1                                   ; 2       ;
-; rx:rx_instance|next_state.OK~1                               ; 2       ;
-; rx:rx_instance|next_state.drop~5                             ; 2       ;
+; rx:rx_instance|Selector4~0                                   ; 2       ;
+; rx:rx_instance|next_state.sfd~0                              ; 2       ;
+; rx:rx_instance|Equal3~0                                      ; 2       ;
+; rx:rx_instance|next_state.drop~3                             ; 2       ;
+; rx:rx_instance|next_state.drop~2                             ; 2       ;
 ; rx:rx_instance|DstMacValid~20                                ; 2       ;
 ; rx:rx_instance|DstMacValid~10                                ; 2       ;
+; rx:rx_instance|DstMac[0]                                     ; 2       ;
+; rx:rx_instance|DstMac[6]                                     ; 2       ;
 ; rx:rx_instance|DstMac[8]                                     ; 2       ;
 ; rx:rx_instance|DstMac[10]                                    ; 2       ;
 ; rx:rx_instance|DstMac[14]                                    ; 2       ;
-; rx:rx_instance|DstMac[16]                                    ; 2       ;
-; rx:rx_instance|DstMac[21]                                    ; 2       ;
-; rx:rx_instance|DstMac[24]                                    ; 2       ;
-; rx:rx_instance|DstMac[25]                                    ; 2       ;
-; rx:rx_instance|DstMac[26]                                    ; 2       ;
-; rx:rx_instance|DstMac[27]                                    ; 2       ;
-; rx:rx_instance|DstMac[28]                                    ; 2       ;
-; rx:rx_instance|DstMac[29]                                    ; 2       ;
-; rx:rx_instance|DstMac[32]                                    ; 2       ;
-; rx:rx_instance|DstMac[40]                                    ; 2       ;
-; rx:rx_instance|DstMac[42]                                    ; 2       ;
-; rx:rx_instance|DstMac[44]                                    ; 2       ;
-; rx:rx_instance|DstMac[45]                                    ; 2       ;
 ; rx:rx_instance|next_state~4                                  ; 2       ;
-; rx:rx_instance|rxcounters:counters|LessThan4~2               ; 2       ;
-; rx:rx_instance|next_state.drop~3                             ; 2       ;
-; rx:rx_instance|fsm~0                                         ; 2       ;
+; rx:rx_instance|next_state.OK~0                               ; 2       ;
+; rx:rx_instance|next_state.drop~1                             ; 2       ;
+; rx:rx_instance|next_state~0                                  ; 2       ;
 ; tx:tx_instance|txcounters:counters|FrameCnt[3]               ; 2       ;
 ; tx:tx_instance|txcounters:counters|FrameCnt[2]               ; 2       ;
 ; tx:tx_instance|txcounters:counters|FrameCnt[1]               ; 2       ;
@@ -2442,9 +2373,35 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|\filldstmac:delay[3]                          ; 2       ;
 ; rx:rx_instance|\filldstmac:delay[2]                          ; 2       ;
 ; rx:rx_instance|\filldstmac:delay[1]                          ; 2       ;
+; rx:rx_instance|\filldstmac:i[30]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[29]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[28]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[27]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[26]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[25]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[24]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[23]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[22]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[21]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[20]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[19]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[18]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[17]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[16]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[15]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[14]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[13]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[12]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[11]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[10]                             ; 2       ;
+; rx:rx_instance|\filldstmac:i[9]                              ; 2       ;
+; rx:rx_instance|\filldstmac:i[8]                              ; 2       ;
+; rx:rx_instance|\filldstmac:i[7]                              ; 2       ;
+; rx:rx_instance|\filldstmac:i[6]                              ; 2       ;
+; rx:rx_instance|\filldstmac:i[5]                              ; 2       ;
+; rx:rx_instance|\filldstmac:i[4]                              ; 2       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[1]               ; 2       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[0]               ; 2       ;
-; rx:rx_instance|\Crc_p:first~feeder                           ; 1       ;
 ; ETH1_RX[1]                                                   ; 1       ;
 ; ETH1_RX[0]                                                   ; 1       ;
 ; ETH1_CRS                                                     ; 1       ;
@@ -2453,34 +2410,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; RMII2MII:conv1|tx_clk~0                                      ; 1       ;
 ; tx:tx_instance|current_state.idle~0                          ; 1       ;
 ; RMII2MII:conv1|sreset~0                                      ; 1       ;
-; rx:rx_instance|DstMacDEBUG[44]~7                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[40]~6                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[36]~5                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[32]~4                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[28]~3                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[24]~2                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[20]~1                             ; 1       ;
-; rx:rx_instance|DstMacDEBUG[16]~0                             ; 1       ;
 ; rx:rx_instance|current_state.preamble~0                      ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~45                        ; 1       ;
 ; rx:rx_instance|rxcounters:counters|LessThan4~5               ; 1       ;
 ; rx:rx_instance|rxcounters:counters|CurrentField.data~3       ; 1       ;
-; rx:rx_instance|next_state~6                                  ; 1       ;
 ; tx:tx_instance|Selector11~1                                  ; 1       ;
 ; tx:tx_instance|Selector11~0                                  ; 1       ;
 ; tx:tx_instance|Selector5~1                                   ; 1       ;
 ; tx:tx_instance|FrameStart_p~0                                ; 1       ;
 ; tx:tx_instance|Selector1~0                                   ; 1       ;
 ; tx:tx_instance|Selector3~1                                   ; 1       ;
-; rx:rx_instance|CrcIn~4                                       ; 1       ;
-; rx:rx_instance|CrcTemp[1]                                    ; 1       ;
-; rx:rx_instance|CrcIn~3                                       ; 1       ;
-; rx:rx_instance|CrcTemp[3]                                    ; 1       ;
-; rx:rx_instance|CrcIn~2                                       ; 1       ;
-; rx:rx_instance|CrcTemp[2]                                    ; 1       ;
-; rx:rx_instance|CrcRst~0                                      ; 1       ;
-; rx:rx_instance|\Crc_p:first                                  ; 1       ;
-; rx:rx_instance|CrcIn~0                                       ; 1       ;
-; rx:rx_instance|CrcTemp[0]                                    ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[0]~11       ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[1]~10       ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[2]~9        ; 1       ;
@@ -2491,6 +2430,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; debounce:\generate_debouncers:3:deb1|counter_out[7]~4        ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[8]~3        ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|counter_out[9]~2        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~41                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~40                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~39                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~38                        ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[0]~11       ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[1]~10       ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|counter_out[2]~9        ; 1       ;
@@ -2513,25 +2456,46 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; tx:tx_instance|LessThan0~0                                   ; 1       ;
 ; tx:tx_instance|Selector16~0                                  ; 1       ;
 ; tx:tx_instance|Selector17~0                                  ; 1       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~39                        ; 1       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~38                        ; 1       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~37                        ; 1       ;
-; rx:rx_instance|CRC:crc_inst|newcrc~36                        ; 1       ;
-; rx:rx_instance|CRC:crc_inst|Equal0~11                        ; 1       ;
+; debounce:\generate_debouncers:3:deb1|counter_out~0           ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~10                        ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~9                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[25]                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~8                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[24]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[23]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[13]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[14]                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~7                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[18]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[12]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[15]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[11]                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~6                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~5                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~4                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~27                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[22]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[7]                          ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~3                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~24                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[19]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~22                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[5]                          ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~20                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[21]                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|newcrc~18                        ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[20]                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~2                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[2]                          ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~1                         ; 1       ;
 ; rx:rx_instance|CRC:crc_inst|Equal0~0                         ; 1       ;
-; debounce:\generate_debouncers:3:deb1|counter_out~0           ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[3]                          ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[4]                          ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[1]                          ; 1       ;
+; rx:rx_instance|CRC:crc_inst|crc2[0]                          ; 1       ;
 ; rx:rx_instance|IFGStart_p~0                                  ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[0]~0                        ; 1       ;
+; rx:rx_instance|\filldstmac:i[0]~0                            ; 1       ;
 ; RMII2MII:conv1|run~1                                         ; 1       ;
 ; RMII2MII:conv1|crs_intern2                                   ; 1       ;
 ; RMII2MII:conv1|run~0                                         ; 1       ;
@@ -2542,32 +2506,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; RMII2MII:conv1|p_receive~0                                   ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|result~0                ; 1       ;
 ; rx:rx_instance|ala~0                                         ; 1       ;
+; rx:rx_instance|CRC:crc_inst|verify                           ; 1       ;
 ; RMII2MII:conv1|out_rxd_intern~4                              ; 1       ;
-; rx:rx_instance|DstMac[39]~38                                 ; 1       ;
-; rx:rx_instance|DstMac[39]~37                                 ; 1       ;
-; rx:rx_instance|DstMac[3]~35                                  ; 1       ;
-; rx:rx_instance|DstMac[3]~34                                  ; 1       ;
-; rx:rx_instance|DstMac[7]~31                                  ; 1       ;
-; rx:rx_instance|DstMac[7]~30                                  ; 1       ;
-; rx:rx_instance|DstMac[11]~28                                 ; 1       ;
-; rx:rx_instance|DstMac[11]~27                                 ; 1       ;
-; rx:rx_instance|DstMac[15]~24                                 ; 1       ;
-; rx:rx_instance|DstMac[15]~23                                 ; 1       ;
-; rx:rx_instance|DstMac[19]~21                                 ; 1       ;
-; rx:rx_instance|DstMac[19]~20                                 ; 1       ;
-; rx:rx_instance|DstMac[23]~18                                 ; 1       ;
-; rx:rx_instance|DstMac[23]~17                                 ; 1       ;
-; rx:rx_instance|DstMac[27]~15                                 ; 1       ;
-; rx:rx_instance|DstMac[27]~14                                 ; 1       ;
-; rx:rx_instance|DstMac[31]~12                                 ; 1       ;
-; rx:rx_instance|DstMac[31]~11                                 ; 1       ;
-; rx:rx_instance|DstMac[35]~8                                  ; 1       ;
-; rx:rx_instance|DstMac[35]~7                                  ; 1       ;
-; rx:rx_instance|DstMac[43]~5                                  ; 1       ;
-; rx:rx_instance|DstMac[43]~4                                  ; 1       ;
-; rx:rx_instance|DstMac[47]~1                                  ; 1       ;
-; rx:rx_instance|DstMac[47]~0                                  ; 1       ;
-; rx:rx_instance|filldstmac~9                                  ; 1       ;
+; rx:rx_instance|CrcTemp[2]                                    ; 1       ;
+; rx:rx_instance|CrcTemp[3]                                    ; 1       ;
+; rx:rx_instance|Decoder0~2                                    ; 1       ;
+; rx:rx_instance|CrcTemp[1]                                    ; 1       ;
+; rx:rx_instance|Equal4~8                                      ; 1       ;
+; rx:rx_instance|Equal4~7                                      ; 1       ;
+; rx:rx_instance|Equal4~6                                      ; 1       ;
+; rx:rx_instance|Equal4~5                                      ; 1       ;
+; rx:rx_instance|Equal4~4                                      ; 1       ;
+; rx:rx_instance|Equal4~3                                      ; 1       ;
+; rx:rx_instance|Equal4~2                                      ; 1       ;
+; rx:rx_instance|Equal4~1                                      ; 1       ;
+; rx:rx_instance|Equal4~0                                      ; 1       ;
 ; rx:rx_instance|filldstmac~8                                  ; 1       ;
 ; rx:rx_instance|filldstmac~7                                  ; 1       ;
 ; rx:rx_instance|filldstmac~6                                  ; 1       ;
@@ -2577,15 +2530,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|filldstmac~2                                  ; 1       ;
 ; rx:rx_instance|filldstmac~1                                  ; 1       ;
 ; rx:rx_instance|filldstmac~0                                  ; 1       ;
-; rx:rx_instance|Equal5~8                                      ; 1       ;
-; rx:rx_instance|Equal5~7                                      ; 1       ;
-; rx:rx_instance|Equal5~6                                      ; 1       ;
-; rx:rx_instance|Equal5~5                                      ; 1       ;
-; rx:rx_instance|Equal5~4                                      ; 1       ;
-; rx:rx_instance|Equal5~3                                      ; 1       ;
-; rx:rx_instance|Equal5~2                                      ; 1       ;
-; rx:rx_instance|Equal5~1                                      ; 1       ;
-; rx:rx_instance|Equal5~0                                      ; 1       ;
+; rx:rx_instance|last_state.data1                              ; 1       ;
+; rx:rx_instance|last_state.data0                              ; 1       ;
+; rx:rx_instance|CrcTemp[0]                                    ; 1       ;
 ; RMII2MII:conv1|out_rxd_intern~3                              ; 1       ;
 ; RMII2MII:conv1|low_rxd_intern[1]                             ; 1       ;
 ; RMII2MII:conv1|out_rxd_intern~2                              ; 1       ;
@@ -2652,61 +2599,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; byteto7seg:\generate_decoders:0:dec|Mux4~0                   ; 1       ;
 ; byteto7seg:\generate_decoders:0:dec|Mux5~0                   ; 1       ;
 ; byteto7seg:\generate_decoders:0:dec|Mux6~0                   ; 1       ;
+; rx:rx_instance|rxcounters:counters|LessThan4~4               ; 1       ;
 ; rx:rx_instance|rxcounters:counters|CurrentField.src_mac~0    ; 1       ;
 ; rx:rx_instance|rxcounters:counters|CurrentField.frame_type~0 ; 1       ;
 ; rx:rx_instance|next_state~5                                  ; 1       ;
-; rx:rx_instance|Equal0~0                                      ; 1       ;
 ; rx:rx_instance|next_state.idle~1                             ; 1       ;
 ; rx:rx_instance|next_state.idle~0                             ; 1       ;
 ; rx:rx_instance|Selector2~0                                   ; 1       ;
-; rx:rx_instance|Selector4~0                                   ; 1       ;
-; rx:rx_instance|next_state.drop~4                             ; 1       ;
+; rx:rx_instance|next_state.sfd~1                              ; 1       ;
 ; rx:rx_instance|DstMacValid~19                                ; 1       ;
-; rx:rx_instance|DstMac[1]                                     ; 1       ;
-; rx:rx_instance|DstMac[2]                                     ; 1       ;
 ; rx:rx_instance|DstMacValid~18                                ; 1       ;
+; rx:rx_instance|DstMac[1]                                     ; 1       ;
+; rx:rx_instance|DstMacValid~17                                ; 1       ;
+; rx:rx_instance|DstMac[2]                                     ; 1       ;
 ; rx:rx_instance|DstMac[3]                                     ; 1       ;
 ; rx:rx_instance|DstMac[4]                                     ; 1       ;
 ; rx:rx_instance|DstMac[5]                                     ; 1       ;
+; rx:rx_instance|DstMacValid~16                                ; 1       ;
 ; rx:rx_instance|DstMac[7]                                     ; 1       ;
-; rx:rx_instance|DstMacValid~17                                ; 1       ;
 ; rx:rx_instance|DstMac[9]                                     ; 1       ;
 ; rx:rx_instance|DstMac[11]                                    ; 1       ;
 ; rx:rx_instance|DstMac[12]                                    ; 1       ;
-; rx:rx_instance|DstMac[13]                                    ; 1       ;
-; rx:rx_instance|DstMacValid~16                                ; 1       ;
-; rx:rx_instance|DstMac[15]                                    ; 1       ;
-; rx:rx_instance|DstMac[17]                                    ; 1       ;
-; rx:rx_instance|DstMac[18]                                    ; 1       ;
-; rx:rx_instance|DstMac[19]                                    ; 1       ;
 ; rx:rx_instance|DstMacValid~15                                ; 1       ;
 ; rx:rx_instance|DstMacValid~14                                ; 1       ;
-; rx:rx_instance|DstMac[20]                                    ; 1       ;
-; rx:rx_instance|DstMac[22]                                    ; 1       ;
-; rx:rx_instance|DstMac[23]                                    ; 1       ;
-; rx:rx_instance|DstMac[30]                                    ; 1       ;
+; rx:rx_instance|DstMac[13]                                    ; 1       ;
+; rx:rx_instance|DstMac[15]                                    ; 1       ;
 ; rx:rx_instance|DstMacValid~13                                ; 1       ;
-; rx:rx_instance|DstMac[31]                                    ; 1       ;
-; rx:rx_instance|DstMac[33]                                    ; 1       ;
-; rx:rx_instance|DstMac[34]                                    ; 1       ;
-; rx:rx_instance|DstMac[35]                                    ; 1       ;
 ; rx:rx_instance|DstMacValid~12                                ; 1       ;
-; rx:rx_instance|DstMac[36]                                    ; 1       ;
-; rx:rx_instance|DstMac[37]                                    ; 1       ;
-; rx:rx_instance|DstMac[38]                                    ; 1       ;
-; rx:rx_instance|DstMac[39]                                    ; 1       ;
 ; rx:rx_instance|DstMacValid~11                                ; 1       ;
-; rx:rx_instance|DstMac[41]                                    ; 1       ;
-; rx:rx_instance|DstMac[43]                                    ; 1       ;
-; rx:rx_instance|DstMac[46]                                    ; 1       ;
-; rx:rx_instance|DstMac[47]                                    ; 1       ;
 ; rx:rx_instance|DstMacValid~9                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~8                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~7                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~6                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~5                                 ; 1       ;
-; rx:rx_instance|DstMac[0]                                     ; 1       ;
-; rx:rx_instance|DstMac[6]                                     ; 1       ;
 ; rx:rx_instance|DstMacValid~4                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~3                                 ; 1       ;
 ; rx:rx_instance|DstMacValid~2                                 ; 1       ;
@@ -2715,7 +2640,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|next_state~3                                  ; 1       ;
 ; rx:rx_instance|rxcounters:counters|LessThan1~1               ; 1       ;
 ; rx:rx_instance|rxcounters:counters|LessThan1~0               ; 1       ;
-; rx:rx_instance|next_state.drop~2                             ; 1       ;
+; rx:rx_instance|next_state~2                                  ; 1       ;
+; rx:rx_instance|next_state.drop~0                             ; 1       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt[4]~14              ; 1       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt[3]~12              ; 1       ;
 ; tx:tx_instance|txcounters:counters|IFGCnt[3]~11              ; 1       ;
@@ -2836,59 +2762,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; debounce:\generate_debouncers:3:deb1|Add0~2                  ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|Add0~1                  ; 1       ;
 ; debounce:\generate_debouncers:3:deb1|Add0~0                  ; 1       ;
-; rx:rx_instance|Add0~60                                       ; 1       ;
-; rx:rx_instance|Add0~59                                       ; 1       ;
-; rx:rx_instance|Add0~58                                       ; 1       ;
-; rx:rx_instance|Add0~57                                       ; 1       ;
-; rx:rx_instance|Add0~56                                       ; 1       ;
-; rx:rx_instance|Add0~55                                       ; 1       ;
-; rx:rx_instance|Add0~54                                       ; 1       ;
-; rx:rx_instance|Add0~53                                       ; 1       ;
-; rx:rx_instance|Add0~52                                       ; 1       ;
-; rx:rx_instance|Add0~51                                       ; 1       ;
-; rx:rx_instance|Add0~50                                       ; 1       ;
-; rx:rx_instance|Add0~49                                       ; 1       ;
-; rx:rx_instance|Add0~48                                       ; 1       ;
-; rx:rx_instance|Add0~47                                       ; 1       ;
-; rx:rx_instance|Add0~46                                       ; 1       ;
-; rx:rx_instance|Add0~45                                       ; 1       ;
-; rx:rx_instance|Add0~44                                       ; 1       ;
-; rx:rx_instance|Add0~43                                       ; 1       ;
-; rx:rx_instance|Add0~42                                       ; 1       ;
-; rx:rx_instance|Add0~41                                       ; 1       ;
-; rx:rx_instance|Add0~40                                       ; 1       ;
-; rx:rx_instance|Add0~39                                       ; 1       ;
-; rx:rx_instance|Add0~38                                       ; 1       ;
-; rx:rx_instance|Add0~37                                       ; 1       ;
-; rx:rx_instance|Add0~36                                       ; 1       ;
-; rx:rx_instance|Add0~35                                       ; 1       ;
-; rx:rx_instance|Add0~34                                       ; 1       ;
-; rx:rx_instance|Add0~33                                       ; 1       ;
-; rx:rx_instance|Add0~32                                       ; 1       ;
-; rx:rx_instance|Add0~31                                       ; 1       ;
-; rx:rx_instance|Add0~30                                       ; 1       ;
-; rx:rx_instance|Add0~29                                       ; 1       ;
-; rx:rx_instance|Add0~28                                       ; 1       ;
-; rx:rx_instance|Add0~27                                       ; 1       ;
-; rx:rx_instance|Add0~26                                       ; 1       ;
-; rx:rx_instance|Add0~25                                       ; 1       ;
-; rx:rx_instance|Add0~24                                       ; 1       ;
-; rx:rx_instance|Add0~23                                       ; 1       ;
-; rx:rx_instance|Add0~22                                       ; 1       ;
-; rx:rx_instance|Add0~21                                       ; 1       ;
-; rx:rx_instance|Add0~20                                       ; 1       ;
-; rx:rx_instance|Add0~19                                       ; 1       ;
-; rx:rx_instance|Add0~18                                       ; 1       ;
-; rx:rx_instance|Add0~17                                       ; 1       ;
-; rx:rx_instance|Add0~16                                       ; 1       ;
-; rx:rx_instance|Add0~15                                       ; 1       ;
-; rx:rx_instance|Add0~14                                       ; 1       ;
-; rx:rx_instance|Add0~13                                       ; 1       ;
-; rx:rx_instance|Add0~12                                       ; 1       ;
-; rx:rx_instance|Add0~11                                       ; 1       ;
-; rx:rx_instance|Add0~10                                       ; 1       ;
-; rx:rx_instance|Add0~9                                        ; 1       ;
-; rx:rx_instance|Add0~8                                        ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[30]~1                       ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[29]~2                       ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[29]~1                       ; 1       ;
@@ -2949,6 +2822,65 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|\filldstmac:delay[1]~4                        ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[1]~3                        ; 1       ;
 ; rx:rx_instance|\filldstmac:delay[1]~2                        ; 1       ;
+; rx:rx_instance|\filldstmac:i[30]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[29]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[29]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[28]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[28]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[27]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[27]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[26]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[26]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[25]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[25]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[24]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[24]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[23]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[23]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[22]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[22]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[21]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[21]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[20]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[20]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[19]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[19]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[18]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[18]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[17]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[17]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[16]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[16]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[15]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[15]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[14]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[14]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[13]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[13]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[12]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[12]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[11]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[11]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[10]~2                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[10]~1                           ; 1       ;
+; rx:rx_instance|\filldstmac:i[9]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[9]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[8]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[8]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[7]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[7]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[6]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[6]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[5]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[5]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[4]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[4]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[3]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[3]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[2]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[2]~1                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[1]~2                            ; 1       ;
+; rx:rx_instance|\filldstmac:i[1]~1                            ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|Add0~20                 ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|Add0~19                 ; 1       ;
 ; debounce:\generate_debouncers:2:deb1|Add0~18                 ; 1       ;
@@ -2982,10 +2914,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx:rx_instance|rxcounters:counters|IFGCnt[0]                 ; 1       ;
 ; rx:rx_instance|rxcounters:counters|IFGCnt[1]                 ; 1       ;
 ; rx:rx_instance|rxcounters:counters|IFGCnt[2]                 ; 1       ;
-; rx:rx_instance|Add0~7                                        ; 1       ;
-; rx:rx_instance|Add0~5                                        ; 1       ;
-; rx:rx_instance|Add0~3                                        ; 1       ;
-; rx:rx_instance|Add0~1                                        ; 1       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[11]~34           ; 1       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[10]~33           ; 1       ;
 ; rx:rx_instance|rxcounters:counters|FrameCnt[10]~32           ; 1       ;
@@ -3017,36 +2945,36 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------+-------------------------+
 ; Other Routing Resource Type ; Usage                   ;
 +-----------------------------+-------------------------+
-; Block interconnects         ; 703 / 197,592 ( < 1 % ) ;
-; C16 interconnects           ; 51 / 6,270 ( < 1 % )    ;
-; C4 interconnects            ; 392 / 123,120 ( < 1 % ) ;
-; Direct links                ; 223 / 197,592 ( < 1 % ) ;
-; Global clocks               ; 5 / 16 ( 31 % )         ;
-; Local interconnects         ; 333 / 68,416 ( < 1 % )  ;
-; R24 interconnects           ; 96 / 5,926 ( 2 % )      ;
-; R4 interconnects            ; 530 / 167,484 ( < 1 % ) ;
+; Block interconnects         ; 589 / 197,592 ( < 1 % ) ;
+; C16 interconnects           ; 74 / 6,270 ( 1 % )      ;
+; C4 interconnects            ; 390 / 123,120 ( < 1 % ) ;
+; Direct links                ; 190 / 197,592 ( < 1 % ) ;
+; Global clocks               ; 6 / 16 ( 38 % )         ;
+; Local interconnects         ; 302 / 68,416 ( < 1 % )  ;
+; R24 interconnects           ; 104 / 5,926 ( 2 % )     ;
+; R4 interconnects            ; 576 / 167,484 ( < 1 % ) ;
 +-----------------------------+-------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 11.61) ; Number of LABs  (Total = 46) ;
+; Number of Logic Elements  (Average = 12.89) ; Number of LABs  (Total = 38) ;
 +---------------------------------------------+------------------------------+
-; 1                                           ; 3                            ;
+; 1                                           ; 2                            ;
 ; 2                                           ; 0                            ;
 ; 3                                           ; 1                            ;
-; 4                                           ; 3                            ;
-; 5                                           ; 2                            ;
-; 6                                           ; 3                            ;
+; 4                                           ; 2                            ;
+; 5                                           ; 0                            ;
+; 6                                           ; 0                            ;
 ; 7                                           ; 1                            ;
-; 8                                           ; 1                            ;
-; 9                                           ; 1                            ;
-; 10                                          ; 2                            ;
-; 11                                          ; 2                            ;
-; 12                                          ; 0                            ;
-; 13                                          ; 0                            ;
-; 14                                          ; 4                            ;
+; 8                                           ; 0                            ;
+; 9                                           ; 2                            ;
+; 10                                          ; 1                            ;
+; 11                                          ; 1                            ;
+; 12                                          ; 1                            ;
+; 13                                          ; 3                            ;
+; 14                                          ; 1                            ;
 ; 15                                          ; 2                            ;
 ; 16                                          ; 21                           ;
 +---------------------------------------------+------------------------------+
@@ -3055,129 +2983,125 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.85) ; Number of LABs  (Total = 46) ;
+; LAB-wide Signals  (Average = 1.87) ; Number of LABs  (Total = 38) ;
 +------------------------------------+------------------------------+
-; 1 Async. clear                     ; 23                           ;
-; 1 Clock                            ; 35                           ;
-; 1 Clock enable                     ; 14                           ;
-; 1 Sync. clear                      ; 5                            ;
-; 2 Async. clears                    ; 3                            ;
-; 2 Clock enables                    ; 1                            ;
-; 2 Clocks                           ; 4                            ;
+; 1 Async. clear                     ; 21                           ;
+; 1 Clock                            ; 32                           ;
+; 1 Clock enable                     ; 11                           ;
+; 1 Sync. clear                      ; 4                            ;
+; 2 Async. clears                    ; 1                            ;
+; 2 Clocks                           ; 2                            ;
 +------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 18.00) ; Number of LABs  (Total = 46) ;
+; Number of Signals Sourced  (Average = 19.84) ; Number of LABs  (Total = 38) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 2                            ;
-; 2                                            ; 1                            ;
-; 3                                            ; 0                            ;
-; 4                                            ; 3                            ;
+; 1                                            ; 0                            ;
+; 2                                            ; 2                            ;
+; 3                                            ; 1                            ;
+; 4                                            ; 1                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 2                            ;
+; 6                                            ; 0                            ;
 ; 7                                            ; 1                            ;
-; 8                                            ; 2                            ;
-; 9                                            ; 0                            ;
+; 8                                            ; 1                            ;
+; 9                                            ; 1                            ;
 ; 10                                           ; 0                            ;
-; 11                                           ; 2                            ;
+; 11                                           ; 0                            ;
 ; 12                                           ; 0                            ;
-; 13                                           ; 2                            ;
-; 14                                           ; 2                            ;
-; 15                                           ; 1                            ;
+; 13                                           ; 0                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 0                            ;
 ; 16                                           ; 0                            ;
-; 17                                           ; 1                            ;
-; 18                                           ; 1                            ;
-; 19                                           ; 2                            ;
-; 20                                           ; 3                            ;
-; 21                                           ; 3                            ;
-; 22                                           ; 2                            ;
-; 23                                           ; 2                            ;
-; 24                                           ; 1                            ;
+; 17                                           ; 3                            ;
+; 18                                           ; 2                            ;
+; 19                                           ; 4                            ;
+; 20                                           ; 1                            ;
+; 21                                           ; 5                            ;
+; 22                                           ; 1                            ;
+; 23                                           ; 1                            ;
+; 24                                           ; 3                            ;
 ; 25                                           ; 0                            ;
-; 26                                           ; 4                            ;
+; 26                                           ; 0                            ;
 ; 27                                           ; 1                            ;
-; 28                                           ; 1                            ;
-; 29                                           ; 1                            ;
-; 30                                           ; 1                            ;
-; 31                                           ; 2                            ;
-; 32                                           ; 3                            ;
+; 28                                           ; 2                            ;
+; 29                                           ; 0                            ;
+; 30                                           ; 2                            ;
+; 31                                           ; 3                            ;
+; 32                                           ; 2                            ;
 +----------------------------------------------+------------------------------+
 
 
-+--------------------------------------------------------------------------------+
-; LAB Signals Sourced Out                                                        ;
-+-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 9.09) ; Number of LABs  (Total = 46) ;
-+-------------------------------------------------+------------------------------+
-; 0                                               ; 0                            ;
-; 1                                               ; 5                            ;
-; 2                                               ; 0                            ;
-; 3                                               ; 3                            ;
-; 4                                               ; 3                            ;
-; 5                                               ; 5                            ;
-; 6                                               ; 2                            ;
-; 7                                               ; 5                            ;
-; 8                                               ; 2                            ;
-; 9                                               ; 1                            ;
-; 10                                              ; 4                            ;
-; 11                                              ; 3                            ;
-; 12                                              ; 0                            ;
-; 13                                              ; 1                            ;
-; 14                                              ; 2                            ;
-; 15                                              ; 0                            ;
-; 16                                              ; 4                            ;
-; 17                                              ; 1                            ;
-; 18                                              ; 1                            ;
-; 19                                              ; 2                            ;
-; 20                                              ; 1                            ;
-; 21                                              ; 0                            ;
-; 22                                              ; 0                            ;
-; 23                                              ; 0                            ;
-; 24                                              ; 1                            ;
-+-------------------------------------------------+------------------------------+
++---------------------------------------------------------------------------------+
+; LAB Signals Sourced Out                                                         ;
++--------------------------------------------------+------------------------------+
+; Number of Signals Sourced Out  (Average = 10.42) ; Number of LABs  (Total = 38) ;
++--------------------------------------------------+------------------------------+
+; 0                                                ; 0                            ;
+; 1                                                ; 2                            ;
+; 2                                                ; 0                            ;
+; 3                                                ; 1                            ;
+; 4                                                ; 2                            ;
+; 5                                                ; 2                            ;
+; 6                                                ; 2                            ;
+; 7                                                ; 2                            ;
+; 8                                                ; 2                            ;
+; 9                                                ; 4                            ;
+; 10                                               ; 3                            ;
+; 11                                               ; 2                            ;
+; 12                                               ; 4                            ;
+; 13                                               ; 2                            ;
+; 14                                               ; 2                            ;
+; 15                                               ; 1                            ;
+; 16                                               ; 2                            ;
+; 17                                               ; 1                            ;
+; 18                                               ; 1                            ;
+; 19                                               ; 2                            ;
+; 20                                               ; 0                            ;
+; 21                                               ; 1                            ;
++--------------------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 12.67) ; Number of LABs  (Total = 46) ;
+; Number of Distinct Inputs  (Average = 13.00) ; Number of LABs  (Total = 38) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 0                            ;
 ; 2                                            ; 1                            ;
 ; 3                                            ; 2                            ;
 ; 4                                            ; 5                            ;
-; 5                                            ; 1                            ;
+; 5                                            ; 0                            ;
 ; 6                                            ; 1                            ;
-; 7                                            ; 4                            ;
+; 7                                            ; 1                            ;
 ; 8                                            ; 2                            ;
-; 9                                            ; 2                            ;
-; 10                                           ; 4                            ;
-; 11                                           ; 3                            ;
-; 12                                           ; 1                            ;
-; 13                                           ; 2                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 4                            ;
-; 16                                           ; 1                            ;
-; 17                                           ; 3                            ;
+; 9                                            ; 3                            ;
+; 10                                           ; 1                            ;
+; 11                                           ; 2                            ;
+; 12                                           ; 2                            ;
+; 13                                           ; 0                            ;
+; 14                                           ; 3                            ;
+; 15                                           ; 0                            ;
+; 16                                           ; 5                            ;
+; 17                                           ; 0                            ;
 ; 18                                           ; 0                            ;
-; 19                                           ; 0                            ;
-; 20                                           ; 2                            ;
-; 21                                           ; 1                            ;
-; 22                                           ; 3                            ;
+; 19                                           ; 3                            ;
+; 20                                           ; 1                            ;
+; 21                                           ; 2                            ;
+; 22                                           ; 1                            ;
 ; 23                                           ; 0                            ;
 ; 24                                           ; 0                            ;
 ; 25                                           ; 0                            ;
 ; 26                                           ; 0                            ;
-; 27                                           ; 1                            ;
-; 28                                           ; 1                            ;
+; 27                                           ; 0                            ;
+; 28                                           ; 0                            ;
 ; 29                                           ; 0                            ;
-; 30                                           ; 0                            ;
-; 31                                           ; 2                            ;
+; 30                                           ; 2                            ;
+; 31                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
 
@@ -3210,26 +3134,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary                                     ;
-+-----------------+---------------------------------------------+-------------------+
-; Source Clock(s) ; Destination Clock(s)                        ; Delay Added in ns ;
-+-----------------+---------------------------------------------+-------------------+
-; iCLK_50_2       ; debounce:\generate_debouncers:2:deb1|result ; 3.5               ;
-+-----------------+---------------------------------------------+-------------------+
++------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary              ;
++-----------------+----------------------+-------------------+
+; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
++-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using either the TimeQuest Timing Analyzer or the Classic Timing Analyzer.
 
 
-+-------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                   ;
-+---------------------------------------------+-------------------------------+-------------------+
-; Source Register                             ; Destination Register          ; Delay Added in ns ;
-+---------------------------------------------+-------------------------------+-------------------+
-; debounce:\generate_debouncers:2:deb1|result ; tx:tx_instance|TxValidDataOut ; 3.476             ;
-; ETH1_CLK                                    ; RMII2MII:conv1|tx_clk         ; 0.102             ;
-+---------------------------------------------+-------------------------------+-------------------+
-Note: This table only shows the top 2 path(s) that have the largest delay added for hold.
++-------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details               ;
++-----------------+-----------------------+-------------------+
+; Source Register ; Destination Register  ; Delay Added in ns ;
++-----------------+-----------------------+-------------------+
+; ETH1_CLK        ; RMII2MII:conv1|txstat ; 0.216             ;
++-----------------+-----------------------+-------------------+
+Note: This table only shows the top 1 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -3280,6 +3201,20 @@ Info (176353): Automatically promoted node tx:tx_instance|Selector0~2
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
 Info (176353): Automatically promoted node tx:tx_instance|TxDataOut[3]~1 
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+Info (176353): Automatically promoted node debounce:\generate_debouncers:2:deb1|result 
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node rx:rx_instance|next_state.drop~0
+        Info (176357): Destination node rx:rx_instance|next_state.drop~1
+        Info (176357): Destination node rx:rx_instance|next_state.OK~0
+        Info (176357): Destination node oLEDG~0
+        Info (176357): Destination node rx:rx_instance|next_state.sfd~2
+        Info (176357): Destination node rx:rx_instance|next_state.preamble~0
+        Info (176357): Destination node rx:rx_instance|next_state.idle~2
+        Info (176357): Destination node debounce:\generate_debouncers:2:deb1|result~0
+        Info (176357): Destination node rx:rx_instance|last_state.data0
+        Info (176357): Destination node rx:rx_instance|last_state.data1
+        Info (176358): Non-global destination nodes limited to 10 nodes
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
@@ -3708,11 +3643,11 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:02
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 2% of the available device resources in the region that extends from location X24_Y26 to location X35_Y38
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
+    Info (170196): Router estimated peak interconnect usage is 2% of the available device resources in the region that extends from location X24_Y13 to location X35_Y25
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 1.09 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.61 seconds.
 Info (306004): Started post-fitting delay annotation
 Warning (306006): Found 97 output pins without output pin load capacitance assignment
     Info (306007): Pin "oLEDG[0]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
@@ -3820,8 +3755,8 @@ Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments 
 Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
 Info (144001): Generated suppressed messages file C:/Users/Student/Documents/FPGA/OVPN.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 424 warnings
-    Info: Peak virtual memory: 871 megabytes
-    Info: Processing ended: Wed Dec 14 16:21:44 2016
+    Info: Peak virtual memory: 867 megabytes
+    Info: Processing ended: Fri Dec 16 11:07:36 2016
     Info: Elapsed time: 00:00:11
     Info: Total CPU time (on all processors): 00:00:11
 

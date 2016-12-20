@@ -86,6 +86,7 @@ architecture RTL of rx is
 	--MASZYNA
 	signal current_state : rxstate_type := idle;
 	signal next_state : rxstate_type;
+	signal last_state : rxstate_type;
 	
 	--CRC
 	signal CrcRst : std_logic;
@@ -104,19 +105,20 @@ begin
 	
 	--DstMacValidDEBUG <= DstMacValid;
 	DstMacValidDEBUG <= ala;
-	
+/*	
 	assign : process (RxClk, Rst) is
 	begin
 		if Rst = '1' then
 			dSTMacDEBUG(47 downto 16) <= X"11111111";
-		elsif rising_edge(RxClk) and (not crcError) = '1' then
+		elsif rising_edge(RxClk) and (crcError) = '1' then
 --		elsif next_state = idle or next_state = drop or next_state = OK then 
 	--	elsif (not crcError) = '1' and (next_state = OK) then
 				DstMacDEBUG(47 downto 16) <= CrcOut;
 			end if;
 --		end if;
 	end process assign;
-	
+*/
+	DstMacDEBUG <= DstMac;
 	FrameTypeDEBUG <= FrameType;
 	
 	RxCurrentState <= current_state;
@@ -178,6 +180,7 @@ begin
 		if Rst = '1' then
 			current_state <= preamble;
 		elsif rising_edge(RxClk) then
+			last_state <= current_state;
 			current_state <= next_state;
 		end if;
 	end process ns;
@@ -264,27 +267,18 @@ begin
 	end process fsm;
 
 	Crc_p : process (RxClk, Rst) is
-		variable first : boolean := true;
 	begin
-		if Rst = '1' or current_state = idle then
-			CrcRst <= '1';
-			CrcTemp <= "0000";
-			first := true;
-		elsif rising_edge(RxClk) and (current_state = data0 or current_state = data1) then
-			CrcRst <= '0';
-
-			if current_state = data0 then
-				CrcIn <= RxDataIn;
-			elsif first = true then
-				first := false;
-				CrcTemp <= RxDataIn;
-			else
-				CrcIn <= CrcTemp;
-				CrcTemp <= RxDataIn;
-			end if;
+		if rising_edge(RxClk) and current_state = data1 then
+			CrcTemp <= RxDataIn;
 		end if;
 	end process Crc_p;
 	
+	CrcIn <= RxDataIn when current_state = data0 else
+				CrcTemp when current_state = data1 else
+				"0000";
+				
+	CrcRst <= 	'0' when (current_state = data0 and last_state = data1) or (current_state = data1 and last_state = data0) else
+					'1';
 	
 	--To cudo pod spodem odpala nam IFGCounter
 	IFGStart_p : process (RxClk, Rst) is
@@ -293,10 +287,10 @@ begin
 			IFGStart <= '1';
 			ala <= '0';
 		elsif rising_edge(RxClk) then
-	--			ala <= (not crcError) xor ala; -- Uwaga na to
-			if current_state = OK then
-				ala <= not ala;
-			end if;
+				ala <= (not crcError) xor ala; -- Uwaga na to
+			--if current_state = OK then
+			--	ala <= not ala;
+			--end if;
 			if next_state = idle or next_state = drop or next_state = OK then
 				IFGStart <= '1';
 			else
@@ -324,19 +318,25 @@ begin
 		variable i : natural := 0;
 		variable delay : natural := 0;
 	begin
-	 	if Rst = '1' or current_state = idle then
---		if Rst = '1' then
+--	 	if Rst = '1' or current_state = idle then
+		if Rst = '1' then
 	 		DstMac <= (others => '0');
 	 		i := 0;
 			delay := 0;
-	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
+--	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
+		elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) then
 			if delay = 0 then
-				if current_state = data1 then
-					DstMac(47-(4*(i+1)) downto 44-(4*(i+1))) <= RxDataIn;
-				else
-					DstMac(47-(4*(i-1)) downto 44-(4*(i-1))) <= RxDataIn;
+				if CrcRst /= '1' then
+					DstMac(47-(4*i) downto 44-(4*i)) <= CrcIn;
+				
+			
+--				if current_state = data1 then
+--					DstMac(47-(4*(i+1)) downto 44-(4*(i+1))) <= RxDataIn;
+--				else
+--					DstMac(47-(4*(i-1)) downto 44-(4*(i-1))) <= RxDataIn;
+--				end if;
+					i := i + 1;
 				end if;
-				i := i + 1;
 			else
 				delay := delay - 1;
 			end if;
