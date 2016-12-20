@@ -85,8 +85,8 @@ architecture RTL of OVPN is
 			--DEBUG
 			CurrentFieldDEBUG : out field_indicator;
 			DstMacValidDEBUG : out std_logic;
-			FrameCntDDEBUG    : out std_logic_vector(10 downto 0);
-			IFGCntDDEBUG      : out std_logic_vector(3 downto 0);
+			FrameCntDDEBUG    : out std_logic_vector(11 downto 0);
+			IFGCntDDEBUG      : out std_logic_vector(4 downto 0);
 			DstMacDEBUG       : out std_logic_vector(47 downto 0);
 			FrameTypeDEBUG    : out std_logic_vector(15 downto 0);
 			ByteEq0xabDEBUG   : out std_logic
@@ -152,23 +152,22 @@ architecture RTL of OVPN is
 	signal FrameCntNIB : nibble_array := (others => "0000");
 	signal DstMacNIB : nibble_array := (others => "0000");
 	
-	signal FrameCntDDEBUG   : std_logic_vector(10 downto 0);
-	signal IFGCntDDEBUG     : std_logic_vector(3 downto 0);
+	signal FrameCntDDEBUG   : std_logic_vector(11 downto 0);
+	signal IFGCntDDEBUG     : std_logic_vector(4 downto 0);
 	signal DstMacDEBUG      : std_logic_vector(47 downto 0);
 	signal FrameTypeDEBUG   : std_logic_vector(15 downto 0);
 	signal ByteEq0xabDEBUG  : std_logic;
 		
 	-- crc-32 signals
 	signal crc_value : std_logic_vector(31 downto 0):= (others => '0');
-	signal crc_error : std_logic;
-	
+	signal crc_error : std_logic;	
 	
 begin
 
 	conv1 : component RMII2MII
 		port map(
-			rst        => Button(2),
-			mac_RXD    => mETH1_TX,
+			rst        => ButtonN(2),
+			mac_RXD    => mETH1_RX,
 			mac_RX_CLK => mETH1_RX_CLK,
 			mac_RX_DV  => mETH1_RX_DV,
 			mac_TXD    => mETH1_TX,
@@ -183,8 +182,8 @@ begin
 		
 	conv2 : component RMII2MII
 		port map(
-			rst        => Button(2),
-			mac_RXD    => mETH2_TX,
+			rst        => ButtonN(2),
+			mac_RXD    => mETH2_RX,
 			mac_RX_CLK => mETH2_RX_CLK,
 			mac_RX_DV  => mETH2_RX_DV,
 			mac_TXD    => mETH2_TX,
@@ -239,7 +238,6 @@ begin
 	DstMacNIB(1) <= DstMacDEBUG(23 downto 20);
 	DstMacNIB(0) <= DstMacDEBUG(19 downto 16);
 
-	
 	Nibbles <= DstMacNIB;
 	
 	
@@ -257,7 +255,7 @@ begin
 	end generate generate_debouncers;
 	
 	Button <= not ButtonN;
-	
+	oLEDR(12) <= mETH1_RX_CLK;
 	rx_instance : rx
 		generic map(
 			LocalMac => X"CAFEC0DEBABE"
@@ -287,7 +285,7 @@ begin
 	oLEDR(5) <= '1' when (RxCurrentState = idle) else '0';
 	oLEDR(4) <= '1' when (RxCurrentState = preamble) else '0';
 	oLEDR(3) <= '1' when (RxCurrentState = sfd) else '0';
-	oLEDR(2) <= '1' when (RxCurrentState = data) else '0';
+	oLEDR(2) <= '1' when (RxCurrentState = data1 or RxCurrentState = data0) else '0';
 	oLEDR(1) <= '1' when (RxCurrentState = OK) else '0';
 	oLEDR(0) <= '1' when (RxCurrentState = drop) else '0';
 	oLEDR(11) <= Button(3);
@@ -295,7 +293,7 @@ begin
 	oLEDG(5) <= '1' when (RxNextState = idle) else '0';
 	oLEDG(4) <= '1' when (RxNextState = preamble) else '0';
 	oLEDG(3) <= '1' when (RxNextState = sfd) else '0';
-	oLEDG(2) <= '1' when (RxNextState = data) else '0';
+	oLEDG(2) <= '1' when (RxNextState = data1 or RxNextState = data0) else '0';
 	oLEDG(1) <= '1' when (RxNextState = OK) else '0';
 	oLEDG(0) <= '1' when (RxNextState = drop) else '0';
 	

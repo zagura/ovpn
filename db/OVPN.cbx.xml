@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="OVPN">
-		<CBX_INST_ENTRY INSTANCE_NAME="|OVPN|eth_frame:rom|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_8v61.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

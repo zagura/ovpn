@@ -21,8 +21,8 @@ entity rx is
 		RxNextState : out rxstate_type;
 		DstMacValidDEBUG : out std_logic;
 		CurrentFieldDEBUG : out field_indicator;
-		FrameCntDDEBUG : out std_logic_vector(10 downto 0);
-		IFGCntDDEBUG : out std_logic_vector(3 downto 0);
+		FrameCntDDEBUG : out std_logic_vector(11 downto 0);
+		IFGCntDDEBUG : out std_logic_vector(4 downto 0);
 		DstMacDEBUG : out std_logic_vector(47 downto 0);
 		FrameTypeDEBUG : out std_logic_vector(15 downto 0);
 		ByteEq0xabDEBUG : out std_logic
@@ -41,8 +41,8 @@ architecture RTL of rx is
 			IFGCntEq12    : out std_logic;
 			
 			--DEBUG
-			FrameCntDEBUG : out std_logic_vector(10 downto 0);
-			IFGCntDEBUG   : out std_logic_vector(3 downto 0)
+			FrameCntDEBUG : out std_logic_vector(11 downto 0);
+			IFGCntDEBUG   : out std_logic_vector(4 downto 0)
 		);
 	end component rxcounters;
 	
@@ -65,8 +65,8 @@ architecture RTL of rx is
 	signal FrameType : std_logic_vector(15 downto 0) := (others => '0');
 	
 	--DEBUG
-	signal FrameCntDEBUG : std_logic_vector(10 downto 0);
-	signal IFGCntDEBUG : std_logic_vector(3 downto 0);
+	signal FrameCntDEBUG : std_logic_vector(11 downto 0);
+	signal IFGCntDEBUG : std_logic_vector(4 downto 0);
 	
 	--MASZYNA
 	signal current_state : rxstate_type := idle;
@@ -156,7 +156,7 @@ begin
 						elsif RxValidDataIn = '1' and RxDataIn = X"5" and IFGCntEq12 = '1' then
 							next_state <= sfd;
 						elsif RxValidDataIn = '1' and RxDataIn = X"D" and IFGCntEq12 = '1' then
-							next_state <= data;
+							next_state <= data1;
 						else
 							next_state <= idle;
 						end if;
@@ -168,7 +168,7 @@ begin
 						elsif RxValidDataIn = '1' and RxDataIn = X"5" then
 							next_state <= sfd;
 						elsif RxValidDataIn = '1' and RxDataIn = X"D" then
-							next_state <= data;
+							next_state <= data1;
 						else
 							next_state <= preamble;
 						end if;
@@ -179,12 +179,21 @@ begin
 						elsif RxValidDataIn = '1' and RxDataIn = X"5" then
 							next_state <= sfd;
 						elsif RxValidDataIn = '1' and RxDataIn = X"D" then
-							next_state <= data;
+							next_state <= data1;
 						else
 							next_state <= drop;
-					end if;	
+						end if;	
 						
-					when data =>
+					when data1 =>
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						else
+							next_state <= data0;
+
+						end if;
+						
+						
+					when data0 =>
 						if RxValidDataIn = '0' then
 							next_state <= idle;
 						elsif RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
@@ -192,8 +201,7 @@ begin
 						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
 							next_state <= drop;
 						else
-							next_state <= data;
-
+							next_state <= data1;
 						end if;
 						
 					when drop =>
@@ -226,7 +234,7 @@ begin
 		if Rst = '1' then
 			FrameStart <= '0';
 		elsif rising_edge(RxClk) then
-			if next_state = data then
+			if next_state = data0 or next_state = data1 then
 				FrameStart <= '1';
 			else
 				FrameStart <= '0';
@@ -235,30 +243,26 @@ begin
 	end process FrameStart_p;
 	
 	--Procesy zaleĂ„Ä…Ă„Ëťne od stanu maszyny
-/*	filldstmac : process (RxClk, Rst) is
-		variable i : natural := 0;
-	begin
-	 	if Rst = '1' or current_state = idle then
-	 		DstMac <= (others => '0');
-	 		i := 0;
-	 	elsif rising_edge(RxClk) and CurrentField = dst_mac and current_state = data then
-	 		DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
-	 		i := i + 1;
-	 		
-	 	end if;
-	end process filldstmac;
-	*/
-	
-	--Procesy zaleĂ„Ä…Ă„Ëťne od stanu maszyny
 	filldstmac : process (RxClk, Rst) is
 		variable i : natural := 0;
+		variable delay : natural := 0;
 	begin
-	 	if Rst = '1' or current_state = idle then
+--	 	if Rst = '1' or current_state = idle then
+		if Rst = '1' then
 	 		DstMac <= (others => '0');
 	 		i := 0;
-	 	elsif rising_edge(RxClk) then
-	 		DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
-	 		i := i + 1;
+			delay := 0;
+	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
+			if delay = 0 then
+				if current_state = data1 then
+					DstMac(47-(4*(i+1)) downto 44-(4*(i+1))) <= RxDataIn;
+				else
+					DstMac(47-(4*(i-1)) downto 44-(4*(i-1))) <= RxDataIn;
+				end if;
+				i := i + 1;
+			else
+				delay := delay - 1;
+			end if;
 	 		
 	 	end if;
 	end process filldstmac;
@@ -266,11 +270,16 @@ begin
 	fill_frame_type : process (RxClk, Rst) is
 		variable i : natural := 0;
 	begin
-	 	if Rst = '1' or current_state = idle then
+--	 	if Rst = '1' or current_state = idle then
+		if Rst = '1' then
 	 		FrameType <= (others => '0');
 	 		i := 0;
-	 	elsif rising_edge(RxClk) and CurrentField = frame_type and current_state = data then
-	 		FrameType(15-(8*i) downto 8-(8*i)) <= RxDataIn;
+	 	elsif rising_edge(RxClk) and i < 4 and CurrentField = frame_type and (current_state = data0 or current_state = data1) then
+			if current_state = data1 then
+				FrameType(15-(4*(i+1)) downto 12-(4*(i+1))) <= RxDataIn;
+			else
+				FrameType(15-(4*(i-1)) downto 12-(4*(i-1))) <= RxDataIn;
+			end if;
 	 		i := i + 1;
 		end if;
 	end process fill_frame_type;

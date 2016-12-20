@@ -17,8 +17,8 @@ entity rxcounters is
 		IFGCntEq12 : out std_logic;
 		
 		--DEBUG
-		FrameCntDEBUG : out std_logic_vector(10 downto 0);
-		IFGCntDEBUG : out std_logic_vector(3 downto 0)
+		FrameCntDEBUG : out std_logic_vector(11 downto 0);
+		IFGCntDEBUG : out std_logic_vector(4 downto 0)
 		
 	);
 end entity rxcounters;
@@ -54,9 +54,9 @@ begin
 	FrameSizeOK <=  '1' when (FrameCnt >= 128 and FrameCnt <= 3036) else
 					'0';
 								
-	CurrentField <= dst_mac when (FrameCnt >= 0 and FrameCnt <= 12) else
-					src_mac when (FrameCnt >= 14 and FrameCnt <= 24) else
-					frame_type when (FrameCnt >= 26 and FrameCnt <= 28) else
+	CurrentField <= dst_mac when (FrameCnt >= 0 and FrameCnt < 12) else
+					src_mac when (FrameCnt >= 12 and FrameCnt < 24) else
+					frame_type when (FrameCnt >= 24 and FrameCnt < 28) else
 					data;
 	
 	
