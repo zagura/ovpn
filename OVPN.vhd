@@ -32,7 +32,7 @@ entity OVPN is
 		--iSW : in std_logic_vector(17 downto 0);
 		iKEY : in std_logic_vector(3 downto 0);
 		
-		-- Mapowanie portów ethernet -- ETH1 (Poludnie)
+		-- Mapowanie portĂ„â€šÄąâ€šw ethernet -- ETH1 (Poludnie)
 		ETH1_CRS : in std_logic;
 		ETH1_TX : out std_logic_vector(1 downto 0);
 		ETH1_TX_EN : out std_logic;
@@ -41,9 +41,9 @@ entity OVPN is
 		ETH1_MDC : in std_logic;
 		ETH1_CLK : in std_logic;
 		
-		-- Mapowanie portów ethernet -- ETH2 (Polnoc)
+		-- Mapowanie portĂ„â€šÄąâ€šw ethernet -- ETH2 (Polnoc)
 		ETH2_CRS : in std_logic;
-		ETH2_TX : out std_logic(1 downto 0);
+		ETH2_TX : out std_logic_vector(1 downto 0);
 		ETH2_TX_EN : out std_logic;
 		ETH2_RX : in std_logic_vector(1 downto 0); 
 		ETH2_MDIO : in std_logic;
@@ -76,7 +76,7 @@ architecture RTL of OVPN is
 		port(
 			RxClk             : in  std_logic;
 			Rst               : in  std_logic;
-			RxDataIn          : in  std_logic_vector(7 downto 0);
+			RxDataIn          : in  std_logic_vector(3 downto 0);
 			RxValidDataIn     : in  std_logic;
 			RxCurrentState    : out rxstate_type;
 			RxNextState : out rxstate_type;
@@ -108,20 +108,6 @@ architecture RTL of OVPN is
 			SegOut   : out std_logic_vector(6 downto 0)
 		);
 	end component byteto7seg;
-	
-	component rmiidataconv
-		port (
-			RMIIClk : in std_logic;
-			Rst : in std_logic;
-			
-			RMII_RX1 : in std_logic;
-			RMII_RX0 : in std_logic;
-			RMII_DV : in std_logic;
-			
-			ByteOut : out std_logic_vector(7 downto 0);
-			ByteReady : out std_logic
-		);
-	end component rmiidataconv;
 	
 	--MII interface ETH1
 	signal mETH1_RX : std_logic_vector(3 downto 0);
@@ -172,16 +158,9 @@ architecture RTL of OVPN is
 	signal FrameTypeDEBUG   : std_logic_vector(15 downto 0);
 	signal ByteEq0xabDEBUG  : std_logic;
 		
-
-	
-
 	-- crc-32 signals
 	signal crc_value : std_logic_vector(31 downto 0):= (others => '0');
 	signal crc_error : std_logic;
-	
-	--conversion signals
-	signal ByteOut : std_logic_vector(7 downto 0);
-	signal ByteReady : std_logic;
 	
 	
 begin
@@ -246,10 +225,10 @@ begin
 	FrameCntNIB(6) <= FrameCntDDEBUG(7 downto 4);
 	FrameCntNIB(5) <= FrameCntDDEBUG(3 downto 0);
 	FrameCntNIB(4) <= IFGCntDDEBUG(3 downto 0);
-	FrameCntNIB(3) <= ByteOut(7 downto 4);
-	FrameCntNIB(2) <= ByteOut(3 downto 0);
---	FrameCntNIB(1) <= sreg_out(7 downto 4);
---	FrameCntNIB(0) <= sreg_out(3 downto 0);
+	FrameCntNIB(3) <= FrameTypeDEBUG(15 downto 12);
+	FrameCntNIB(2) <= FrameTypeDEBUG(11 downto 8);
+	FrameCntNIB(1) <= FrameTypeDEBUG(7 downto 4);
+	FrameCntNIB(0) <= FrameTypeDEBUG(3 downto 0);
 	
 	DstMacNIB(7) <= DstMacDEBUG(47 downto 44);
 	DstMacNIB(6) <= DstMacDEBUG(43 downto 40);
@@ -263,6 +242,7 @@ begin
 	
 	Nibbles <= DstMacNIB;
 	
+	
 	--BUTTONS
 	generate_debouncers : for i in 0 to 3 generate
 		deb1 : debounce
@@ -274,31 +254,10 @@ begin
 				button => iKEY(i),
 				result => ButtonN(i)
 			);
-
 	end generate generate_debouncers;
 	
 	Button <= not ButtonN;
 	
-	
-	--RMII CONVERTER
-	
-	rx_conv : rmiidataconv
-		port map(
-			RMIIClk => ETH1_CLK,
-			Rst => Button(2),
-			
-			RMII_RX1 => ETH1_RX1,
-			RMII_RX0 => ETH1_RX0,
-			RMII_DV => ETH1_CRS,
-			
-			ByteOut => ByteOut,
-			ByteReady => ByteReady
-		
-		);
-	
-		
-	--STATE MACHINE
-		
 	rx_instance : rx
 		generic map(
 			LocalMac => X"CAFEC0DEBABE"
@@ -308,9 +267,6 @@ begin
 			Rst               => Button(2),
 			RxDataIn          => mETH1_RX,
 			RxValidDataIn     => mETH1_RX_DV,
-			RxClk             => ByteReady,
-			Rst               => Button(2),
-			RxDataIn          => ByteOut,
 			RxCurrentState    => RxCurrentState,
 			
 			--DEBUG
