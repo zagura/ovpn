@@ -27,11 +27,11 @@ architecture RTL of rxcounters is
 	--Licznik odpalany jest wraz z rozpoczęciem odbioru adresu MAC
 	--Ilość bajtów liczonych (bez preambuły i SFD) musi sie mieścić między 64-1518 bajtów
 	--dodatkowo licznik pokazuje część ramki która jest odczytywana
-	signal FrameCnt : std_logic_vector(10 downto 0) := (others => '0');
+	signal FrameCnt : std_logic_vector(11 downto 0) := (others => '0');
 	
 	--IFG przy FastEthernet musi odczekać 960 ns czyli 12 bajtów = 96 bitów, 
 	--co jest wartością standardową dla ethernet. Dla FE nie przewiduje sie redukcji IFG 
-	signal IFGCnt : std_logic_vector(3 downto 0) := (others => '0');
+	signal IFGCnt : std_logic_vector(4 downto 0) := (others => '0');
 	signal IFGCntEq12sig : std_logic;
 	
 begin	
@@ -51,12 +51,12 @@ begin
 		end if;
 	end process frame_cntr;
 	
-	FrameSizeOK <=  '1' when (FrameCnt >= 64 and FrameCnt <= 1518) else
+	FrameSizeOK <=  '1' when (FrameCnt >= 128 and FrameCnt <= 3036) else
 					'0';
 								
-	CurrentField <= dst_mac when (FrameCnt >= 0 and FrameCnt <= 6) else
-					src_mac when (FrameCnt >= 7 and FrameCnt <= 12) else
-					frame_type when (FrameCnt >= 13 and FrameCnt <= 14) else
+	CurrentField <= dst_mac when (FrameCnt >= 0 and FrameCnt <= 12) else
+					src_mac when (FrameCnt >= 14 and FrameCnt <= 24) else
+					frame_type when (FrameCnt >= 26 and FrameCnt <= 28) else
 					data;
 	
 	
@@ -71,7 +71,7 @@ begin
 		end if;
 	end process ifg_cntr;
 	
-	IFGCntEq12sig <= '1' when (IFGCnt >= 12) else
+	IFGCntEq12sig <= '1' when (IFGCnt >= 24) else
 					 '0';
 	
 end architecture RTL;

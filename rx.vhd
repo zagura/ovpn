@@ -12,7 +12,7 @@ entity rx is
 	port (
 		RxClk : in std_logic;
 		Rst : in std_logic;
-		RxDataIn : in std_logic_vector(7 downto 0);
+		RxDataIn : in std_logic_vector(3 downto 0);
 		RxValidDataIn : in std_logic;
 		RxCurrentState : out rxstate_type;
 		
@@ -46,14 +46,14 @@ architecture RTL of rx is
 		);
 	end component rxcounters;
 	
-	--Połączenia między maszyną, a licznikami
+	--PoĂ„Ä…Ă˘â‚¬ĹˇÄ‚â€žĂ˘â‚¬Â¦czenia miÄ‚â€žĂ˘â€žËdzy maszynÄ‚â€žĂ˘â‚¬Â¦, a licznikami
 	signal FrameStart : std_logic;
 	signal IFGStart : std_logic;
 	signal FrameSizeOK : std_logic;
 	signal CurrentField : field_indicator;
 	signal IFGCntEq12 : std_logic;
 	
-	--Różne pierdółki
+	--RĂ„â€šÄąâ€šĂ„Ä…Ă„Ëťne pierdĂ„â€šÄąâ€šĂ„Ä…Ă˘â‚¬Ĺˇki
 	signal ByteEq0xAA : std_logic;
 	signal ByteEq0xAB : std_logic;
 	signal DstMacValid : std_logic;
@@ -86,13 +86,13 @@ begin
 	
 	ByteEq0xabDEBUG <= ByteEq0xAB;
 	
-	ByteEq0xAA <= '1' when (RxDataIn = X"AA") else
+	ByteEq0xAA <= '1' when (RxDataIn = X"5") else
 						'0';
-	ByteEq0xAB <= '1' when (RxDataIn = X"AB") else
+	ByteEq0xAB <= '1' when (RxDataIn = X"D") else
 						'0';
-	SrcMacValid <= '1'; --Właściwie to nie wiem po co to dałem ;D
+	SrcMacValid <= '1'; --WĂ„Ä…Ă˘â‚¬ĹˇaĂ„Ä…Ă˘â‚¬Ĺźciwie to nie wiem po co to daĂ„Ä…Ă˘â‚¬Ĺˇem ;D
 	
-	--na razie nie bawimy się w multicasty
+	--na razie nie bawimy siÄ‚â€žĂ˘â€žË w multicasty
 	DstMacValid <= '1' when (DstMac = LocalMac or DstMac = X"FFFFFFFFFFFF") else
 						'0';
 						
@@ -131,14 +131,14 @@ begin
 		end if;
 	end process ns;
 	
-	--Pomysł jest taki, że stan mówi, czego oczekujemy
-	--Bo przypisanie do current_state jest opóźnione o jeden takt
+	--PomysĂ„Ä…Ă˘â‚¬Ĺˇ jest taki, Ă„Ä…Ă„Ëťe stan mĂ„â€šÄąâ€šwi, czego oczekujemy
+	--Bo przypisanie do current_state jest opĂ„â€šÄąâ€šĂ„Ä…ÄąĹşnione o jeden takt
 
 	fsm : process(	current_state, 
 						Rst,
+						RxValidDataIn,
 						IFGCntEq12,
 						RxDataIn,
-						RxEndTransmission,
 						DstMacValid,
 						SrcMacValid,
 						CrcValid,
@@ -151,11 +151,11 @@ begin
 					
 					
 					when idle =>
-						if IFGCntEq12 = '1' then
+						if RxValidDataIn = '1' and IFGCntEq12 = '1' then
 							next_state <= preamble;
-						elsif RxDataIn = X"AA" and IFGCntEq12 = '1' then
+						elsif RxValidDataIn = '1' and RxDataIn = X"5" and IFGCntEq12 = '1' then
 							next_state <= sfd;
-						elsif RxDataIn = X"AB" and IFGCntEq12 = '1' then
+						elsif RxValidDataIn = '1' and RxDataIn = X"D" and IFGCntEq12 = '1' then
 							next_state <= data;
 						else
 							next_state <= idle;
@@ -163,27 +163,33 @@ begin
 					
 						
 					when preamble =>
-						if RxDataIn = X"AA" then
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxValidDataIn = '1' and RxDataIn = X"5" then
 							next_state <= sfd;
-						elsif RxDataIn = X"AB" then
+						elsif RxValidDataIn = '1' and RxDataIn = X"D" then
 							next_state <= data;
 						else
 							next_state <= preamble;
 						end if;
 						
 					when sfd =>
-						if RxDataIn = X"AA" then
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxValidDataIn = '1' and RxDataIn = X"5" then
 							next_state <= sfd;
-						elsif RxDataIn = X"AB" then
+						elsif RxValidDataIn = '1' and RxDataIn = X"D" then
 							next_state <= data;
 						else
 							next_state <= drop;
 					end if;	
 						
 					when data =>
-						if RxEndTransmission = '1' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
+						if RxValidDataIn = '0' then
+							next_state <= idle;
+						elsif RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
 							next_state <= OK;
-						elsif RxEndTransmission = '1' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
+						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
 							next_state <= drop;
 						else
 							next_state <= data;
@@ -199,26 +205,59 @@ begin
 				end case;
 			end if;
 	end process fsm;
-	
-		
-	--Ustawienia Counterów
-	IFGStart <= '1' when (next_state = idle or next_state = drop or next_state = OK) else
-				'0';
+
+	--To cudo pod spodem odpala nam IFGCounter
+	IFGStart_p : process (RxClk, Rst) is
+	begin
+		if Rst = '1' then
+			IFGStart <= '1';
+		elsif rising_edge(RxClk) then
+			if next_state = idle or next_state = drop or next_state = OK then
+				IFGStart <= '1';
+			else
+				IFGStart <= '0';
+			end if;
+		end if;
+	end process IFGStart_p;
 				
-	FrameStart <= 	'1' when (next_state = data) else
-					'0';
+	--To cudo pod spodem odpala nam FrameCounter
+	FrameStart_p : process (RxClk, Rst) is
+	begin
+		if Rst = '1' then
+			FrameStart <= '0';
+		elsif rising_edge(RxClk) then
+			if next_state = data then
+				FrameStart <= '1';
+			else
+				FrameStart <= '0';
+			end if;
+		end if;
+	end process FrameStart_p;
 	
-	--Procesy zależne od stanu maszyny
+	--Procesy zaleĂ„Ä…Ă„Ëťne od stanu maszyny
+/*	filldstmac : process (RxClk, Rst) is
+		variable i : natural := 0;
+	begin
+	 	if Rst = '1' or current_state = idle then
+	 		DstMac <= (others => '0');
+	 		i := 0;
+	 	elsif rising_edge(RxClk) and CurrentField = dst_mac and current_state = data then
+	 		DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
+	 		i := i + 1;
+	 		
+	 	end if;
+	end process filldstmac;
+	*/
+	
+	--Procesy zaleĂ„Ä…Ă„Ëťne od stanu maszyny
 	filldstmac : process (RxClk, Rst) is
 		variable i : natural := 0;
 	begin
 	 	if Rst = '1' or current_state = idle then
---		if Rst = '1' then
 	 		DstMac <= (others => '0');
 	 		i := 0;
-	 	elsif rising_edge(RxClk) and CurrentField = dst_mac and current_state = data then
---		elsif rising_edge(RxClk) and i < 6 and current_state = sfd then
-	 		DstMac(47-(8*i) downto 40-(8*i)) <= RxDataIn;
+	 	elsif rising_edge(RxClk) then
+	 		DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
 	 		i := i + 1;
 	 		
 	 	end if;
