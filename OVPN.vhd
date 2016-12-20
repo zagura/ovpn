@@ -109,6 +109,20 @@ architecture RTL of OVPN is
 		);
 	end component byteto7seg;
 	
+	component rmiidataconv
+		port (
+			RMIIClk : in std_logic;
+			Rst : in std_logic;
+			
+			RMII_RX1 : in std_logic;
+			RMII_RX0 : in std_logic;
+			RMII_DV : in std_logic;
+			
+			ByteOut : out std_logic_vector(7 downto 0);
+			ByteReady : out std_logic
+		);
+	end component rmiidataconv;
+	
 	--MII interface ETH1
 	signal mETH1_RX : std_logic_vector(3 downto 0);
 	signal mETH1_TX : std_logic_vector(3 downto 0);
@@ -158,9 +172,16 @@ architecture RTL of OVPN is
 	signal FrameTypeDEBUG   : std_logic_vector(15 downto 0);
 	signal ByteEq0xabDEBUG  : std_logic;
 		
+
+	
+
 	-- crc-32 signals
 	signal crc_value : std_logic_vector(31 downto 0):= (others => '0');
 	signal crc_error : std_logic;
+	
+	--conversion signals
+	signal ByteOut : std_logic_vector(7 downto 0);
+	signal ByteReady : std_logic;
 	
 	
 begin
@@ -225,10 +246,10 @@ begin
 	FrameCntNIB(6) <= FrameCntDDEBUG(7 downto 4);
 	FrameCntNIB(5) <= FrameCntDDEBUG(3 downto 0);
 	FrameCntNIB(4) <= IFGCntDDEBUG(3 downto 0);
-	FrameCntNIB(3) <= sreg_out(15 downto 12);
-	FrameCntNIB(2) <= sreg_out(11 downto 8);
-	FrameCntNIB(1) <= sreg_out(7 downto 4);
-	FrameCntNIB(0) <= sreg_out(3 downto 0);
+	FrameCntNIB(3) <= ByteOut(7 downto 4);
+	FrameCntNIB(2) <= ByteOut(3 downto 0);
+--	FrameCntNIB(1) <= sreg_out(7 downto 4);
+--	FrameCntNIB(0) <= sreg_out(3 downto 0);
 	
 	DstMacNIB(7) <= DstMacDEBUG(47 downto 44);
 	DstMacNIB(6) <= DstMacDEBUG(43 downto 40);
@@ -242,7 +263,6 @@ begin
 	
 	Nibbles <= DstMacNIB;
 	
-	
 	--BUTTONS
 	generate_debouncers : for i in 0 to 3 generate
 		deb1 : debounce
@@ -254,10 +274,31 @@ begin
 				button => iKEY(i),
 				result => ButtonN(i)
 			);
+
 	end generate generate_debouncers;
 	
 	Button <= not ButtonN;
 	
+	
+	--RMII CONVERTER
+	
+	rx_conv : rmiidataconv
+		port map(
+			RMIIClk => ETH1_CLK,
+			Rst => Button(2),
+			
+			RMII_RX1 => ETH1_RX1,
+			RMII_RX0 => ETH1_RX0,
+			RMII_DV => ETH1_CRS,
+			
+			ByteOut => ByteOut,
+			ByteReady => ByteReady
+		
+		);
+	
+		
+	--STATE MACHINE
+		
 	rx_instance : rx
 		generic map(
 			LocalMac => X"CAFEC0DEBABE"
@@ -267,6 +308,9 @@ begin
 			Rst               => Button(2),
 			RxDataIn          => mETH1_RX,
 			RxValidDataIn     => mETH1_RX_DV,
+			RxClk             => ByteReady,
+			Rst               => Button(2),
+			RxDataIn          => ByteOut,
 			RxCurrentState    => RxCurrentState,
 			
 			--DEBUG
