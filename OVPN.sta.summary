@@ -3,43 +3,43 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'RMII2MII:conv1|rx_clk'
-Slack : -3.910
-TNS   : -422.523
+Slack : -3.855
+TNS   : -528.545
 
 Type  : Slow Model Setup 'iCLK_50_2'
-Slack : -1.753
-TNS   : -31.443
+Slack : -1.760
+TNS   : -31.375
 
 Type  : Slow Model Setup 'ETH1_CLK'
-Slack : -0.700
-TNS   : -4.042
+Slack : -0.474
+TNS   : -2.778
 
 Type  : Slow Model Hold 'ETH1_CLK'
-Slack : -4.062
-TNS   : -28.412
+Slack : -4.276
+TNS   : -29.997
 
 Type  : Slow Model Hold 'RMII2MII:conv1|rx_clk'
-Slack : -0.123
-TNS   : -0.123
+Slack : 0.391
+TNS   : 0.000
 
 Type  : Slow Model Hold 'iCLK_50_2'
 Slack : 0.391
 TNS   : 0.000
 
-Type  : Slow Model Recovery 'ETH1_CLK'
-Slack : -0.498
-TNS   : -4.787
-
 Type  : Slow Model Recovery 'RMII2MII:conv1|rx_clk'
-Slack : -0.125
-TNS   : -9.396
+Slack : -0.979
+TNS   : -34.458
+
+Type  : Slow Model Recovery 'ETH1_CLK'
+Slack : -0.272
+TNS   : -3.129
 
 Type  : Slow Model Removal 'RMII2MII:conv1|rx_clk'
-Slack : 0.382
+Slack : 0.576
 TNS   : 0.000
 
 Type  : Slow Model Removal 'ETH1_CLK'
-Slack : 1.046
+Slack : 0.849
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'iCLK_50_2'
@@ -52,46 +52,46 @@ TNS   : -17.222
 
 Type  : Slow Model Minimum Pulse Width 'RMII2MII:conv1|rx_clk'
 Slack : -0.500
-TNS   : -135.000
+TNS   : -212.000
 
 Type  : Fast Model Setup 'RMII2MII:conv1|rx_clk'
-Slack : -1.325
-TNS   : -128.657
+Slack : -1.285
+TNS   : -143.644
 
 Type  : Fast Model Setup 'iCLK_50_2'
-Slack : -0.242
-TNS   : -1.930
+Slack : -0.248
+TNS   : -2.011
 
 Type  : Fast Model Setup 'ETH1_CLK'
-Slack : 0.168
+Slack : 0.255
 TNS   : 0.000
 
 Type  : Fast Model Hold 'ETH1_CLK'
-Slack : -2.199
-TNS   : -15.827
+Slack : -2.297
+TNS   : -16.401
 
 Type  : Fast Model Hold 'RMII2MII:conv1|rx_clk'
-Slack : -0.053
-TNS   : -0.053
+Slack : 0.178
+TNS   : 0.000
 
 Type  : Fast Model Hold 'iCLK_50_2'
 Slack : 0.215
 TNS   : 0.000
 
-Type  : Fast Model Recovery 'ETH1_CLK'
-Slack : 0.188
-TNS   : 0.000
-
 Type  : Fast Model Recovery 'RMII2MII:conv1|rx_clk'
-Slack : 0.357
+Slack : -0.011
+TNS   : -0.066
+
+Type  : Fast Model Recovery 'ETH1_CLK'
+Slack : 0.294
 TNS   : 0.000
 
 Type  : Fast Model Removal 'RMII2MII:conv1|rx_clk'
-Slack : 0.287
+Slack : 0.368
 TNS   : 0.000
 
 Type  : Fast Model Removal 'ETH1_CLK'
-Slack : 0.588
+Slack : 0.508
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'iCLK_50_2'
@@ -104,6 +104,6 @@ TNS   : -17.222
 
 Type  : Fast Model Minimum Pulse Width 'RMII2MII:conv1|rx_clk'
 Slack : -0.500
-TNS   : -135.000
+TNS   : -212.000
 
 ------------------------------------------------------------

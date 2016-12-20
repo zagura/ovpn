@@ -1,0 +1,99 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+use work.common.all;
+
+entity tx is
+	generic (
+		LocalMac : std_logic_vector(47 downto 0)
+	);
+	port (
+		TxClk : in std_logic;
+		Rst : in std_logic;
+		Start : in std_logic;
+		TxDataIn : in std_logic_vector(3 downto 0);
+		TxNextState : out txstate_type;
+		TxDstMac : in std_logic_vector(47 downto 0);
+		
+		TxValidDataOut : out std_logic;
+		TxDataOut : out std_logic_vector(3 downto 0)
+		
+	);
+end entity tx;
+
+architecture RTL of tx is
+	
+	component txcounters
+	port (
+		TxClk : in std_logic;
+		
+		FrameStart : in std_logic;
+		FrameSizeOK : out std_logic;
+		CurrentField : out field_indicator;
+		
+		IFGStart : in std_logic;
+		IFGCntEq12 : out std_logic
+		
+	);
+	end component txcounters;
+
+	--MASZYNA
+	signal current_state : txstate_type;
+	signal next_state : txstate_type;
+	
+begin
+	TxNextState <= next_state;
+	
+	counters : txcounters
+		port map(
+			TxClk        => TxClk,
+			FrameStart   => FrameStart,
+			FrameSizeOK  => FrameSizeOK,
+			CurrentField => CurrentField,
+			IFGStart     => IFGStart,
+			IFGCntEq12   => IFGCntEq12
+		);
+	
+	ns : process(TxClk, Rst) is
+	begin
+		if Rst = '1' then
+			current_state <= idle;
+		elsif rising_edge(TxClk) then
+			current_state <= next_state;
+		end if;
+	end process ns;
+	
+	fsm : process(current_state, Rst) is
+		begin
+			if Rst = '1' then
+				next_state <= idle;
+			else 
+				case current_state is
+					
+				when idle => 
+					if Start = '1' then
+						next_state <= preamble;
+					end if;
+					next_state <= idle;
+				
+				when preamble => 
+				
+				when sfd =>
+					
+				when data1 =>
+					
+				when data0 =>
+
+				when pad =>
+				
+				when fcs =>
+				
+				when ifg =>
+										
+				end case;
+			end if;
+	end process fsm;
+	
+end architecture RTL;

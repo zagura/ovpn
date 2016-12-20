@@ -46,6 +46,22 @@ architecture RTL of rx is
 		);
 	end component rxcounters;
 	
+	component CRC
+	port(
+		-- input
+	clk      : in std_logic;
+	rst      : in std_logic;
+	data_in  : in std_logic_vector(3 downto 0);
+	
+		-- output
+		
+	crc_out  : out std_logic_vector(31 downto 0);
+	error : out std_logic
+	
+	);
+	end component CRC;
+	
+	
 	--PoĂ„Ä…Ă˘â‚¬ĹˇÄ‚â€žĂ˘â‚¬Â¦czenia miÄ‚â€žĂ˘â€žËdzy maszynÄ‚â€žĂ˘â‚¬Â¦, a licznikami
 	signal FrameStart : std_logic;
 	signal IFGStart : std_logic;
@@ -59,7 +75,6 @@ architecture RTL of rx is
 	signal DstMacValid : std_logic;
 	signal SrcMacValid : std_logic;
 	signal FrameTypeValid : std_logic;
-	signal CrcValid : std_logic;
 	
 	signal DstMac : std_logic_vector(47 downto 0) := (others => '0') ;
 	signal FrameType : std_logic_vector(15 downto 0) := (others => '0');
@@ -72,13 +87,31 @@ architecture RTL of rx is
 	signal current_state : rxstate_type := idle;
 	signal next_state : rxstate_type;
 	
+	--CRC
+	signal CrcRst : std_logic;
+	signal CrcIn : std_logic_vector(3 downto 0);
+	signal CrcOut : std_logic_vector(31 downto 0);
+	signal CrcError : std_logic;
+	signal CrcTemp : std_logic_vector(3 downto 0);
+	signal ala : std_logic;
+	
 begin
 	
 	--DEBUG
 	CurrentFieldDEBUG <= CurrentField;
 	FrameCntDDEBUG <= FrameCntDEBUG;
 	IFGCntDDEBUG <= IFGCntDEBUG;
-	DstMacDEBUG <= DstMac;
+	
+	--DstMacValidDEBUG <= DstMacValid;
+	DstMacValidDEBUG <= ala;
+	
+	assign : process (RxClk) is
+	begin
+		if rising_edge(RxClk) and current_state = drop then
+			DstMacDEBUG(47 downto 16) <= CrcOut;
+		end if;
+	end process assign;
+	
 	FrameTypeDEBUG <= FrameType;
 	
 	RxCurrentState <= current_state;
@@ -96,7 +129,6 @@ begin
 	DstMacValid <= '1' when (DstMac = LocalMac or DstMac = X"FFFFFFFFFFFF") else
 						'0';
 						
-	DstMacValidDEBUG <= DstMacValid;
 	
 	--na razie tylko ramki IP
 	--0x0800 <= IPv4
@@ -104,7 +136,6 @@ begin
 	FrameTypeValid <= '1' when (FrameType = X"0800") else
 							'0';
 	
-	CrcValid <= '1';
 	
 	counters : rxcounters
 		port map(
@@ -119,6 +150,21 @@ begin
 			FrameCntDEBUG => FrameCntDEBUG,
 			IFGCntDEBUG   => IFGCntDEBUG
 		);
+		
+		
+	crc_inst : CRC
+	port map(
+		-- input
+	clk      => RxClk,
+	rst      => CrcRst,
+	data_in  => CrcIn,
+	
+		-- output
+		
+	crc_out  => CrcOut,
+	error    => CrcError
+	
+	);
 
 	--MASZYNA STANOW
 	--Stosujemy model dwuprocesorowy, opisany w literaturze
@@ -141,7 +187,7 @@ begin
 						RxDataIn,
 						DstMacValid,
 						SrcMacValid,
-						CrcValid,
+						CrcError,
 						FrameSizeOK) is
 		begin
 			if Rst = '1' then
@@ -194,11 +240,9 @@ begin
 						
 						
 					when data0 =>
-						if RxValidDataIn = '0' then
-							next_state <= idle;
-						elsif RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and CrcValid = '1' and FrameSizeOK = '1' then
+						if RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and CrcError = '0' and FrameSizeOK = '1' then
 							next_state <= OK;
-						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or CrcValid = '0' or FrameSizeOK = '0') then
+						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or CrcError = '1' or FrameSizeOK = '0') then
 							next_state <= drop;
 						else
 							next_state <= data1;
@@ -214,12 +258,38 @@ begin
 			end if;
 	end process fsm;
 
+	Crc_p : process (RxClk, Rst) is
+		variable first : boolean := true;
+	begin
+		if Rst = '1' or current_state = idle then
+			CrcRst <= '1';
+			CrcTemp <= "0000";
+			first := true;
+		elsif rising_edge(RxClk) and (current_state = data0 or current_state = data1) then
+			CrcRst <= '0';
+
+			if current_state = data0 then
+				CrcIn <= RxDataIn;
+			elsif first = true then
+				first := false;
+				CrcTemp <= RxDataIn;
+			else
+				CrcIn <= CrcTemp;
+				CrcTemp <= RxDataIn;
+			end if;
+		end if;
+	end process Crc_p;
+	
+	
 	--To cudo pod spodem odpala nam IFGCounter
 	IFGStart_p : process (RxClk, Rst) is
 	begin
 		if Rst = '1' then
 			IFGStart <= '1';
+			ala <= '0';
 		elsif rising_edge(RxClk) then
+				ala <= (not crcError) or ala; -- Uwaga na to
+
 			if next_state = idle or next_state = drop or next_state = OK then
 				IFGStart <= '1';
 			else

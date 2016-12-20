@@ -8,7 +8,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.PCK_CRC32_D8.all;
+use work.crc_4bit.all;
 
 entity CRC is
 	port(
@@ -35,12 +35,12 @@ architecture crc_verification of CRC is
 	
 begin
 	process (clk)
-		variable last: std_logic_vector(31 downto 0);
+		--variable last: std_logic_vector(31 downto 0);
 	begin
-	error <= not verify;
 		if (clk'event and clk = '1' and enable = '1') then
-			crc_out <= nextCRC32_D8(data_in, crc_out); 
-			if (crc_out = "11000111000001001101110101111011") then
+			crc_out <= nextCRC32_D4(data_in, crc_out); 
+			--if (crc_out = '11000111000001001101110101111011') then
+            if (crc_out = X"C704DD7B") then
 				verify <= '1';
 			else
 				verify <= '0';
