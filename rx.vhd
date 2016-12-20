@@ -86,14 +86,13 @@ architecture RTL of rx is
 	--MASZYNA
 	signal current_state : rxstate_type := idle;
 	signal next_state : rxstate_type;
-	signal last_state : rxstate_type;
 	
 	--CRC
-	signal CrcRst : std_logic;
+	signal nibbleInvalid : std_logic;
 	signal CrcIn : std_logic_vector(3 downto 0);
 	signal CrcOut : std_logic_vector(31 downto 0);
 	signal CrcError : std_logic;
-	signal CrcTemp : std_logic_vector(3 downto 0);
+	signal nibbleBuffer : std_logic_vector(3 downto 0);
 	signal CrcInRev : std_logic_vector(3 downto 0);
 	signal ala : std_logic;
 	
@@ -167,8 +166,8 @@ begin
 	port map(
 		-- input
 	clk      => RxClk,
-	rst      => CrcRst,
-	data_in  => CrcInRev,
+	rst      => nibbleInvalid,
+	data_in  => CrcIn,
 	
 		-- output
 		
@@ -184,7 +183,6 @@ begin
 		if Rst = '1' then
 			current_state <= preamble;
 		elsif rising_edge(RxClk) then
-			last_state <= current_state;
 			current_state <= next_state;
 		end if;
 	end process ns;
@@ -270,42 +268,28 @@ begin
 			end if;
 	end process fsm;
 
-/*	Crc_p : process (RxClk, Rst) is
-	begin
-		if rising_edge(RxClk) and current_state = data1 then
-			CrcTemp <= RxDataIn;
-		end if;
-	end process Crc_p;
-	
-	CrcIn <= RxDataIn; --when current_state = data0 else
-				--CrcTemp when current_state = data1 else
-				--"0000";
-	
-	CrcRst <= 	'0' when (current_state = data0 and last_state = data1) or (current_state = data1 and last_state = data0) else
-					'1';
-*/
-	Crc_p : process (RxClk, Rst) is
+	Nibble_Switch : process (RxClk, Rst) is
 		variable first : boolean := true;
 	begin
 		if Rst = '1' or current_state = idle then
-			CrcRst <= '1';
-			CrcTemp <= "0000";
+			nibbleInvalid <= '1';
+			nibbleBuffer <= "0000";
 			first := true;
 		elsif rising_edge(RxClk) and (current_state = data0 or current_state = data1) then
-			CrcRst <= '0';
+			nibbleInvalid <= '0';
 
 			if current_state = data0 then
 				CrcIn <= RxDataIn;
 			elsif first = true then
-				CrcRst <= '1';
+				nibbleInvalid <= '1';
 				first := false;
-				CrcTemp <= RxDataIn;
+				nibbleBuffer <= RxDataIn;
 			else
-				CrcIn <= CrcTemp;
-				CrcTemp <= RxDataIn;
+				CrcIn <= nibbleBuffer;
+				nibbleBuffer <= RxDataIn;
 			end if;
 		end if;
-	end process Crc_p;
+	end process Nibble_Switch;
 
 	--To cudo pod spodem odpala nam IFGCounter
 	IFGStart_p : process (RxClk, Rst) is
@@ -353,7 +337,7 @@ begin
 --	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
 		elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) then
 			if delay = 0 then
-				if CrcRst /= '1' then
+				if nibbleInvalid /= '1' then
 					DstMac(47-(4*i) downto 44-(4*i)) <= CrcIn;
 				
 			

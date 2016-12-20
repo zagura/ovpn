@@ -41,6 +41,21 @@ architecture RTL of tx is
 		
 	);
 	end component txcounters;
+	
+	component CRC
+	port(
+			-- input
+		clk      : in std_logic;
+		rst      : in std_logic;
+		data_in  : in std_logic_vector(3 downto 0);
+		
+			-- output
+			
+		crc_out  : out std_logic_vector(31 downto 0);
+		error : out std_logic
+	
+	);
+	end component CRC;
 
 	--MASZYNA
 	signal current_state : txstate_type;
@@ -57,6 +72,11 @@ architecture RTL of tx is
 	
 	signal FCSCounter : natural;
 	
+	signal nibbleInvalid : std_logic;
+	signal CrcIn : std_logic_vector(3 downto 0);
+	signal CrcError : std_logic;
+	signal nibbleBuffer : std_logic_vector(3 downto 0);
+	
 begin
 	TxNextState <= next_state;
 	
@@ -71,6 +91,18 @@ begin
 			FCSStart		 => FCSStart,
 			FCSCounter	 => FCSCounter
 		);
+	
+	crc_inst : CRC
+		port map(
+				-- input
+			clk      => TxClk,
+			rst      => nibbleInvalid,
+			data_in  => CrcIn,
+			
+				-- output
+			crc_out  =>  CRCVal,
+			error    => CrcError
+	);
 	
 	ns : process(TxClk, Rst) is
 	begin
@@ -156,6 +188,29 @@ begin
 		end if;
 	end process fsm;
 	
+	
+	Nibble_Switch : process (TxClk, Rst) is
+		variable first : boolean := true;
+	begin
+		if Rst = '1' or current_state = idle then
+			nibbleInvalid <= '1';
+			nibbleBuffer <= "0000";
+			first := true;
+		elsif rising_edge(TxClk) and (current_state = data0 or current_state = data1) then
+			nibbleInvalid <= '0';
+
+			if current_state = data0 then
+				CrcIn <= TxDataIn;
+			elsif first = true then
+				nibbleInvalid <= '1';
+				first := false;
+				nibbleBuffer <= TxDataIn;
+			else
+				CrcIn <= nibbleBuffer;
+				nibbleBuffer <= TxDataIn;
+			end if;
+		end if;
+	end process Nibble_Switch;
 	
 	
 		--To cudo pod spodem odpala nam IFGCounter
