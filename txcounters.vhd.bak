@@ -11,13 +11,10 @@ entity txcounters is
 		
 		FrameStart : in std_logic;
 		FrameSizeOK : out std_logic;
-		CurrentField : out txfield_indicator;
+		CurrentField : out field_indicator;
 		
 		IFGStart : in std_logic;
-		IFGCntEq12 : out std_logic;
-		
-		FCSStart : in std_logic;
-		FCSCounter : out natural
+		IFGCntEq12 : out std_logic
 		
 	);
 end entity txcounters;
@@ -31,16 +28,14 @@ architecture RTL of txcounters is
 	--IFG przy FastEthernet musi odczekać 960 ns czyli 12 bajtów = 96 bitów, 
 	--co jest wartością standardową dla ethernet. Dla FE nie przewiduje sie redukcji IFG 
 	signal IFGCnt : std_logic_vector(4 downto 0) := (others => '0');
-	signal FCSCnt : natural := 0;
 	signal IFGCntEq12sig : std_logic;
 	
 begin	
 	IFGCntEq12 <= IFGCntEq12sig;
-	FCSCounter <= FCSCnt;
 	
-	frame_cntr : process (TxClk) is
+	frame_cntr : process (RxClk) is
 	begin
-		if rising_edge(TxClk) then
+		if rising_edge(RxClk) then
 			if FrameStart = '0' then
 				FrameCnt <= (others => '0');
 			elsif FrameStart = '1' then
@@ -52,15 +47,16 @@ begin
 	FrameSizeOK <=  '1' when (FrameCnt >= 144 and FrameCnt <= 3052) else
 					'0';
 								
-	CurrentField <= preamble when (FrameCnt >= 0 and FrameCnt < 15) else
-					sfd when (FrameCnt >= 15 and FrameCnt < 16) else
+	CurrentField <= preamble when (FrameCnt >= 0 and FrameCnt < 14) else
+					sfd0 when (FrameCnt >= 14 and FrameCnt < 15) else
+					sfd1 when (FrameCnt >= 15 and FrameCnt < 16) else
 					data_pad when (FrameCnt >= 16 and FrameCnt < 136) else
 					data;
 	
 	
-	ifg_cntr : process (TxClk) is
+	ifg_cntr : process (RxClk) is
 	begin
-		if rising_edge(TxClk) then
+		if rising_edge(RxClk) then
 			if IFGStart = '0' then
 				IFGCnt <= (others => '0');
 			elsif IFGStart = '1' and IFGCntEq12sig = '0' then
@@ -69,18 +65,7 @@ begin
 		end if;
 	end process ifg_cntr;
 	
-		IFGCntEq12sig <= '1' when (IFGCnt >= 24) else
+	IFGCntEq12sig <= '1' when (IFGCnt >= 24) else
 					 '0';
-	
-	fcs_cntr : process (TxClk) is
-	begin
-		if rising_edge(TxClk) then
-			if FCSStart = '0' then
-				FCSCnt <= 0;
-			elsif FCSStart = '1' then
-				FCSCnt <= FCSCnt + 1;
-			end if;
-		end if;
-	end process fcs_cntr;
 	
 end architecture RTL;

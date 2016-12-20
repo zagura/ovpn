@@ -1,4 +1,13 @@
 
+State Machine - |OVPN|tx:tx_instance|current_state
+Name current_state.ifg current_state.fcs current_state.data0 current_state.data1 current_state.preamble current_state.idle 
+current_state.idle 0 0 0 0 0 0 
+current_state.preamble 0 0 0 0 1 1 
+current_state.data1 0 0 0 1 0 1 
+current_state.data0 0 0 1 0 0 1 
+current_state.fcs 0 1 0 0 0 1 
+current_state.ifg 1 0 0 0 0 1 
+
 State Machine - |OVPN|rx:rx_instance|current_state
 Name current_state.OK current_state.data0 current_state.data1 current_state.sfd current_state.drop current_state.idle current_state.preamble 
 current_state.preamble 0 0 0 0 0 0 0 

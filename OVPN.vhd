@@ -93,6 +93,24 @@ architecture RTL of OVPN is
 		);
 	end component rx;
 	
+	component tx
+		generic (
+			LocalMac : std_logic_vector(47 downto 0)
+		);
+		port (
+			TxClk : in std_logic;
+			Rst : in std_logic;
+			Start : in std_logic;
+			TxDataIn : in std_logic_vector(3 downto 0);
+			TxValidDataIn : in std_logic;
+			TxNextState : out txstate_type;
+			
+			TxValidDataOut : out std_logic;
+			TxDataOut : out std_logic_vector(3 downto 0)
+			
+		);
+	end component tx;
+	
 	component debounce
 		generic(counter_size : INTEGER := 19);
 		port(
@@ -160,10 +178,16 @@ architecture RTL of OVPN is
 		
 	-- crc-32 signals
 	signal crc_value : std_logic_vector(31 downto 0):= (others => '0');
-	signal crc_error : std_logic;	
+	signal crc_error : std_logic;
+
+	--RX
+	signal TxDataIn : std_logic_vector(3 downto 0);
+	signal TxValidDataIn : std_logic;
+	signal TxNextState : txstate_type;
+	signal StartSending : std_logic;
 	
 begin
-
+	StartSending <= '0';
 	conv1 : component RMII2MII
 		port map(
 			rst        => ButtonN(2),
@@ -279,6 +303,22 @@ begin
 		);
 		
 		RxValidDataIn <= '1';
+		
+		
+	tx_instance : tx
+		generic map(
+			LocalMac => X"CAFEC0DEBABE"
+		)
+		port map(
+			TxClk => mETH1_TX_CLK,
+			Rst => Button(2),
+			Start => StartSending,
+			TxDataIn => TxDataIn,
+			TxValidDataIn => TxValidDataIn,
+			TxNextState => TxNextState,
+			TxValidDataOut => mETH1_TX_EN,
+			TxDataOut => mETH1_TX		
+		);
 		
 	--LEDS
 	

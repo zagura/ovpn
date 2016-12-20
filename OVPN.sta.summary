@@ -2,44 +2,84 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow Model Setup 'debounce:\generate_debouncers:2:deb1|result'
+Slack : -4.439
+TNS   : -7.495
+
+Type  : Slow Model Setup 'RMII2MII:conv1|tx_clk'
+Slack : -4.029
+TNS   : -90.548
+
 Type  : Slow Model Setup 'RMII2MII:conv1|rx_clk'
-Slack : -3.855
-TNS   : -528.545
+Slack : -3.851
+TNS   : -519.137
+
+Type  : Slow Model Setup 'tx:tx_instance|current_state.preamble'
+Slack : -3.527
+TNS   : -13.223
 
 Type  : Slow Model Setup 'iCLK_50_2'
-Slack : -1.760
-TNS   : -31.375
+Slack : -1.751
+TNS   : -32.060
 
 Type  : Slow Model Setup 'ETH1_CLK'
-Slack : -0.474
-TNS   : -2.778
+Slack : -1.458
+TNS   : -7.767
+
+Type  : Slow Model Hold 'tx:tx_instance|current_state.preamble'
+Slack : -3.685
+TNS   : -15.590
 
 Type  : Slow Model Hold 'ETH1_CLK'
-Slack : -4.276
-TNS   : -29.997
+Slack : -3.633
+TNS   : -28.435
 
-Type  : Slow Model Hold 'RMII2MII:conv1|rx_clk'
-Slack : 0.391
-TNS   : 0.000
+Type  : Slow Model Hold 'debounce:\generate_debouncers:2:deb1|result'
+Slack : -3.354
+TNS   : -8.468
 
 Type  : Slow Model Hold 'iCLK_50_2'
-Slack : 0.391
+Slack : -2.731
+TNS   : -2.731
+
+Type  : Slow Model Hold 'RMII2MII:conv1|rx_clk'
+Slack : -2.520
+TNS   : -16.585
+
+Type  : Slow Model Hold 'RMII2MII:conv1|tx_clk'
+Slack : 0.452
 TNS   : 0.000
 
 Type  : Slow Model Recovery 'RMII2MII:conv1|rx_clk'
-Slack : -0.979
-TNS   : -34.458
+Slack : -1.413
+TNS   : -144.157
 
 Type  : Slow Model Recovery 'ETH1_CLK'
-Slack : -0.272
-TNS   : -3.129
+Slack : -0.939
+TNS   : -11.956
 
-Type  : Slow Model Removal 'RMII2MII:conv1|rx_clk'
-Slack : 0.576
+Type  : Slow Model Recovery 'RMII2MII:conv1|tx_clk'
+Slack : 0.485
 TNS   : 0.000
 
+Type  : Slow Model Recovery 'tx:tx_instance|current_state.preamble'
+Slack : 1.954
+TNS   : 0.000
+
+Type  : Slow Model Removal 'tx:tx_instance|current_state.preamble'
+Slack : -3.691
+TNS   : -20.717
+
+Type  : Slow Model Removal 'RMII2MII:conv1|tx_clk'
+Slack : -3.016
+TNS   : -17.339
+
+Type  : Slow Model Removal 'RMII2MII:conv1|rx_clk'
+Slack : -2.111
+TNS   : -194.246
+
 Type  : Slow Model Removal 'ETH1_CLK'
-Slack : 0.849
+Slack : 1.221
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'iCLK_50_2'
@@ -48,50 +88,102 @@ TNS   : -29.380
 
 Type  : Slow Model Minimum Pulse Width 'ETH1_CLK'
 Slack : -1.222
-TNS   : -17.222
+TNS   : -22.222
 
 Type  : Slow Model Minimum Pulse Width 'RMII2MII:conv1|rx_clk'
 Slack : -0.500
 TNS   : -212.000
 
-Type  : Fast Model Setup 'RMII2MII:conv1|rx_clk'
-Slack : -1.285
-TNS   : -143.644
+Type  : Slow Model Minimum Pulse Width 'RMII2MII:conv1|tx_clk'
+Slack : -0.500
+TNS   : -56.000
 
-Type  : Fast Model Setup 'iCLK_50_2'
-Slack : -0.248
-TNS   : -2.011
+Type  : Slow Model Minimum Pulse Width 'debounce:\generate_debouncers:2:deb1|result'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'tx:tx_instance|current_state.preamble'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Fast Model Setup 'debounce:\generate_debouncers:2:deb1|result'
+Slack : -2.095
+TNS   : -3.031
+
+Type  : Fast Model Setup 'RMII2MII:conv1|tx_clk'
+Slack : -1.713
+TNS   : -23.073
+
+Type  : Fast Model Setup 'RMII2MII:conv1|rx_clk'
+Slack : -1.262
+TNS   : -138.449
+
+Type  : Fast Model Setup 'tx:tx_instance|current_state.preamble'
+Slack : -1.081
+TNS   : -3.061
 
 Type  : Fast Model Setup 'ETH1_CLK'
-Slack : 0.255
-TNS   : 0.000
+Slack : -0.435
+TNS   : -0.683
+
+Type  : Fast Model Setup 'iCLK_50_2'
+Slack : -0.229
+TNS   : -2.176
+
+Type  : Fast Model Hold 'tx:tx_instance|current_state.preamble'
+Slack : -2.081
+TNS   : -9.029
+
+Type  : Fast Model Hold 'debounce:\generate_debouncers:2:deb1|result'
+Slack : -1.964
+TNS   : -4.817
 
 Type  : Fast Model Hold 'ETH1_CLK'
-Slack : -2.297
-TNS   : -16.401
-
-Type  : Fast Model Hold 'RMII2MII:conv1|rx_clk'
-Slack : 0.178
-TNS   : 0.000
+Slack : -1.960
+TNS   : -16.090
 
 Type  : Fast Model Hold 'iCLK_50_2'
-Slack : 0.215
+Slack : -1.719
+TNS   : -1.719
+
+Type  : Fast Model Hold 'RMII2MII:conv1|rx_clk'
+Slack : -1.634
+TNS   : -12.851
+
+Type  : Fast Model Hold 'RMII2MII:conv1|tx_clk'
+Slack : 0.086
 TNS   : 0.000
 
 Type  : Fast Model Recovery 'RMII2MII:conv1|rx_clk'
-Slack : -0.011
-TNS   : -0.066
+Slack : -0.213
+TNS   : -15.934
 
 Type  : Fast Model Recovery 'ETH1_CLK'
-Slack : 0.294
+Slack : -0.010
+TNS   : -0.040
+
+Type  : Fast Model Recovery 'RMII2MII:conv1|tx_clk'
+Slack : 0.473
 TNS   : 0.000
+
+Type  : Fast Model Recovery 'tx:tx_instance|current_state.preamble'
+Slack : 1.585
+TNS   : 0.000
+
+Type  : Fast Model Removal 'tx:tx_instance|current_state.preamble'
+Slack : -2.077
+TNS   : -11.837
+
+Type  : Fast Model Removal 'RMII2MII:conv1|tx_clk'
+Slack : -1.773
+TNS   : -10.292
 
 Type  : Fast Model Removal 'RMII2MII:conv1|rx_clk'
-Slack : 0.368
-TNS   : 0.000
+Slack : -1.348
+TNS   : -150.395
 
 Type  : Fast Model Removal 'ETH1_CLK'
-Slack : 0.508
+Slack : 0.667
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'iCLK_50_2'
@@ -100,10 +192,22 @@ TNS   : -29.380
 
 Type  : Fast Model Minimum Pulse Width 'ETH1_CLK'
 Slack : -1.222
-TNS   : -17.222
+TNS   : -22.222
 
 Type  : Fast Model Minimum Pulse Width 'RMII2MII:conv1|rx_clk'
 Slack : -0.500
 TNS   : -212.000
+
+Type  : Fast Model Minimum Pulse Width 'RMII2MII:conv1|tx_clk'
+Slack : -0.500
+TNS   : -56.000
+
+Type  : Fast Model Minimum Pulse Width 'debounce:\generate_debouncers:2:deb1|result'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'tx:tx_instance|current_state.preamble'
+Slack : 0.500
+TNS   : 0.000
 
 ------------------------------------------------------------

@@ -14,8 +14,8 @@ entity tx is
 		Rst : in std_logic;
 		Start : in std_logic;
 		TxDataIn : in std_logic_vector(3 downto 0);
+		TxValidDataIn : in std_logic;
 		TxNextState : out txstate_type;
-		TxDstMac : in std_logic_vector(47 downto 0);
 		
 		TxValidDataOut : out std_logic;
 		TxDataOut : out std_logic_vector(3 downto 0)
@@ -31,10 +31,13 @@ architecture RTL of tx is
 		
 		FrameStart : in std_logic;
 		FrameSizeOK : out std_logic;
-		CurrentField : out field_indicator;
+		CurrentField : out txfield_indicator;
 		
 		IFGStart : in std_logic;
-		IFGCntEq12 : out std_logic
+		IFGCntEq12 : out std_logic;
+		
+		FCSStart : in std_logic;
+		FCSCounter : out natural
 		
 	);
 	end component txcounters;
@@ -45,9 +48,14 @@ architecture RTL of tx is
 	
 	signal FrameStart : std_logic;
 	signal IFGStart : std_logic;
+	signal FCSStart : std_logic;
 	signal FrameSizeOK : std_logic;
 	signal CurrentField : txfield_indicator;
 	signal IFGCntEq12 : std_logic;
+	
+	signal CRCVal : std_logic_vector(31 downto 0);
+	
+	signal FCSCounter : natural;
 	
 begin
 	TxNextState <= next_state;
@@ -59,7 +67,9 @@ begin
 			FrameSizeOK  => FrameSizeOK,
 			CurrentField => CurrentField,
 			IFGStart     => IFGStart,
-			IFGCntEq12   => IFGCntEq12
+			IFGCntEq12   => IFGCntEq12,
+			FCSStart		 => FCSStart,
+			FCSCounter	 => FCSCounter
 		);
 	
 	ns : process(TxClk, Rst) is
@@ -71,44 +81,89 @@ begin
 		end if;
 	end process ns;
 	
-	fsm : process(current_state, Rst) is
-		begin
-			if Rst = '1' then
-				next_state <= idle;
-			else 
-				case current_state is
-					
-				when idle => 
-					if Start = '1' then
-						next_state <= preamble;
-					end if;
+	fsm : process(	current_state,
+						Rst,
+						CurrentField,
+						TxValidDataIn) is
+	begin
+		if Rst = '1' then
+			next_state <= idle;
+		else
+			TxValidDataOut <= '0';
+			case current_state is
+				
+			when idle => 
+				if Start = '1' then
+					next_state <= preamble;
+					TxDataOut <= X"5";
+					TxValidDataOut <= '1';
+				else
 					next_state <= idle;
+				end if;
 				
-				when preamble => 
-					if 
-				
-				when sfd =>
+			
+			when preamble => 
+				if currentField = preamble then
+					TxDataOut <= X"5";
+					TxValidDataOut <= '1';
+					next_state <= preamble;
+				elsif currentField = sfd then
+					TxDataOut <= X"D";
+					TxValidDataOut <= '1';
+					next_state <= data1;
+				end if;
 					
-				when data1 =>
-					
-				when data0 =>
 				
-				when fcs =>
+			when data1 =>
+				if TxValidDataIn = '1' then
+					TxDataOut <= TxDataIn;
+					TxValidDataOut <= '1';
+				else
+					TxDataOut <= X"0";
+					TxValidDataOut <= '1';
+				end if;
+				next_state <= data0;
 				
-				when ifg =>
-										
-				end case;
-			end if;
+			when data0 => --potencjalne bugi przy zbyt duzej ramce ;D
+				if TxValidDataIn = '1' then
+					TxDataOut <= TxDataIn;
+					TxValidDataOut <= '1';
+					next_state <= data1;
+				elsif currentField = data_pad then
+					TxDataOut <= X"0";
+					TxValidDataOut <= '1';
+					next_state <= data1;
+				else
+					next_state <= fcs;
+				end if;
+				
+			when fcs =>
+				if FCSCounter < 8 then
+					TxDataOut <= CRCVal( 31-(FCSCounter*4) downto 28-(FCSCounter*4));
+					TxValidDataOut <= '1';
+					next_state <= fcs;
+				else
+					next_state <= ifg;
+				end if;
+	
+			when ifg =>
+				if IFGCntEq12 = '1' then
+					next_state <= idle;
+				else
+					next_state <= ifg;
+				end if;
+			end case;
+		end if;
 	end process fsm;
 	
 	
 	
 		--To cudo pod spodem odpala nam IFGCounter
-	IFGStart_p : process (RxClk, Rst) is
+	IFGStart_p : process (TxClk, Rst) is
 	begin
 		if Rst = '1' then
 			IFGStart <= '0';
-		elsif rising_edge(RxClk) then
+		elsif rising_edge(TxClk) then
 			if next_state = ifg then
 				IFGStart <= '1';
 			else
@@ -118,17 +173,31 @@ begin
 	end process IFGStart_p;
 	
 		--To cudo pod spodem odpala nam FrameCounter
-	FrameStart_p : process (RxClk, Rst) is
+	FrameStart_p : process (TxClk, Rst) is
 	begin
 		if Rst = '1' then
 			FrameStart <= '0';
-		elsif rising_edge(RxClk) then
-			if next_state = preamble or next_state = sfd or next_state = data1 or next_state = data0 or next_state = fcs then
+		elsif rising_edge(TxClk) then
+			if next_state = preamble or next_state = data1 or next_state = data0 or next_state = fcs then
 				FrameStart <= '1';
 			else
 				FrameStart <= '0';
 			end if;
 		end if;
 	end process FrameStart_p;
+	
+		--To cudo pod spodem odpala nam FCSCounter
+	FCSStart_p : process (TxClk, Rst) is
+	begin
+		if Rst = '1' then
+			FCSStart <= '0';
+		elsif rising_edge(TxClk) then
+			if current_state = fcs then
+				FCSStart <= '1';
+			else
+				FCSStart <= '0';
+			end if;
+		end if;
+	end process FCSStart_p;
 	
 end architecture RTL;

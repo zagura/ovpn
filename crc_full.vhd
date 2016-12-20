@@ -36,18 +36,23 @@ architecture crc_verification of CRC is
 begin
 	process (clk)
 		--variable last: std_logic_vector(31 downto 0);
+		variable crc2: std_logic_vector(31 downto 0);
 	begin
 		if (rst = '1') then
-			--crc <= (others => '0');
-			crc <= X"FEEDFACE";
+			crc2 := (others => '0');
+			verify <= '0';
+			--crc <= X"FEEDFACE";
 		elsif (clk'event and clk = '1') then
-			crc <= nextCRC32_D4(data_in, crc); 
+			crc2 := nextCRC32_D4(data_in, crc); 
+			
 			--if (crc_out = '11000111000001001101110101111011') then
-            if (crc = X"C704DD7B") then
+			-- Wypisuje f6 e7 f6 28
+			if (crc2 = X"C704DD7B") then
 				verify <= '1';
 			else
 				verify <= '0';
 			end if;
+			crc <= crc2;
 		end if;
 		
 	end process;

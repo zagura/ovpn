@@ -1,5 +1,5 @@
 Analysis & Synthesis report for OVPN
-Wed Dec 07 14:40:49 2016
+Wed Dec 14 16:21:32 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,23 +13,27 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |OVPN|rx:rx_instance|current_state
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:0:deb1
- 14. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:1:deb1
- 15. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:2:deb1
- 16. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:3:deb1
- 17. Parameter Settings for User Entity Instance: rx:rx_instance
- 18. Port Connectivity Checks: "rx:rx_instance"
- 19. Port Connectivity Checks: "debounce:\generate_debouncers:1:deb1"
- 20. Port Connectivity Checks: "debounce:\generate_debouncers:0:deb1"
- 21. Port Connectivity Checks: "RMII2MII:conv2"
- 22. Port Connectivity Checks: "RMII2MII:conv1"
- 23. Elapsed Time Per Partition
- 24. Analysis & Synthesis Messages
+  8. State Machine - |OVPN|tx:tx_instance|current_state
+  9. State Machine - |OVPN|rx:rx_instance|current_state
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:0:deb1
+ 16. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:1:deb1
+ 17. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:2:deb1
+ 18. Parameter Settings for User Entity Instance: debounce:\generate_debouncers:3:deb1
+ 19. Parameter Settings for User Entity Instance: rx:rx_instance
+ 20. Parameter Settings for User Entity Instance: tx:tx_instance
+ 21. Port Connectivity Checks: "tx:tx_instance|txcounters:counters"
+ 22. Port Connectivity Checks: "tx:tx_instance"
+ 23. Port Connectivity Checks: "rx:rx_instance"
+ 24. Port Connectivity Checks: "debounce:\generate_debouncers:1:deb1"
+ 25. Port Connectivity Checks: "debounce:\generate_debouncers:0:deb1"
+ 26. Port Connectivity Checks: "RMII2MII:conv2"
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
 
 
 
@@ -55,15 +59,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 07 14:40:49 2016           ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 14 16:21:32 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; OVPN                                            ;
 ; Top-level Entity Name              ; OVPN                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 478                                             ;
-;     Total combinational functions  ; 402                                             ;
-;     Dedicated logic registers      ; 256                                             ;
-; Total registers                    ; 256                                             ;
+; Total logic elements               ; 562                                             ;
+;     Total combinational functions  ; 467                                             ;
+;     Dedicated logic registers      ; 317                                             ;
+; Total registers                    ; 317                                             ;
 ; Total pins                         ; 114                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -174,6 +178,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
 +----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
+; txcounters.vhd                   ; yes             ; User VHDL File  ; C:/Users/Student/Documents/FPGA/txcounters.vhd    ;         ;
+; tx.vhd                           ; yes             ; User VHDL File  ; C:/Users/Student/Documents/FPGA/tx.vhd            ;         ;
 ; crc_full.vhd                     ; yes             ; User VHDL File  ; C:/Users/Student/Documents/FPGA/crc_full.vhd      ;         ;
 ; crc_4bit.vhd                     ; yes             ; User VHDL File  ; C:/Users/Student/Documents/FPGA/crc_4bit.vhd      ;         ;
 ; RMII2MII_conv.vhd                ; yes             ; User VHDL File  ; C:/Users/Student/Documents/FPGA/RMII2MII_conv.vhd ;         ;
@@ -191,28 +197,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-----------------------+
 ; Resource                                    ; Usage                 ;
 +---------------------------------------------+-----------------------+
-; Estimated Total logic elements              ; 478                   ;
+; Estimated Total logic elements              ; 562                   ;
 ;                                             ;                       ;
-; Total combinational functions               ; 402                   ;
+; Total combinational functions               ; 467                   ;
 ; Logic element usage by number of LUT inputs ;                       ;
-;     -- 4 input functions                    ; 213                   ;
-;     -- 3 input functions                    ; 39                    ;
-;     -- <=2 input functions                  ; 150                   ;
+;     -- 4 input functions                    ; 231                   ;
+;     -- 3 input functions                    ; 46                    ;
+;     -- <=2 input functions                  ; 190                   ;
 ;                                             ;                       ;
 ; Logic elements by mode                      ;                       ;
-;     -- normal mode                          ; 307                   ;
-;     -- arithmetic mode                      ; 95                    ;
+;     -- normal mode                          ; 327                   ;
+;     -- arithmetic mode                      ; 140                   ;
 ;                                             ;                       ;
-; Total registers                             ; 256                   ;
-;     -- Dedicated logic registers            ; 256                   ;
+; Total registers                             ; 317                   ;
+;     -- Dedicated logic registers            ; 317                   ;
 ;     -- I/O registers                        ; 0                     ;
 ;                                             ;                       ;
 ; I/O pins                                    ; 114                   ;
 ; Embedded Multiplier 9-bit elements          ; 0                     ;
 ; Maximum fan-out node                        ; RMII2MII:conv1|rx_clk ;
 ; Maximum fan-out                             ; 219                   ;
-; Total fan-out                               ; 2175                  ;
-; Average fan-out                             ; 2.82                  ;
+; Total fan-out                               ; 2584                  ;
+; Average fan-out                             ; 2.88                  ;
 +---------------------------------------------+-----------------------+
 
 
@@ -221,8 +227,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                        ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
-; |OVPN                                     ; 402 (2)           ; 256 (0)      ; 0           ; 0            ; 0       ; 0         ; 114  ; 0            ; |OVPN                                      ; work         ;
-;    |RMII2MII:conv1|                       ; 10 (10)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|RMII2MII:conv1                       ; work         ;
+; |OVPN                                     ; 467 (1)           ; 317 (0)      ; 0           ; 0            ; 0       ; 0         ; 114  ; 0            ; |OVPN                                      ; work         ;
+;    |RMII2MII:conv1|                       ; 14 (14)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|RMII2MII:conv1                       ; work         ;
 ;    |byteto7seg:\generate_decoders:0:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:0:dec  ; work         ;
 ;    |byteto7seg:\generate_decoders:1:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:1:dec  ; work         ;
 ;    |byteto7seg:\generate_decoders:2:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:2:dec  ; work         ;
@@ -233,11 +239,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |byteto7seg:\generate_decoders:7:dec|  ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|byteto7seg:\generate_decoders:7:dec  ; work         ;
 ;    |debounce:\generate_debouncers:2:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:2:deb1 ; work         ;
 ;    |debounce:\generate_debouncers:3:deb1| ; 25 (25)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|debounce:\generate_debouncers:3:deb1 ; work         ;
-;    |rx:rx_instance|                       ; 284 (208)         ; 212 (162)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance                       ; work         ;
-;       |CRC:crc_inst|                      ; 44 (44)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance|CRC:crc_inst          ; work         ;
-;       |rxcounters:counters|               ; 32 (32)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance|rxcounters:counters   ; work         ;
+;    |rx:rx_instance|                       ; 260 (189)         ; 212 (162)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance                       ; work         ;
+;       |CRC:crc_inst|                      ; 43 (43)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance|CRC:crc_inst          ; work         ;
+;       |rxcounters:counters|               ; 28 (28)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|rx:rx_instance|rxcounters:counters   ; work         ;
+;    |tx:tx_instance|                       ; 86 (36)           ; 56 (8)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|tx:tx_instance                       ; work         ;
+;       |txcounters:counters|               ; 50 (50)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |OVPN|tx:tx_instance|txcounters:counters   ; work         ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |OVPN|tx:tx_instance|current_state                                                                                                       ;
++------------------------+-------------------+-------------------+---------------------+---------------------+------------------------+--------------------+
+; Name                   ; current_state.ifg ; current_state.fcs ; current_state.data0 ; current_state.data1 ; current_state.preamble ; current_state.idle ;
++------------------------+-------------------+-------------------+---------------------+---------------------+------------------------+--------------------+
+; current_state.idle     ; 0                 ; 0                 ; 0                   ; 0                   ; 0                      ; 0                  ;
+; current_state.preamble ; 0                 ; 0                 ; 0                   ; 0                   ; 1                      ; 1                  ;
+; current_state.data1    ; 0                 ; 0                 ; 0                   ; 1                   ; 0                      ; 1                  ;
+; current_state.data0    ; 0                 ; 0                 ; 1                   ; 0                   ; 0                      ; 1                  ;
+; current_state.fcs      ; 0                 ; 1                 ; 0                   ; 0                   ; 0                      ; 1                  ;
+; current_state.ifg      ; 1                 ; 0                 ; 0                   ; 0                   ; 0                      ; 1                  ;
++------------------------+-------------------+-------------------+---------------------+---------------------+------------------------+--------------------+
 
 
 Encoding Type:  One-Hot
@@ -256,6 +279,26 @@ Encoding Type:  One-Hot
 +------------------------+------------------+---------------------+---------------------+-------------------+--------------------+--------------------+------------------------+
 
 
++----------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                        ;
++-----------------------------------------------------+---------------------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal                         ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------------------------------+------------------------+
+; tx:tx_instance|TxValidDataOut                       ; debounce:\generate_debouncers:2:deb1|result ; yes                    ;
+; tx:tx_instance|TxDataOut[0]                         ; tx:tx_instance|TxDataOut[3]                 ; yes                    ;
+; tx:tx_instance|TxDataOut[2]                         ; tx:tx_instance|TxDataOut[3]                 ; yes                    ;
+; tx:tx_instance|TxDataOut[3]                         ; tx:tx_instance|TxDataOut[3]                 ; yes                    ;
+; tx:tx_instance|TxNextState.data1                    ; tx:tx_instance|Selector0                    ; yes                    ;
+; tx:tx_instance|TxNextState.data0                    ; tx:tx_instance|Selector0                    ; yes                    ;
+; tx:tx_instance|TxNextState.fcs                      ; tx:tx_instance|Selector0                    ; yes                    ;
+; tx:tx_instance|TxNextState.preamble                 ; tx:tx_instance|Selector0                    ; yes                    ;
+; tx:tx_instance|TxNextState.idle                     ; tx:tx_instance|Selector0                    ; yes                    ;
+; tx:tx_instance|TxNextState.ifg                      ; tx:tx_instance|Selector0                    ; yes                    ;
+; Number of user-specified and inferred latches = 10  ;                                             ;                        ;
++-----------------------------------------------------+---------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +--------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                             ;
 +---------------------------------------+----------------------------------------+
@@ -263,11 +306,9 @@ Encoding Type:  One-Hot
 +---------------------------------------+----------------------------------------+
 ; RMII2MII:conv2|txd_intern[0,1]        ; Stuck at GND due to stuck port data_in ;
 ; RMII2MII:conv2|txen                   ; Stuck at GND due to stuck port data_in ;
-; RMII2MII:conv1|txd_intern[0,1]        ; Stuck at GND due to stuck port data_in ;
-; RMII2MII:conv1|txen                   ; Stuck at GND due to stuck port data_in ;
 ; RMII2MII:conv2|txstat                 ; Stuck at GND due to stuck port data_in ;
-; RMII2MII:conv1|txstat                 ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 8 ;                                        ;
+; tx:tx_instance|current_state.ifg      ; Merged with tx:tx_instance|IFGStart    ;
+; Total Number of Removed Registers = 5 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
 
@@ -276,12 +317,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 256   ;
-; Number of registers using Synchronous Clear  ; 17    ;
+; Total registers                              ; 317   ;
+; Number of registers using Synchronous Clear  ; 65    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 173   ;
+; Number of registers using Asynchronous Clear ; 187   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 163   ;
+; Number of registers using Clock Enable       ; 199   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -291,34 +332,18 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; rx:rx_instance|CRC:crc_inst|crc[29]     ; 7       ;
-; rx:rx_instance|CRC:crc_inst|crc[28]     ; 9       ;
-; rx:rx_instance|CRC:crc_inst|crc[31]     ; 8       ;
-; rx:rx_instance|CRC:crc_inst|crc[30]     ; 10      ;
-; rx:rx_instance|CRC:crc_inst|crc[27]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[26]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[25]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[23]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[22]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[21]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[19]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[16]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[18]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[13]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[15]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[14]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[12]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[9]      ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[11]     ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[7]      ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[6]      ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[2]      ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[3]      ; 3       ;
-; rx:rx_instance|CRC:crc_inst|crc[1]      ; 3       ;
-; rx:rx_instance|CrcRst                   ; 34      ;
+; rx:rx_instance|DstMacDEBUG[16]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[20]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[24]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[28]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[32]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[36]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[40]          ; 7       ;
+; rx:rx_instance|DstMacDEBUG[44]          ; 7       ;
 ; rx:rx_instance|IFGStart                 ; 6       ;
+; rx:rx_instance|CrcRst                   ; 34      ;
 ; rx:rx_instance|\Crc_p:first             ; 1       ;
-; Total number of inverted registers = 27 ;         ;
+; Total number of inverted registers = 11 ;         ;
 +-----------------------------------------+---------+
 
 
@@ -328,22 +353,24 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |OVPN|RMII2MII:conv1|out_rxd_intern[3]                           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |OVPN|rx:rx_instance|CrcIn[1]                                    ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:2:deb1|counter_out[5]        ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:3:deb1|counter_out[9]        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[44]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[41]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[37]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[34]                                  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |OVPN|rx:rx_instance|CrcIn[0]                                    ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:2:deb1|counter_out[7]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |OVPN|debounce:\generate_debouncers:3:deb1|counter_out[5]        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |OVPN|RMII2MII:conv1|txd_intern[0]                               ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[47]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[40]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[39]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[35]                                  ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[31]                                  ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[27]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[20]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[18]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[12]                                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[8]                                   ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[7]                                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[23]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[16]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[14]                                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[9]                                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[6]                                   ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |OVPN|rx:rx_instance|DstMac[3]                                   ;
 ; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |OVPN|rx:rx_instance|rxcounters:counters|IFGCnt[1]               ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |OVPN|tx:tx_instance|txcounters:counters|IFGCnt[0]               ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |OVPN|rx:rx_instance|rxcounters:counters|CurrentField.frame_type ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 
@@ -398,6 +425,36 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: tx:tx_instance                         ;
++----------------+--------------------------------------------------+-----------------+
+; Parameter Name ; Value                                            ; Type            ;
++----------------+--------------------------------------------------+-----------------+
+; localmac       ; 110010101111111011000000110111101011101010111110 ; Unsigned Binary ;
++----------------+--------------------------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:tx_instance|txcounters:counters"                                                              ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; framesizeok       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; currentfield.data ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:tx_instance"                                                                            ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; start       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; txnextstate ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "rx:rx_instance"                                                                                   ;
 +--------------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -440,15 +497,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "RMII2MII:conv1"                                                                           ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port       ; Type   ; Severity ; Details                                                                             ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; mac_tx_clk ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -464,9 +512,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Dec 07 14:40:47 2016
+    Info: Processing started: Wed Dec 14 16:21:30 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off OVPN -c OVPN
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file txcounters.vhd
+    Info (12022): Found design unit 1: txcounters-RTL
+    Info (12023): Found entity 1: txcounters
+Info (12021): Found 2 design units, including 1 entities, in source file tx.vhd
+    Info (12022): Found design unit 1: tx-RTL
+    Info (12023): Found entity 1: tx
 Info (12021): Found 2 design units, including 1 entities, in source file crc_full.vhd
     Info (12022): Found design unit 1: CRC-crc_verification
     Info (12023): Found entity 1: CRC
@@ -502,17 +556,17 @@ Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(25): used implicit 
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(27): used implicit default value for signal "oHEX5_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(29): used implicit default value for signal "oHEX6_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(31): used implicit default value for signal "oHEX7_DP" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(114): used implicit default value for signal "mETH1_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(116): object "mETH1_TX_CLK" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(118): used implicit default value for signal "mETH1_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(121): object "mETH2_RX" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(122): used implicit default value for signal "mETH2_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(123): object "mETH2_RX_CLK" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(124): object "mETH2_TX_CLK" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(125): object "mETH2_RX_DV" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(126): used implicit default value for signal "mETH2_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(141): object "RxValidDataIn" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(152): object "FrameCntNIB" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(139): object "mETH2_RX" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(140): used implicit default value for signal "mETH2_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(141): object "mETH2_RX_CLK" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(142): object "mETH2_TX_CLK" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(143): object "mETH2_RX_DV" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(144): used implicit default value for signal "mETH2_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(159): object "RxValidDataIn" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(170): object "FrameCntNIB" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(184): used implicit default value for signal "TxDataIn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at OVPN.vhd(185): used implicit default value for signal "TxValidDataIn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at OVPN.vhd(186): object "TxNextState" assigned a value but never read
 Warning (10873): Using initial value X (don't care) for net "oLEDG[7]" at OVPN.vhd(13)
 Warning (10873): Using initial value X (don't care) for net "oLEDR[13]" at OVPN.vhd(14)
 Warning (10873): Using initial value X (don't care) for net "oLEDR[10..6]" at OVPN.vhd(14)
@@ -522,17 +576,54 @@ Info (12128): Elaborating entity "debounce" for hierarchy "debounce:\generate_de
 Info (12128): Elaborating entity "rx" for hierarchy "rx:rx_instance"
 Warning (10036): Verilog HDL or VHDL warning at rx.vhd(73): object "ByteEq0xAA" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at rx.vhd(77): object "FrameTypeValid" assigned a value but never read
-Warning (10492): VHDL Process Statement warning at rx.vhd(110): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(264): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(268): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(325): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(325): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(347): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at rx.vhd(347): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(112): signal "CrcError" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(269): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(273): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(327): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(332): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(332): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(350): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(354): signal "CurrentField" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at rx.vhd(354): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10873): Using initial value X (don't care) for net "DstMacDEBUG[15..0]" at rx.vhd(26)
 Info (12128): Elaborating entity "rxcounters" for hierarchy "rx:rx_instance|rxcounters:counters"
 Info (12128): Elaborating entity "CRC" for hierarchy "rx:rx_instance|CRC:crc_inst"
-Warning (10492): VHDL Process Statement warning at crc_full.vhd(40): signal "rst" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at crc_full.vhd(41): signal "rst" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "tx" for hierarchy "tx:tx_instance"
+Warning (10036): Verilog HDL or VHDL warning at tx.vhd(52): object "FrameSizeOK" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at tx.vhd(56): used implicit default value for signal "CRCVal" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10492): VHDL Process Statement warning at tx.vhd(96): signal "Start" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(119): signal "TxDataIn" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(129): signal "TxDataIn" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(141): signal "FCSCounter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(142): signal "CRCVal" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(142): signal "FCSCounter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at tx.vhd(150): signal "IFGCntEq12" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at tx.vhd(84): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at tx.vhd(84): inferring latch(es) for signal or variable "TxValidDataOut", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at tx.vhd(84): inferring latch(es) for signal or variable "TxDataOut", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "TxDataOut[0]" at tx.vhd(84)
+Info (10041): Inferred latch for "TxDataOut[1]" at tx.vhd(84)
+Info (10041): Inferred latch for "TxDataOut[2]" at tx.vhd(84)
+Info (10041): Inferred latch for "TxDataOut[3]" at tx.vhd(84)
+Info (10041): Inferred latch for "TxValidDataOut" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.ifg" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.fcs" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.data0" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.data1" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.preamble" at tx.vhd(84)
+Info (10041): Inferred latch for "next_state.idle" at tx.vhd(84)
+Info (12128): Elaborating entity "txcounters" for hierarchy "tx:tx_instance|txcounters:counters"
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "tx:tx_instance|TxDataOut[2]" merged with LATCH primitive "tx:tx_instance|TxDataOut[0]"
+Warning (13012): Latch tx:tx_instance|TxDataOut[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal tx:tx_instance|current_state.preamble
+Warning (13012): Latch tx:tx_instance|TxDataOut[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal tx:tx_instance|current_state.preamble
+Warning (13012): Latch tx:tx_instance|TxNextState.data1 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal tx:tx_instance|current_state.preamble
+Warning (13012): Latch tx:tx_instance|TxNextState.preamble has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal tx:tx_instance|current_state.preamble
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
@@ -551,9 +642,6 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "oHEX5_DP" is stuck at GND
     Warning (13410): Pin "oHEX6_DP" is stuck at GND
     Warning (13410): Pin "oHEX7_DP" is stuck at GND
-    Warning (13410): Pin "ETH1_TX[0]" is stuck at GND
-    Warning (13410): Pin "ETH1_TX[1]" is stuck at GND
-    Warning (13410): Pin "ETH1_TX_EN" is stuck at GND
     Warning (13410): Pin "ETH2_TX[0]" is stuck at GND
     Warning (13410): Pin "ETH2_TX[1]" is stuck at GND
     Warning (13410): Pin "ETH2_TX_EN" is stuck at GND
@@ -570,14 +658,14 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ETH2_MDIO"
     Warning (15610): No output dependent on input pin "ETH2_MDC"
     Warning (15610): No output dependent on input pin "ETH2_CLK"
-Info (21057): Implemented 605 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 716 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 97 output pins
-    Info (21061): Implemented 491 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 67 warnings
-    Info: Peak virtual memory: 524 megabytes
-    Info: Processing ended: Wed Dec 07 14:40:50 2016
-    Info: Elapsed time: 00:00:03
+    Info (21061): Implemented 602 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 86 warnings
+    Info: Peak virtual memory: 528 megabytes
+    Info: Processing ended: Wed Dec 14 16:21:32 2016
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

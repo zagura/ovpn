@@ -105,11 +105,16 @@ begin
 	--DstMacValidDEBUG <= DstMacValid;
 	DstMacValidDEBUG <= ala;
 	
-	assign : process (RxClk) is
+	assign : process (RxClk, Rst) is
 	begin
-		if rising_edge(RxClk) and current_state = drop then
-			DstMacDEBUG(47 downto 16) <= CrcOut;
-		end if;
+		if Rst = '1' then
+			dSTMacDEBUG(47 downto 16) <= X"11111111";
+		elsif rising_edge(RxClk) and (not crcError) = '1' then
+--		elsif next_state = idle or next_state = drop or next_state = OK then 
+	--	elsif (not crcError) = '1' and (next_state = OK) then
+				DstMacDEBUG(47 downto 16) <= CrcOut;
+			end if;
+--		end if;
 	end process assign;
 	
 	FrameTypeDEBUG <= FrameType;
@@ -230,22 +235,22 @@ begin
 							next_state <= drop;
 						end if;	
 						
-					when data1 =>
+					when data0 =>
 						if RxValidDataIn = '0' then
-							next_state <= idle;
+							next_state <= drop ;
 						else
-							next_state <= data0;
+							next_state <= data1;
 
 						end if;
 						
 						
-					when data0 =>
-						if RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and CrcError = '0' and FrameSizeOK = '1' then
+					when data1 =>
+						if RxValidDataIn = '0' and DstMacValid = '1' and SrcMacValid = '1' and FrameSizeOK = '1' then
 							next_state <= OK;
-						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or CrcError = '1' or FrameSizeOK = '0') then
+						elsif RxValidDataIn = '0' and (DstMacValid = '0' or SrcMacValid = '0' or FrameSizeOK = '0') then
 							next_state <= drop;
 						else
-							next_state <= data1;
+							next_state <= data0;
 						end if;
 						
 					when drop =>
@@ -288,8 +293,10 @@ begin
 			IFGStart <= '1';
 			ala <= '0';
 		elsif rising_edge(RxClk) then
-				ala <= (not crcError) or ala; -- Uwaga na to
-
+	--			ala <= (not crcError) xor ala; -- Uwaga na to
+			if current_state = OK then
+				ala <= not ala;
+			end if;
 			if next_state = idle or next_state = drop or next_state = OK then
 				IFGStart <= '1';
 			else
@@ -317,8 +324,8 @@ begin
 		variable i : natural := 0;
 		variable delay : natural := 0;
 	begin
---	 	if Rst = '1' or current_state = idle then
-		if Rst = '1' then
+	 	if Rst = '1' or current_state = idle then
+--		if Rst = '1' then
 	 		DstMac <= (others => '0');
 	 		i := 0;
 			delay := 0;
@@ -340,8 +347,8 @@ begin
 	fill_frame_type : process (RxClk, Rst) is
 		variable i : natural := 0;
 	begin
---	 	if Rst = '1' or current_state = idle then
-		if Rst = '1' then
+	 	if Rst = '1' or current_state = idle then
+--		if Rst = '1' then
 	 		FrameType <= (others => '0');
 	 		i := 0;
 	 	elsif rising_edge(RxClk) and i < 4 and CurrentField = frame_type and (current_state = data0 or current_state = data1) then
