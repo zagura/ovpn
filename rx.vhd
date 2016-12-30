@@ -95,6 +95,7 @@ architecture RTL of rx is
 	signal nibbleBuffer : std_logic_vector(3 downto 0);
 	signal CrcInRev : std_logic_vector(3 downto 0);
 	signal ala : std_logic;
+	signal globalDelay : natural;
 	
 begin
 	
@@ -187,7 +188,7 @@ begin
 		end if;
 	end process ns;
 	
-	--PomysĂ„Ä…Ă˘â‚¬Ĺˇ jest taki, Ă„Ä…Ă„Ëťe stan mĂ„â€šÄąâ€šwi, czego oczekujemy
+	--Pomysl jest taki, ze stan mowi, czego oczekujemy
 	--Bo przypisanie do current_state jest opĂ„â€šÄąâ€šĂ„Ä…ÄąĹşnione o jeden takt
 
 	fsm : process(	current_state, 
@@ -324,21 +325,27 @@ begin
 		end if;
 	end process FrameStart_p;
 	
-	--Procesy zaleĂ„Ä…Ă„Ëťne od stanu maszyny
+	--Procesy zalezne od stanu maszyny
 	filldstmac : process (RxClk, Rst) is
 		variable i : natural := 0;
 		variable delay : natural := 0;
 	begin
 --	 	if Rst = '1' or current_state = idle then
 		if Rst = '1' then
+/*			if globalDelay = 256 then
+				globalDelay <= 0;
+			else
+				globalDelay <= globalDelay + 8;
+			end if;
+			*/
 	 		DstMac <= (others => '0');
 	 		i := 0;
-			delay := 0;
+			delay := 16;
 --	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
 		elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) then
 			if delay = 0 then
 				if nibbleInvalid /= '1' then
-					DstMac(47-(4*i) downto 44-(4*i)) <= CrcIn;
+					DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
 				
 			
 --				if current_state = data1 then

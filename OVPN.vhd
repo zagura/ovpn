@@ -185,28 +185,49 @@ architecture RTL of OVPN is
 	signal TxValidDataIn : std_logic;
 	signal TxNextState : txstate_type;
 	signal StartSending : std_logic;
+	signal Start : std_logic;
 	
 	
 begin
-	process(mETH1_TX_CLK, Button(2)) if
-		variable toSend : std_logic_vector(143 downto 0);
-		variable i : natural
+	process(mETH2_TX_CLK, Button(2)) is
+		variable toSend : std_logic_vector(583 downto 0) :=
+		X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0806000108000604000100000000000000000000CAFEC0DEBABE0A000001000000000000000000000000000000000000007974A39D";--- 9DA37479";
+	--	X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0800DEADBEEF";
+		variable i : natural;
 	begin
-		TxValidDataIn <= '0';
 		if Button(2) = '1' then
-			toSend := X"FFFFFFFFFFFFCAFEC0DEBABE0800DEADBEEF";
 			i := 0;
-			TxValidDataIn <= '0';
-		elsif rising_edge(mETH1_TX_CLK) and i<36 and (TxNextState = data0 or TxNextState = data1) then
-			TxDataIn <= toSend(143-(i*4) downto 139-(i*4));
-			TxValidDataIn <= '1';
-			i := i-1;
+		   mETH2_TX_EN <= '0';
+		elsif rising_edge(mETH2_TX_CLK) and i<108 and Start = '1' then
+			--mETH2_TX_EN <= '0';
+			--if (TxNextState = data0 or TxNextState = data1) then
+				mETH2_TX <= toSend(583-(i*4) downto 580 -(i*4));
+				mETH2_TX_EN <= '1';
+				i := i+1;
+		elsif rising_edge(mETH2_TX_CLK) and Start = '0' then
+			i := 0;
+			mETH2_TX_EN <= '0';
+			--end if;
+		elsif rising_edge(mETH2_TX_CLK) then
+			mETH2_TX_EN <= '0';
 		end if;
 		
 	end process;
 
-
-	StartSending <= '0';
+	process (Button(3), Button(2)) is
+	begin
+		if Button(2) = '1' then
+			Start <= '0';
+		end if;
+		if Button(3) = '1' then
+			StartSending <= '1';
+			Start <= '1';
+		else
+			StartSending <= '0';
+			Start <= '0';
+		end if;
+	end process;
+	
 	conv1 : component RMII2MII
 		port map(
 			rst        => ButtonN(2),
@@ -298,7 +319,7 @@ begin
 	end generate generate_debouncers;
 	
 	Button <= not ButtonN;
-	oLEDR(12) <= mETH1_RX_CLK;
+	oLEDR(12) <= mETH2_TX_CLK;
 	rx_instance : rx
 		generic map(
 			LocalMac => X"CAFEC0DEBABE"
@@ -341,9 +362,10 @@ begin
 		
 	--LEDS
 	
-	oLEDR(5) <= '1' when (RxCurrentState = idle) else '0';
-	oLEDR(4) <= '1' when (RxCurrentState = preamble) else '0';
-	oLEDR(3) <= '1' when (RxCurrentState = sfd) else '0';
+	oLEDR(5) <= mETH2_TX(0);		--'1' when (RxCurrentState = idle) else '0';
+
+	oLEDR(4) <= metH2_TX(1);	--'1' when (RxCurrentState = preamble) else '0';
+	oLEDR(3) <= mETH2_TX_EN;					--'1' when (RxCurrentState = sfd) else '0';
 	oLEDR(2) <= '1' when (RxCurrentState = data1 or RxCurrentState = data0) else '0';
 	oLEDR(1) <= '1' when (RxCurrentState = OK) else '0';
 	oLEDR(0) <= '1' when (RxCurrentState = drop) else '0';
@@ -364,5 +386,6 @@ begin
 	
 	oLEDG(8) <= ByteEq0xabDEBUG;
 	oLEDG(6) <= DstMacValidDEBUG;
+
 		 
 end architecture RTL;

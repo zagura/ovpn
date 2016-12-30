@@ -122,7 +122,6 @@ begin
 		if Rst = '1' then
 			next_state <= idle;
 		else
-			TxValidDataOut <= '0';
 			case current_state is
 				
 			when idle => 
@@ -132,6 +131,7 @@ begin
 					TxValidDataOut <= '1';
 				else
 					next_state <= idle;
+					TxValidDataOut <= '0';
 				end if;
 				
 			
@@ -146,6 +146,7 @@ begin
 					next_state <= data1;
 				else
 					next_state <= idle; --To i tak nigdy nie zajdzie
+					TxValidDataOut <= '0';
 				end if;
 					
 				
@@ -170,6 +171,7 @@ begin
 					next_state <= data1;
 				else
 					next_state <= fcs;
+					TxValidDataOut <= '1'; --to jest cholernie źle
 				end if;
 				
 			when fcs =>
@@ -179,13 +181,16 @@ begin
 					next_state <= fcs;
 				else
 					next_state <= ifg;
+					TxValidDataOut <= '0';
 				end if;
 	
 			when ifg =>
 				if IFGCntEq12 = '1' then
 					next_state <= idle;
+					TxValidDataOut <= '0';
 				else
 					next_state <= ifg;
+					TxValidDataOut <= '0';
 				end if;
 			end case;
 		end if;

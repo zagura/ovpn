@@ -148,7 +148,7 @@ begin
 	if (sreset = '1') then
 		txd_intern	<= "00";
 		txen   <= '0';
-		tx_clk <= '0';
+		tx_clk <= '1';
 		txstat <= '0';
 	elsif rising_edge(phy_CLK) then
 		
@@ -158,9 +158,9 @@ begin
 			txstat <= '0';			
 		else
 			if (txstat = '0') then	-- mux the transmit-data
-				txd_intern	<= mac_TXD(1 downto 0);
+				txd_intern <= mac_TXD(1 downto 0);
 			else
-				txd_intern	<= mac_TXD(3 downto 2);
+				txd_intern <= mac_TXD(3 downto 2);
 			end if;
 			txstat <= (not txstat);
 			txen	<= '1';
