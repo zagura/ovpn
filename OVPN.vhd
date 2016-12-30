@@ -32,7 +32,7 @@ entity OVPN is
 		--iSW : in std_logic_vector(17 downto 0);
 		iKEY : in std_logic_vector(3 downto 0);
 		
-		-- Mapowanie portĂ„â€šÄąâ€šw ethernet -- ETH1 (Poludnie)
+		-- Mapowanie portow ethernet -- ETH1 (Poludnie)
 		ETH1_CRS : in std_logic;
 		ETH1_TX : out std_logic_vector(1 downto 0);
 		ETH1_TX_EN : out std_logic;
@@ -41,7 +41,7 @@ entity OVPN is
 		ETH1_MDC : in std_logic;
 		ETH1_CLK : in std_logic;
 		
-		-- Mapowanie portĂ„â€šÄąâ€šw ethernet -- ETH2 (Polnoc)
+		-- Mapowanie portow ethernet -- ETH2 (Polnoc)
 		ETH2_CRS : in std_logic;
 		ETH2_TX : out std_logic_vector(1 downto 0);
 		ETH2_TX_EN : out std_logic;
@@ -186,7 +186,26 @@ architecture RTL of OVPN is
 	signal TxNextState : txstate_type;
 	signal StartSending : std_logic;
 	
+	
 begin
+	process(mETH1_TX_CLK, Button(2)) if
+		variable toSend : std_logic_vector(143 downto 0);
+		variable i : natural
+	begin
+		TxValidDataIn <= '0';
+		if Button(2) = '1' then
+			toSend := X"FFFFFFFFFFFFCAFEC0DEBABE0800DEADBEEF";
+			i := 0;
+			TxValidDataIn <= '0';
+		elsif rising_edge(mETH1_TX_CLK) and i<36 and (TxNextState = data0 or TxNextState = data1) then
+			TxDataIn <= toSend(143-(i*4) downto 139-(i*4));
+			TxValidDataIn <= '1';
+			i := i-1;
+		end if;
+		
+	end process;
+
+
 	StartSending <= '0';
 	conv1 : component RMII2MII
 		port map(

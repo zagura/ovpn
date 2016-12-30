@@ -116,7 +116,8 @@ begin
 	fsm : process(	current_state,
 						Rst,
 						CurrentField,
-						TxValidDataIn) is
+						TxValidDataIn,
+						Start) is
 	begin
 		if Rst = '1' then
 			next_state <= idle;
@@ -143,6 +144,8 @@ begin
 					TxDataOut <= X"D";
 					TxValidDataOut <= '1';
 					next_state <= data1;
+				else
+					next_state <= idle; --To i tak nigdy nie zajdzie
 				end if;
 					
 				
@@ -161,7 +164,7 @@ begin
 					TxDataOut <= TxDataIn;
 					TxValidDataOut <= '1';
 					next_state <= data1;
-				elsif currentField = data_pad then
+				elsif TxValidDataIn = '0' and currentField = data_pad then
 					TxDataOut <= X"0";
 					TxValidDataOut <= '1';
 					next_state <= data1;
