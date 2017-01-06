@@ -340,19 +340,19 @@ begin
 			*/
 	 		DstMac <= (others => '0');
 	 		i := 0;
-			delay := 16;
+			delay := 121;
 --	 	elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) and CurrentField = dst_mac then
 		elsif rising_edge(RxClk) and i < 12 and (current_state = data0 or current_state = data1) then
 			if delay = 0 then
 				if nibbleInvalid /= '1' then
-					DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
+--					DstMac(47-(4*i) downto 44-(4*i)) <= RxDataIn;
 				
 			
---				if current_state = data1 then
---					DstMac(47-(4*(i+1)) downto 44-(4*(i+1))) <= RxDataIn;
---				else
---					DstMac(47-(4*(i-1)) downto 44-(4*(i-1))) <= RxDataIn;
---				end if;
+				if current_state = data1 then
+					DstMac(47-(4*(i+1)) downto 44-(4*(i+1))) <= RxDataIn;
+				else
+					DstMac(47-(4*(i-1)) downto 44-(4*(i-1))) <= RxDataIn;
+				end if;
 					i := i + 1;
 				end if;
 			else

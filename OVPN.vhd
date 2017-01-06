@@ -184,46 +184,46 @@ architecture RTL of OVPN is
 	signal TxDataIn : std_logic_vector(3 downto 0);
 	signal TxValidDataIn : std_logic;
 	signal TxNextState : txstate_type;
-	signal StartSending : std_logic;
+	signal StopSending : std_logic;
 	signal Start : std_logic;
 	
 	
 begin
 	process(mETH2_TX_CLK, Button(2)) is
-		variable toSend : std_logic_vector(583 downto 0) :=
-		X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0806000108000604000100000000000000000000CAFEC0DEBABE0A000001000000000000000000000000000000000000007974A39D";--- 9DA37479";
+		variable toSend : std_logic_vector(579 downto 0) :=
+		X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0806000108000604000100000000000000000000CAFEC0DEBABE0A0000010000000000000000000000000000000000000FA24B8A0";--- 9DA37479";
 	--	X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0800DEADBEEF";
 		variable i : natural;
 	begin
 		if Button(2) = '1' then
 			i := 0;
 		   mETH2_TX_EN <= '0';
-		elsif rising_edge(mETH2_TX_CLK) and i<108 and Start = '1' then
+			
+		elsif rising_edge(mETH2_TX_CLK) and i<145 and Start = '1' then
+			StopSending <= '0';
 			--mETH2_TX_EN <= '0';
 			--if (TxNextState = data0 or TxNextState = data1) then
-				mETH2_TX <= toSend(583-(i*4) downto 580 -(i*4));
+				mETH2_TX <= toSend(579-(i*4) downto 576 -(i*4));
 				mETH2_TX_EN <= '1';
 				i := i+1;
 		elsif rising_edge(mETH2_TX_CLK) and Start = '0' then
 			i := 0;
 			mETH2_TX_EN <= '0';
 			--end if;
-		elsif rising_edge(mETH2_TX_CLK) then
+		elsif rising_edge(mETH2_TX_CLK) and i = 145 then
+			StopSending <= '1';
 			mETH2_TX_EN <= '0';
 		end if;
 		
 	end process;
 
-	process (Button(3), Button(2)) is
+	process (Button(3), Button(2), StopSending) is
 	begin
 		if Button(2) = '1' then
 			Start <= '0';
-		end if;
-		if Button(3) = '1' then
-			StartSending <= '1';
+		elsif Button(3) = '1' then
 			Start <= '1';
-		else
-			StartSending <= '0';
+		elsif StopSending = '1' then
 			Start <= '0';
 		end if;
 	end process;
@@ -344,7 +344,7 @@ begin
 		
 		RxValidDataIn <= '1';
 		
-		
+/*		
 	tx_instance : tx
 		generic map(
 			LocalMac => X"CAFEC0DEBABE"
@@ -359,7 +359,7 @@ begin
 			TxValidDataOut => mETH1_TX_EN,
 			TxDataOut => mETH1_TX		
 		);
-		
+*/		
 	--LEDS
 	
 	oLEDR(5) <= mETH2_TX(0);		--'1' when (RxCurrentState = idle) else '0';
