@@ -148,7 +148,7 @@ begin
 	if (sreset = '1') then
 		txd_intern	<= "00";
 		txen   <= '0';
-		tx_clk <= '1';
+		tx_clk <= '0';
 		txstat <= '0';
 	elsif rising_edge(phy_CLK) then
 		

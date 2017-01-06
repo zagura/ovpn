@@ -151,6 +151,22 @@ architecture RTL of OVPN is
 	--Do not touch things above this line, unless you know what are you doing
 	--Things above seems to be good ;D
 	
+	component CRC
+		port(
+			-- input
+		clk      : in std_logic;
+		rst      : in std_logic;
+		data_in  : in std_logic_vector(3 downto 0);
+		
+			-- output
+			
+		crc_out  : out std_logic_vector(31 downto 0);
+		error : out std_logic
+		
+		);
+	end component CRC;
+	
+	
 	type hex_display_array is array (0 to 7) of std_logic_vector(6 downto 0);
 	type nibble_array is array (0 to 7) of std_logic_vector(3 downto 0);
 	
@@ -187,38 +203,74 @@ architecture RTL of OVPN is
 	signal StopSending : std_logic;
 	signal Start : std_logic;
 	
+	signal nibbleInvalid : std_logic;
+	signal CrcIn : std_logic_vector(3 downto 0);
+	signal CrcOut : std_logic_vector(31 downto 0);
+	signal CrcError : std_logic;
+	
 	
 begin
+	crc_inst : CRC
+	port map(
+		-- input
+	clk      => mETH2_TX_CLK,
+	rst      => Button(2),
+	data_in  => CrcIn,
+	
+		-- output
+		
+	crc_out  => CrcOut,
+	error    => CrcError
+	
+	);
+
 	process(mETH2_TX_CLK, Button(2)) is
 		variable toSend : std_logic_vector(579 downto 0) :=
-		X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0806000108000604000100000000000000000000CAFEC0DEBABE0A0000010000000000000000000000000000000000000FA24B8A0";--- 9DA37479";
+		X"55555555555555D5FFFFFFFFFFFFCAFEC0DEBABE0806000108000604000100000000000000000000CAFEC0DEBABE0A00000100000000000000000000000000000000000004FA24B8A";--- 9DA37479";
 	--	X"555555555555555DFFFFFFFFFFFFCAFEC0DEBABE0800DEADBEEF";
 		variable i : natural;
+		variable parity : boolean;
 	begin
 		if Button(2) = '1' then
 			i := 0;
 		   mETH2_TX_EN <= '0';
-			
-		elsif rising_edge(mETH2_TX_CLK) and i<145 and Start = '1' then
+			parity := True;
+		elsif rising_edge(mETH2_TX_CLK) and i<138 and Start = '1' then
 			StopSending <= '0';
 			--mETH2_TX_EN <= '0';
 			--if (TxNextState = data0 or TxNextState = data1) then
-				mETH2_TX <= toSend(579-(i*4) downto 576 -(i*4));
+				if parity = True then
+					mETH2_TX <= toSend(579-((i+1)*4) downto 576 -((i+1)*4));
+				else
+					mETH2_TX <= toSend(579-((i-1)*4) downto 576 -((i-1)*4));
+				end if;
+				parity := not parity;
+				if i >= 16 then
+					CrcIn <= toSend(579 - (i*4) downto 576-(i*4));
+				end if;
 				mETH2_TX_EN <= '1';
 				i := i+1;
 		elsif rising_edge(mETH2_TX_CLK) and Start = '0' then
 			i := 0;
 			mETH2_TX_EN <= '0';
 			--end if;
-		elsif rising_edge(mETH2_TX_CLK) and i = 145 then
+		elsif rising_edge(mETH2_TX_CLK) and i >= 138 and i <146 and Start ='1' then
+			mETH2_TX <= CrcOut(31-((i-138)*4) downto 28-((i-138)*4));
+			mETH2_TX_EN <= '1';
+			i := i+1;
+		elsif rising_edge(mETH2_TX_CLK) and i = 146 then
 			StopSending <= '1';
 			mETH2_TX_EN <= '0';
+			parity := True;
 		end if;
 		
 	end process;
 
-	process (Button(3), Button(2), StopSending) is
+	process (Button(3), Button(2), StopSending, Start) is
 	begin
+		if Start = '0' then
+			Start <= '1';
+		end if;
 		if Button(2) = '1' then
 			Start <= '0';
 		elsif Button(3) = '1' then
